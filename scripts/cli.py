@@ -104,8 +104,27 @@ def _execute_case(
         )
         case_state["commands"].extend(commands)
     else:
+        server = effective["server"]
+        if "warmup" in effective:
+            warmup = generate_warmup(
+                case["definition"]["warmup"],
+                effective["warmup"],
+                _tokenizer(server),
+                run_dir,
+                name,
+            )
+            case_state["warmup_data"] = warmup
+            warmup_dataset = {
+                **warmup,
+                "output_length": int(effective["warmup"]["output_length"]),
+            }
+            warmup_log = run_dir / f"{name}-warmup.log"
+            command = run_warmup(
+                server, effective["warmup_bench"], warmup_dataset, warmup_log
+            )
+            case_state["commands"].append(command)
         command = run_accuracy(
-            name, effective["server"], effective["accuracy"], run_dir
+            name, server, effective["accuracy"], run_dir
         )
         case_state["commands"].append(command)
     case_state["report"] = build_report(

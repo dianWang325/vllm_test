@@ -129,3 +129,63 @@ cases:
     warmup: deepseek_max_len_0830
     bench: pd_prefill_0830
     report: performance
+  gpqa_baseline_server27_8cards:
+    description: server-27-8cards DeepSeek V4 Flash baseline GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_baseline_server27_8cards
+    model: deepseek_v4_flash_server27_8cards
+    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    report: accuracy
+  gpqa_cpp_server27_8cards:
+    description: server-27-8cards DeepSeek V4 Flash CPP GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_cpp_server27_8cards
+    model: deepseek_v4_flash_server27_8cards
+    warmup: deepseek_v4_flash_server27_8cards_max_len
+    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    report: accuracy
+  gpqa_srf_server27_8cards:
+    description: server-27-8cards DeepSeek V4 Flash SRF GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_srf_server27_8cards
+    model: deepseek_v4_flash_server27_8cards
+    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    report: accuracy
+  gpqa_cpp_srf_server27_8cards:
+    description: server-27-8cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_cpp_srf_server27_8cards
+    model: deepseek_v4_flash_server27_8cards
+    warmup: deepseek_v4_flash_server27_8cards_max_len
+    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    report: accuracy
+  gpqa_baseline_server14_16cards:
+    description: server-14-16cards DeepSeek V4 Flash baseline GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_baseline_server14_16cards
+    model: deepseek_v4_flash_server14_16cards
+    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    report: accuracy
+  gpqa_cpp_server14_16cards:
+    description: server-14-16cards DeepSeek V4 Flash CPP GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_cpp_server14_16cards
+    model: deepseek_v4_flash_server14_16cards
+    warmup: deepseek_v4_flash_server14_16cards_max_len
+    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    report: accuracy
+  gpqa_srf_server14_16cards:
+    description: server-14-16cards DeepSeek V4 Flash SRF GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_srf_server14_16cards
+    model: deepseek_v4_flash_server14_16cards
+    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    report: accuracy
+  gpqa_cpp_srf_server14_16cards:
+    description: server-14-16cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
+    type: accuracy
+    server: gpqa_cpp_srf_server14_16cards
+    model: deepseek_v4_flash_server14_16cards
+    warmup: deepseek_v4_flash_server14_16cards_max_len
+    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    report: accuracy

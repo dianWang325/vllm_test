@@ -158,3 +158,167 @@ profiles:
     environment:
       ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
       VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_baseline_server27_8cards:
+    description: server-27-8cards GPQA baseline 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_cpp_server27_8cards:
+    description: server-27-8cards GPQA CPP 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_srf_server27_8cards:
+    description: server-27-8cards GPQA SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_cpp_srf_server27_8cards:
+    description: server-27-8cards GPQA CPP+SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_baseline_server14_16cards:
+    description: server-14-16cards GPQA baseline 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 8
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_cpp_server14_16cards:
+    description: server-14-16cards GPQA CPP 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 8
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_srf_server14_16cards:
+    description: server-14-16cards GPQA SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 8
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  gpqa_cpp_srf_server14_16cards:
+    description: server-14-16cards GPQA CPP+SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 8
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+      VLLM_USE_V2_MODEL_RUNNER: "1"

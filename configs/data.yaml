@@ -77,3 +77,15 @@ warmup:
       output_length: 1
       request_count: 5
       seed: 826
+    deepseek_v4_flash_server14_16cards_max_len:
+      description: server-14-16cards DeepSeek V4 Flash 最大上下文长度的 CPP 专属预热数据
+      input_length: 1048575
+      output_length: 1
+      request_count: 5
+      seed: 826
+    deepseek_v4_flash_server27_8cards_max_len:
+      description: server-27-8cards DeepSeek V4 Flash 最大上下文长度的 CPP 专属预热数据
+      input_length: 66559
+      output_length: 1
+      request_count: 5
+      seed: 826

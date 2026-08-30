@@ -18,3 +18,21 @@ profiles:
     description: 使用本地 GPQA Diamond 运行 0-shot CoT 精度测试
     dataset: gpqa
     path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
+  gpqa_deepseek_v4_flash_server14_16cards:
+    description: server-14-16cards DeepSeek V4 Flash GPQA Diamond 全量精度测试
+    dataset: gpqa
+    path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
+    request_rate: 0
+    temperature: 1.0
+    repetition_penalty: 1.0
+    max_output_tokens: 61440
+    concurrency: 32
+  gpqa_deepseek_v4_flash_server27_8cards:
+    description: server-27-8cards DeepSeek V4 Flash GPQA Diamond 全量精度测试
+    dataset: gpqa
+    path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
+    request_rate: 0
+    temperature: 1.0
+    repetition_penalty: 1.0
+    max_output_tokens: 30720
+    concurrency: 32

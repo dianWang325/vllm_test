@@ -142,6 +142,17 @@ def _resolve_case(name: str, definition: dict[str, Any]) -> dict[str, Any]:
         effective["accuracy"] = deep_merge(
             merged, overrides.get("accuracy", {})
         )
+        if definition.get("warmup"):
+            data_doc = load_yaml("data")
+            source, merged = _profile(data_doc, definition["warmup"], "warmup")
+            selected["warmup"] = source
+            effective["warmup"] = deep_merge(merged, overrides.get("warmup", {}))
+            bench_doc = load_yaml("bench")
+            warm_source, warm_merged = _profile(bench_doc, "warmup")
+            selected["warmup_bench"] = warm_source
+            effective["warmup_bench"] = deep_merge(
+                warm_merged, overrides.get("warmup_bench", {})
+            )
 
     return {
         "name": name,

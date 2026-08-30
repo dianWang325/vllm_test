@@ -18,3 +18,28 @@ models:
       --reasoning-parser: deepseek_v4
       --enable-auto-tool-choice: true
       --enable-expert-parallel: true
+
+  deepseek_v4_flash_server14_16cards:
+    description: server-14-16cards 专用 DeepSeek V4 Flash W8A8 MTP 模型
+    model_tag: /home/DeepSeek-V4-Flash-w8a8-mtp
+    arguments:
+      --served-model-name: deepseek-v4-flash
+      --quantization: ascend
+      --tokenizer-mode: deepseek_v4
+      --tool-call-parser: deepseek_v4
+      --reasoning-parser: deepseek_v4
+      --enable-auto-tool-choice: true
+      --enable-expert-parallel: true
+
+  deepseek_v4_flash_server27_8cards:
+    description: server-27-8cards 专用 DeepSeek V4 Flash W8A8 MTP 模型
+    model_tag: /home/weight/DeepSeek-V4-Flash-w8a8-mtp
+    arguments:
+      --served-model-name: deepseek-v4-flash
+      --quantization: ascend
+      --max-model-len: 66560
+      --tokenizer-mode: deepseek_v4
+      --tool-call-parser: deepseek_v4
+      --reasoning-parser: deepseek_v4
+      --enable-auto-tool-choice: true
+      --enable-expert-parallel: true
