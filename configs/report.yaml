@@ -3,17 +3,18 @@ defaults:
 
 profiles:
   performance:
-    description: 汇总吞吐、时延和请求成功情况
+    description: 汇总 Prefill 性能、端到端时延、首 token 时延和请求成功情况
     metrics:
       - Request Throughput.total
-      - Output Token Throughput.total
-      - Total Token Throughput.total
+      - Prefill Token Throughput.total
+      - Input Token Throughput.total
+      - Total Input Tokens.total
       - Success Requests.total
       - Failed Requests.total
+      - E2EL.total.Average
+      - E2EL.total.P90
       - TTFT.total.Average
       - TTFT.total.P90
-      - TPOT.total.Average
-      - TPOT.total.P90
   functional:
     description: 汇总功能冒烟请求是否全部成功
     metrics:

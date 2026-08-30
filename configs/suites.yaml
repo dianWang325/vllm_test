@@ -29,7 +29,7 @@ suites:
   pd_prefill_0830:
     description: PD P 节点 baseline、CPP、SRF 与 CPP+SRF 性能对比
     cases:
-      - pd_prefill_baseline_0830
+      # - pd_prefill_baseline_0830
       - pd_prefill_cpp_0830
       - pd_prefill_srf_0830
       - pd_prefill_cpp_srf_0830
