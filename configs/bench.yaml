@@ -4,7 +4,7 @@ defaults:
   temperature: 0
   repetition_penalty: 1
   ignore_eos: true
-  retries: 0
+  retries: 3
   repeats: 1
   concurrency: 4
   stats: [Average, Min, Max, Median, P90, P95, P99]
