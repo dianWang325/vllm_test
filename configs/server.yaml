@@ -1,0 +1,160 @@
+defaults:
+  model: qwen3_30b_a3b_w8a8
+  lifecycle:
+    health_path: /health
+    startup_timeout_seconds: 3600
+    health_interval_seconds: 5
+    shutdown_timeout_seconds: 120
+  arguments:
+    --host: 127.0.0.1
+    --port: 18080
+    --trust-remote-code: true
+    --data-parallel-size: 2
+    --tensor-parallel-size: 4
+    --pipeline-parallel-size: 2
+    --max-num-batched-tokens: 20480
+    --max-num-seqs: 16
+    --gpu-memory-utilization: 0.9
+    --block-size: 128
+    --enable-chunked-prefill: true
+    --scheduling-policy: fcfs
+    --enable-request-id-headers: true
+    --uvicorn-log-level: info
+    --enforce-eager: true
+    --no-enable-prefix-caching: true
+    --no-async-scheduling: true
+  environment:
+    ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+    VLLM_USE_V2_MODEL_RUNNER: "1"
+    VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
+    VLLM_LOGGING_LEVEL: INFO
+    OMP_PROC_BIND: "false"
+    OMP_NUM_THREADS: "10"
+    PYTORCH_NPU_ALLOC_CONF: expandable_segments:True
+    HCCL_BUFFSIZE: "1024"
+    TASK_QUEUE_ENABLE: "1"
+    HCCL_OP_EXPANSION_MODE: AIV
+    VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS: "30000"
+    HCCL_EXEC_TIMEOUT: "204"
+    HCCL_CONNECT_TIMEOUT: "120"
+    NO_PROXY: 127.0.0.1,localhost
+    no_proxy: 127.0.0.1,localhost
+  unset_environment:
+    - ASCEND_LAUNCH_BLOCKING
+
+profiles:
+  baseline:
+    description: 不启用 CPP 或 SRF 的基线服务
+  cpp:
+    description: 启用动态 CPP 的服务
+    arguments:
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 1.0
+            need_timing: true
+  srf:
+    description: 启用短请求优先调度的服务
+    arguments:
+      --additional-config:
+        scheduler_config:
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+  cpp_srf:
+    description: 同时启用动态 CPP 与 SRF 的服务
+    arguments:
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 1.0
+            need_timing: true
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+  baseline_0830:
+    description: PD P 节点 0830 基线服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  cpp_0830:
+    description: PD P 节点 0830 CPP 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  srf_0830:
+    description: PD P 节点 0830 SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+  cpp_srf_0830:
+    description: PD P 节点 0830 CPP+SRF 服务
+    arguments:
+      --data-parallel-size: 1
+      --pipeline-parallel-size: 2
+      --tensor-parallel-size: 4
+      --gpu-memory-utilization: 0.9
+      --max-num-batched-tokens: 20480
+      --enable-expert-parallel: true
+      --enforce-eager: true
+      --no-async-scheduling: true
+      --no-enable-prefix-caching: true
+      --additional-config:
+        scheduler_config:
+          profiling_chunk_config:
+            enabled: true
+            smooth_factor: 0.8
+            need_timing: true
+          short_request_first_config:
+            enabled: true
+            threshold: 4096
+            long_max_wait_ms: 2000
+    environment:
+      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+      VLLM_USE_V2_MODEL_RUNNER: "1"

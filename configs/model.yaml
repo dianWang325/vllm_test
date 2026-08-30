@@ -1,0 +1,20 @@
+models:
+  qwen3_30b_a3b_w8a8:
+    description: 用于最基本功能冒烟测试的 Qwen 模型
+    model_tag: /home/weight/Qwen3-30B-A3B-W8A8
+    arguments:
+      --served-model-name: qwen3-30b-a3b-w8a8
+      --quantization: ascend
+
+  deepseek_v4_flash:
+    description: 用于长序列、CPP、SRF 和精度测试的 DeepSeek 模型
+    model_tag: /home/weight/DeepSeek-V4-Flash-w8a8-mtp
+    arguments:
+      --served-model-name: deepseek-v4-flash
+      --quantization: ascend
+      --max-model-len: 66560
+      --tokenizer-mode: deepseek_v4
+      --tool-call-parser: deepseek_v4
+      --reasoning-parser: deepseek_v4
+      --enable-auto-tool-choice: true
+      --enable-expert-parallel: true

@@ -1,0 +1,35 @@
+defaults:
+  executable: ais_bench
+  request_rate: 0
+  temperature: 0
+  repetition_penalty: 1
+  ignore_eos: true
+  retries: 0
+  repeats: 1
+  concurrency: 4
+  stats: [Average, Min, Max, Median, P90, P95, P99]
+
+profiles:
+  functional_smoke:
+    description: 功能冒烟请求参数
+    concurrency: 4
+  fixed_long:
+    description: 固定长序列性能请求参数
+    concurrency: 4
+    repeats: 3
+  variable_long:
+    description: 变长序列性能请求参数
+    concurrency: 4
+    repeats: 3
+  srf_mixed:
+    description: 短长混合性能请求参数
+    concurrency: 16
+    repeats: 3
+  pd_prefill_0830:
+    description: PD 分离系统 P 节点性能请求参数
+    request_rate: 0
+    concurrency: 4
+    repeats: 1
+  warmup:
+    description: 手动预热请求参数，结果不纳入性能统计
+    concurrency: 1

@@ -1,0 +1,20 @@
+defaults:
+  executable: ais_bench
+  request_rate: 0
+  temperature: 0
+  repetition_penalty: 1
+  retries: 0
+  max_output_tokens: 4096
+  concurrency: 4
+  num_warmups: 0
+  dump_details: true
+
+profiles:
+  gsm8k:
+    description: 使用本地 GSM8K test.jsonl 运行 0-shot CoT 精度测试
+    dataset: gsm8k
+    path: aisbench_workspace/datasets/gsm8k/test.jsonl
+  gpqa:
+    description: 使用本地 GPQA Diamond 运行 0-shot CoT 精度测试
+    dataset: gpqa
+    path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv

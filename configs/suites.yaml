@@ -1,0 +1,36 @@
+suites:
+  baseline_smoke:
+    description: 基线服务功能与两项精度测试
+    cases: [baseline_smoke, baseline_gsm8k, baseline_gpqa]
+    case_overrides:
+      baseline_smoke:
+        model: deepseek_v4_flash
+  baseline_performance:
+    description: 基线服务的固定、变长性能测试
+    cases: [baseline_fixed_long, baseline_variable_long]
+  cpp_validation:
+    description: CPP 服务的功能与固定长序列性能测试
+    cases: [cpp_smoke, cpp_fixed_long]
+    case_overrides:
+      cpp_smoke:
+        model: deepseek_v4_flash
+  srf_validation:
+    description: SRF 服务的功能与短长混合性能测试
+    cases: [srf_smoke, srf_mixed]
+    case_overrides:
+      srf_smoke:
+        model: deepseek_v4_flash
+  cpp_srf_validation:
+    description: CPP+SRF 服务的功能与短长混合性能测试
+    cases: [cpp_srf_smoke, cpp_srf_mixed]
+    case_overrides:
+      cpp_srf_smoke:
+        model: deepseek_v4_flash
+  pd_prefill_0830:
+    description: PD P 节点 baseline、CPP、SRF 与 CPP+SRF 性能对比
+    cases:
+      - pd_prefill_baseline_0830
+      - pd_prefill_cpp_0830
+      - pd_prefill_srf_0830
+      - pd_prefill_cpp_srf_0830
+    comparison: true

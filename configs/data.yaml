@@ -1,0 +1,79 @@
+formal:
+  defaults:
+    storage: persistent
+    seed: 825
+    output:
+      method: fixed
+      length: 128
+  profiles:
+    functional_smoke:
+      description: 1024 token 输入、128 token 输出的功能冒烟数据
+      request_count: 8
+      input:
+        method: fixed
+        length: 1024
+    fixed_long:
+      description: 固定 64K 输入、2560 token 输出的长序列性能数据
+      request_count: 12
+      input:
+        method: fixed
+        length: 65536
+      output:
+        method: fixed
+        length: 2560
+    variable_long:
+      description: 40K 至 80K 输入、均值 64K 的变长性能数据
+      request_count: 24
+      seed: 826
+      input:
+        method: gaussian
+        mean: 65536
+        stddev: 10240
+        min: 40960
+        max: 81920
+      output:
+        method: fixed
+        length: 2560
+    srf_mixed:
+      description: 1K 与 64K 输入各占一半的 SRF 混合数据
+      request_count: 32
+      seed: 827
+      input:
+        method: percentage
+        values:
+          - [1024, 0.5]
+          - [65536, 0.5]
+      output:
+        method: fixed
+        length: 128
+    pd_prefill_variable_0830:
+      description: PD 分离系统 P 节点的变长输入、1 token 输出性能数据
+      request_count: 64
+      seed: 827
+      input:
+        method: gaussian
+        mean: 32768
+        stddev: 49152
+        min: 8192
+        max: 65536
+      output:
+        method: fixed
+        length: 1
+
+warmup:
+  defaults:
+    storage: persistent
+    tool_path: /home/w00985415/tools/aisbench_auto_tools_prefix
+    input_length: 65536
+    output_length: 1
+    request_count: 5
+    seed: 826
+  profiles:
+    cpp_long:
+      description: CPP 与 CPP+SRF 用例的 64K 手动预热数据
+    deepseek_max_len_0830:
+      description: DeepSeek 最大上下文长度的 CPP 专属预热数据
+      input_length: 66559
+      output_length: 1
+      request_count: 5
+      seed: 826

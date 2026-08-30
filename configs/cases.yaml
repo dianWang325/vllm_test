@@ -1,0 +1,131 @@
+cases:
+  baseline_smoke:
+    description: 基线服务功能冒烟
+    type: performance
+    server: baseline
+    data: functional_smoke
+    bench: functional_smoke
+    report: functional
+  cpp_smoke:
+    description: CPP 服务功能冒烟并执行手动预热
+    type: performance
+    server: cpp
+    data: functional_smoke
+    warmup: cpp_long
+    bench: functional_smoke
+    report: functional
+  srf_smoke:
+    description: SRF 服务短长混合功能验证
+    type: performance
+    server: srf
+    data: srf_mixed
+    bench: srf_mixed
+    report: functional
+    overrides:
+      data:
+        request_count: 8
+      bench:
+        repeats: 1
+  cpp_srf_smoke:
+    description: CPP+SRF 服务短长混合功能验证并执行手动预热
+    type: performance
+    server: cpp_srf
+    data: srf_mixed
+    warmup: cpp_long
+    bench: srf_mixed
+    report: functional
+    overrides:
+      data:
+        request_count: 8
+      bench:
+        repeats: 1
+  baseline_fixed_long:
+    description: 基线服务固定长序列性能测试
+    type: performance
+    server: baseline
+    model: deepseek_v4_flash
+    data: fixed_long
+    bench: fixed_long
+    report: performance
+  cpp_fixed_long:
+    description: CPP 服务固定长序列性能测试
+    type: performance
+    server: cpp
+    model: deepseek_v4_flash
+    data: fixed_long
+    warmup: cpp_long
+    bench: fixed_long
+    report: performance
+  srf_mixed:
+    description: SRF 服务短长混合性能测试
+    type: performance
+    server: srf
+    model: deepseek_v4_flash
+    data: srf_mixed
+    bench: srf_mixed
+    report: performance
+  cpp_srf_mixed:
+    description: CPP+SRF 服务短长混合性能测试
+    type: performance
+    server: cpp_srf
+    model: deepseek_v4_flash
+    data: srf_mixed
+    warmup: cpp_long
+    bench: srf_mixed
+    report: performance
+  baseline_variable_long:
+    description: 基线服务变长序列性能测试
+    type: performance
+    server: baseline
+    model: deepseek_v4_flash
+    data: variable_long
+    bench: variable_long
+    report: performance
+  baseline_gsm8k:
+    description: 基线服务 GSM8K 精度测试
+    type: accuracy
+    server: baseline
+    model: deepseek_v4_flash
+    accuracy: gsm8k
+    report: accuracy
+  baseline_gpqa:
+    description: 基线服务 GPQA Diamond 精度测试
+    type: accuracy
+    server: baseline
+    model: deepseek_v4_flash
+    accuracy: gpqa
+    report: accuracy
+  pd_prefill_baseline_0830:
+    description: PD P 节点 baseline 性能测试
+    type: performance
+    server: baseline_0830
+    model: deepseek_v4_flash
+    data: pd_prefill_variable_0830
+    bench: pd_prefill_0830
+    report: performance
+  pd_prefill_cpp_0830:
+    description: PD P 节点 CPP 性能测试
+    type: performance
+    server: cpp_0830
+    model: deepseek_v4_flash
+    data: pd_prefill_variable_0830
+    warmup: deepseek_max_len_0830
+    bench: pd_prefill_0830
+    report: performance
+  pd_prefill_srf_0830:
+    description: PD P 节点 SRF 性能测试
+    type: performance
+    server: srf_0830
+    model: deepseek_v4_flash
+    data: pd_prefill_variable_0830
+    bench: pd_prefill_0830
+    report: performance
+  pd_prefill_cpp_srf_0830:
+    description: PD P 节点 CPP+SRF 性能测试
+    type: performance
+    server: cpp_srf_0830
+    model: deepseek_v4_flash
+    data: pd_prefill_variable_0830
+    warmup: deepseek_max_len_0830
+    bench: pd_prefill_0830
+    report: performance
