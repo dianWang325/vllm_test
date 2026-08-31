@@ -185,7 +185,7 @@ def execute(kind: str, name: str) -> list[Path]:
     for run_type, type_cases in by_type.items():
         run_id = run_ids[run_type]
         run_dir = planned_dirs[run_type]
-        run_dir.mkdir()
+        run_dir.mkdir(parents=True)
         run_dirs[run_type] = run_dir
         dump_yaml(
             run_dir / "selected.yaml",

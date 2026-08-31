@@ -70,6 +70,7 @@ if runtime["mode"] == "performance":
         ),
     )
 elif runtime["mode"] == "accuracy":
+    summarizer = dict(attr="accuracy")
     models = [
         dict(
             type=VLLMCustomAPIChat,
@@ -84,6 +85,7 @@ elif runtime["mode"] == "accuracy":
             fromlist=["gsm8k_datasets"],
         )
         datasets = __import__("copy").deepcopy(gsm8k_module.gsm8k_datasets)
+        del gsm8k_module
         datasets[0]["path"] = runtime["dataset"]["directory"]
     elif runtime["dataset"]["name"] == "gpqa":
         gpqa_module = __import__(
@@ -91,6 +93,7 @@ elif runtime["mode"] == "accuracy":
             fromlist=["gpqa_datasets"],
         )
         datasets = __import__("copy").deepcopy(gpqa_module.gpqa_datasets)
+        del gpqa_module
         datasets[0]["path"] = runtime["dataset"]["directory"]
         datasets[0]["name"] = runtime["dataset"]["filename"]
     else:
