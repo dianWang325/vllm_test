@@ -1,3 +1,5 @@
 /runs
 /kernel_meta/
 /tmp/
+__pycache__/
+*.py[cod]

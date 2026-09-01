@@ -35,4 +35,4 @@ profiles:
     temperature: 1.0
     repetition_penalty: 1.0
     max_output_tokens: 30720
-    concurrency: 32
+    concurrency: 128

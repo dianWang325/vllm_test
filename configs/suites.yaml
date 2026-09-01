@@ -37,9 +37,9 @@ suites:
   gpqa_accuracy_server27_8cards:
     description: server-27-8cards DeepSeek V4 Flash baseline、CPP、SRF 与 CPP+SRF GPQA 全量精度测试
     cases:
-      - gpqa_baseline_server27_8cards
+      # - gpqa_baseline_server27_8cards
       - gpqa_cpp_server27_8cards
-      - gpqa_srf_server27_8cards
+      # - gpqa_srf_server27_8cards
       - gpqa_cpp_srf_server27_8cards
   gpqa_accuracy_server14_16cards:
     description: server-14-16cards DeepSeek V4 Flash baseline、CPP、SRF 与 CPP+SRF GPQA 全量精度测试

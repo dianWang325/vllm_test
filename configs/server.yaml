@@ -166,6 +166,7 @@ profiles:
       --tensor-parallel-size: 4
       --gpu-memory-utilization: 0.9
       --max-num-batched-tokens: 20480
+      --max-num-seqs: 128
       --enable-expert-parallel: true
       --enforce-eager: true
       --no-async-scheduling: true
@@ -181,6 +182,7 @@ profiles:
       --tensor-parallel-size: 4
       --gpu-memory-utilization: 0.9
       --max-num-batched-tokens: 20480
+      --max-num-seqs: 128
       --enable-expert-parallel: true
       --enforce-eager: true
       --no-async-scheduling: true
@@ -202,6 +204,7 @@ profiles:
       --tensor-parallel-size: 4
       --gpu-memory-utilization: 0.9
       --max-num-batched-tokens: 20480
+      --max-num-seqs: 128
       --enable-expert-parallel: true
       --enforce-eager: true
       --no-async-scheduling: true
@@ -223,6 +226,7 @@ profiles:
       --tensor-parallel-size: 4
       --gpu-memory-utilization: 0.9
       --max-num-batched-tokens: 20480
+      --max-num-seqs: 128
       --enable-expert-parallel: true
       --enforce-eager: true
       --no-async-scheduling: true
