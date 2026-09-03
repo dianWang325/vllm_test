@@ -103,6 +103,14 @@ cases:
     data: pd_prefill_variable_0830
     bench: pd_prefill_0830
     report: performance
+  baseline_pd_0830:
+    description: 完整 P+D+Proxy PD baseline 性能测试
+    type: performance
+    server: baseline_pd_0830
+    model: deepseek_v4_flash
+    data: pd_prefill_variable_0830
+    bench: pd_prefill_0830
+    report: performance
   pd_prefill_cpp_0830:
     description: PD P 节点 CPP 性能测试
     type: performance
