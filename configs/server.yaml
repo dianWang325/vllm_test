@@ -105,7 +105,7 @@ profiles:
       --port: 18080
     pd:
       proxy:
-        script: ../vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
+        script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
       prefill:
         arguments:
           --host: 127.0.0.1
