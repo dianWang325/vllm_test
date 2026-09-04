@@ -156,6 +156,64 @@ profiles:
                 pp_size: 1
         environment:
           ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+  deepseek_v4_pro_pd:
+    description: 单机 8 卡 Prefill + 8 卡 Decode 的 DeepSeek V4 Pro PD 服务
+    arguments:
+      --host: 127.0.0.1
+      --port: 18080
+    pd:
+      proxy:
+        script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
+      prefill:
+        arguments:
+          --host: 127.0.0.1
+          --port: 18081
+          --data-parallel-size: 1
+          --tensor-parallel-size: 4
+          --pipeline-parallel-size: 2
+          --max-num-batched-tokens: 20480
+          --kv-transfer-config:
+            kv_connector: MooncakeHybridConnector
+            kv_role: kv_producer
+            kv_port: "36000"
+            engine_id: "0"
+            kv_connector_extra_config:
+              prefill:
+                dp_size: 1
+                tp_size: 4
+                pp_size: 2
+              decode:
+                dp_size: 2
+                tp_size: 4
+                pp_size: 1
+        environment:
+          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+          VLLM_USE_V2_MODEL_RUNNER: "1"
+      decode:
+        arguments:
+          --host: 127.0.0.1
+          --port: 18082
+          --data-parallel-size: 2
+          --tensor-parallel-size: 4
+          --pipeline-parallel-size: 1
+          --max-num-batched-tokens: 120
+          --kv-transfer-config:
+            kv_connector: MooncakeHybridConnector
+            kv_role: kv_consumer
+            kv_port: "36100"
+            engine_id: "1"
+            kv_connector_extra_config:
+              prefill:
+                dp_size: 1
+                tp_size: 4
+                pp_size: 2
+              decode:
+                dp_size: 2
+                tp_size: 4
+                pp_size: 1
+        environment:
+          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+          VLLM_USE_V2_MODEL_RUNNER: "1"
   cpp_0830:
     description: PD P 节点 0830 CPP 服务
     arguments:

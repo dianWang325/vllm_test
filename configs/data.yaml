@@ -89,3 +89,9 @@ warmup:
       output_length: 1
       request_count: 5
       seed: 826
+    deepseek_v4_pro_0505_max_len:
+      description: DeepSeek V4 Pro 0505 最大上下文长度的 CPP 专属预热数据
+      input_length: 1048575
+      output_length: 1
+      request_count: 5
+      seed: 826

@@ -8,6 +8,8 @@ profiles:
       - Request Throughput.total
       - Prefill Token Throughput.total
       - Input Token Throughput.total
+      - Output Token Throughput.total
+      - Total Token Throughput.total
       - Total Input Tokens.total
       - Success Requests.total
       - Failed Requests.total
@@ -15,6 +17,8 @@ profiles:
       - E2EL.total.P90
       - TTFT.total.Average
       - TTFT.total.P90
+      - TPOT.total.Average
+      - TPOT.total.P90
   functional:
     description: 汇总功能冒烟请求是否全部成功
     metrics:

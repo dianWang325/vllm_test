@@ -48,3 +48,25 @@ suites:
       - gpqa_cpp_server14_16cards
       - gpqa_srf_server14_16cards
       - gpqa_cpp_srf_server14_16cards
+  deepseek_v4_pro_pd_performance:
+    description: DeepSeek V4 Pro 0505 的 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
+    cases:
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+      - deepseek_v4_pro_pd_cpp_fixed
+      - deepseek_v4_pro_pd_cpp_variable
+      - deepseek_v4_pro_pd_srf_fixed
+      - deepseek_v4_pro_pd_srf_variable
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+    comparison: true
+    case_overrides:
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_0505_model
+        model: deepseek_v4_pro_w4a8_0505
+      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_cpp_fixed: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_cpp_variable: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_srf_fixed: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_srf_variable: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_0505_model
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_0505_model

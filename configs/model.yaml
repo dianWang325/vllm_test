@@ -43,3 +43,24 @@ models:
       --reasoning-parser: deepseek_v4
       --enable-auto-tool-choice: true
       --enable-expert-parallel: true
+
+  deepseek_v4_pro_w4a8_0505:
+    description: 单机 PD 性能测试使用的 DeepSeek V4 Pro W4A8 0505 模型
+    model_tag: /mnt/weight/DeepSeek-V4-Pro-w4a8-0505
+    arguments:
+      --served-model-name: deepseek-v4-pro
+      --quantization: ascend
+      --max-model-len: 1048576
+      --tokenizer-mode: deepseek_v4
+      --tool-call-parser: deepseek_v4
+      --reasoning-parser: deepseek_v4
+      --enable-auto-tool-choice: true
+      --enable-expert-parallel: true
+      --no-disable-hybrid-kv-cache-manager: true
+      --model-loader-extra-config:
+        enable_multithread_load: true
+        num_threads: 128
+      --speculative-config:
+        num_speculative_tokens: 1
+        method: mtp
+        enforce_eager: true
