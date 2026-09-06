@@ -1,6 +1,6 @@
 # DeepSeek V4 Flash/Pro 双机 PD 性能测试教程
 
-本文记录双机部署方式。当前 DeepSeek V4 Pro 0813 配置在 `80.5.9.127` 使用 16 张卡运行 Prefill（PP=2、TP=8），在 `80.5.9.128` 使用 `0-7` 共 8 张卡运行 Decode（DP=2、TP=4）；Proxy 和 AISBench 由 127 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 127 通过 SSH 控制 128。
+本文记录双机部署方式。当前 DeepSeek V4 Pro 0813 配置在 `80.5.9.127` 使用 16 张卡运行 Prefill（PP=2、TP=8），在 `80.5.9.128` 使用 `0-7` 共 8 张卡运行 Decode（DP=1、TP=8）；Proxy 和 AISBench 由 127 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 127 通过 SSH 控制 128。
 
 ## 1. 部署拓扑
 
@@ -31,8 +31,8 @@ prefill:
   tp_size: 8
   pp_size: 2
 decode:
-  dp_size: 2
-  tp_size: 4
+  dp_size: 1
+  tp_size: 8
   pp_size: 1
 ```
 
@@ -270,7 +270,7 @@ docker exec -d \
 4. 依次执行 baseline、CPP、SRF、CPP+SRF 的 fixed/variable 八个 case。
 5. 在服务配置发生变化时管理本机服务生命周期；不会停止外部 Decode。
 
-DeepSeek V4 Pro 使用 PP=2/TP=8 的 Prefill 和 DP=2/TP=4 的 Decode，fixed/variable 正式请求并发均为 8。每个 case 在正式请求前先确认 Prefill 的 running/waiting 请求连续三次为零，再发送由模型最大长度派生的公共预热请求。四种轮换顺序分别使用：
+DeepSeek V4 Pro 使用 PP=2/TP=8 的 Prefill 和 DP=1/TP=8 的 Decode，fixed/variable 正式请求并发均为 8。每个 case 在正式请求前先确认 Prefill 的 running/waiting 请求连续三次为零，再发送由模型最大长度派生的公共预热请求。四种轮换顺序分别使用：
 
 ```text
 deepseek_v4_pro_pd_performance

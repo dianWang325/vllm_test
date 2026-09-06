@@ -325,8 +325,8 @@ profiles:
                 tp_size: 8
                 pp_size: 2
               decode:
-                dp_size: 2
-                tp_size: 4
+                dp_size: 1
+                tp_size: 8
                 pp_size: 1
         environment:
           ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
@@ -344,8 +344,8 @@ profiles:
         arguments:
           --host: 0.0.0.0
           --port: 18082
-          --data-parallel-size: 2
-          --tensor-parallel-size: 4
+          --data-parallel-size: 1
+          --tensor-parallel-size: 8
           --pipeline-parallel-size: 1
           --max-num-batched-tokens: 120
           --kv-transfer-config:
@@ -359,8 +359,8 @@ profiles:
                 tp_size: 8
                 pp_size: 2
               decode:
-                dp_size: 2
-                tp_size: 4
+                dp_size: 1
+                tp_size: 8
                 pp_size: 1
         environment:
           ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"

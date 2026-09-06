@@ -64,8 +64,8 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             assert prefill["arguments"]["--data-parallel-size"] == 1
             assert prefill["arguments"]["--tensor-parallel-size"] == 8
             assert prefill["arguments"]["--pipeline-parallel-size"] == 2
-            assert decode["arguments"]["--data-parallel-size"] == 2
-            assert decode["arguments"]["--tensor-parallel-size"] == 4
+            assert decode["arguments"]["--data-parallel-size"] == 1
+            assert decode["arguments"]["--tensor-parallel-size"] == 8
             assert decode["arguments"]["--pipeline-parallel-size"] == 1
             prefill_topology = prefill["arguments"]["--kv-transfer-config"][
                 "kv_connector_extra_config"
@@ -76,7 +76,7 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             assert prefill_topology == decode_topology
             assert prefill_topology == {
                 "prefill": {"dp_size": 1, "tp_size": 8, "pp_size": 2},
-                "decode": {"dp_size": 2, "tp_size": 4, "pp_size": 1},
+                "decode": {"dp_size": 1, "tp_size": 8, "pp_size": 1},
             }
             assert prefill["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
                 "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
