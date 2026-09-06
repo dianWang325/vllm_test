@@ -94,11 +94,11 @@ def build_proxy_command(
         "--port",
         str(public_arguments["--port"]),
         "--prefiller-hosts",
-        str(prefill_arguments["--host"]),
+        _endpoint_host(prefill_config),
         "--prefiller-ports",
         str(prefill_arguments["--port"]),
         "--decoder-hosts",
-        str(decode_arguments["--host"]),
+        _endpoint_host(decode_config),
         "--decoder-ports",
         str(decode_arguments["--port"]),
     ]
@@ -140,11 +140,25 @@ def _port_is_free(host: str, port: int) -> bool:
         return sock.connect_ex((host, port)) != 0
 
 
+def _endpoint_host(config: dict[str, Any]) -> str:
+    host = config.get("endpoint_host", config["arguments"]["--host"])
+    if not isinstance(host, str) or not host:
+        raise ServerError("endpoint_host must be a non-empty string")
+    return host
+
+
+def _external(config: dict[str, Any]) -> bool:
+    value = config.get("external", False)
+    if not isinstance(value, bool):
+        raise ServerError("external must be a boolean")
+    return value
+
+
 def _healthy(config: dict[str, Any]) -> bool:
     arguments = config["arguments"]
     lifecycle = config["lifecycle"]
     url = (
-        f"http://{arguments['--host']}:{arguments['--port']}"
+        f"http://{_endpoint_host(config)}:{arguments['--port']}"
         f"{lifecycle['health_path']}"
     )
     try:
@@ -234,11 +248,11 @@ class VllmServer:
     ) -> None:
         endpoints = {
             "prefill": (
-                str(prefill_config["arguments"]["--host"]),
+                _endpoint_host(prefill_config),
                 int(prefill_config["arguments"]["--port"]),
             ),
             "decode": (
-                str(decode_config["arguments"]["--host"]),
+                _endpoint_host(decode_config),
                 int(decode_config["arguments"]["--port"]),
             ),
             "proxy": (
@@ -248,7 +262,14 @@ class VllmServer:
         }
         if len(set(endpoints.values())) != len(endpoints):
             raise ServerError("prefill, decode, and proxy endpoints must be distinct")
+        configs = {
+            "prefill": prefill_config,
+            "decode": decode_config,
+            "proxy": proxy_config,
+        }
         for role, (host, port) in endpoints.items():
+            if _external(configs[role]):
+                continue
             if not _port_is_free(host, port):
                 raise ServerError(f"{role} port is already in use: {port}")
 
@@ -297,8 +318,8 @@ class VllmServer:
         while not all(healthy.values()):
             now = time.monotonic()
             for role, config in configs.items():
-                process = self.processes[role]
-                if process.poll() is not None:
+                process = self.processes.get(role)
+                if process is not None and process.poll() is not None:
                     raise ServerError(
                         f"{role} exited before becoming healthy: "
                         f"{process.returncode}"
@@ -318,8 +339,8 @@ class VllmServer:
         interval = float(lifecycle["health_interval_seconds"])
         while time.monotonic() < deadline:
             for role in ("prefill", "decode", "proxy"):
-                process = self.processes[role]
-                if process.poll() is not None:
+                process = self.processes.get(role)
+                if process is not None and process.poll() is not None:
                     raise ServerError(
                         f"{role} exited before proxy became healthy: "
                         f"{process.returncode}"
@@ -344,8 +365,19 @@ class VllmServer:
         build_environment(proxy_config)
         self._log = self.log_path.open("w", encoding="utf-8")
         try:
-            self._spawn("prefill", commands["prefill"], prefill_config)
-            self._spawn("decode", commands["decode"], decode_config)
+            for role, config in (
+                ("prefill", prefill_config),
+                ("decode", decode_config),
+            ):
+                if _external(config):
+                    self._log.write(
+                        f"===== {role.upper()} (EXTERNAL) =====\n"
+                        f"endpoint: {_endpoint_host(config)}:"
+                        f"{config['arguments']['--port']}\n"
+                    )
+                    self._log.flush()
+                else:
+                    self._spawn(role, commands[role], config)
             self._wait_pd_backends_healthy(prefill_config, decode_config)
             self._spawn("proxy", commands["proxy"], proxy_config)
             self._wait_proxy_healthy(proxy_config)

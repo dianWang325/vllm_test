@@ -215,6 +215,80 @@ profiles:
         environment:
           ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
           VLLM_USE_V2_MODEL_RUNNER: "1"
+  deepseek_v4_flash_pd_two_host:
+    description: 130 Prefill 8 卡 + 129 Decode 8 卡的 DeepSeek V4 Flash PD 服务
+    arguments:
+      --host: 127.0.0.1
+      --port: 18080
+      --gpu-memory-utilization: 0.93
+    pd:
+      proxy:
+        script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
+      prefill:
+        endpoint_host: 80.5.9.130
+        arguments:
+          --host: 0.0.0.0
+          --port: 18081
+          --data-parallel-size: 1
+          --tensor-parallel-size: 4
+          --pipeline-parallel-size: 2
+          --max-num-batched-tokens: 20480
+          --kv-transfer-config:
+            kv_connector: MooncakeConnectorV1
+            kv_role: kv_producer
+            kv_port: "36000"
+            engine_id: "0"
+            kv_connector_extra_config:
+              prefill:
+                dp_size: 1
+                tp_size: 4
+                pp_size: 2
+              decode:
+                dp_size: 2
+                tp_size: 4
+                pp_size: 1
+        environment:
+          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+          VLLM_HOST_IP: 80.5.9.130
+          HCCL_IF_IP: 80.5.9.130
+          GLOO_SOCKET_IFNAME: enp194s0f0
+          TP_SOCKET_IFNAME: enp194s0f0
+          HCCL_SOCKET_IFNAME: enp194s0f0
+          NO_PROXY: 127.0.0.1,localhost,80.5.9.129,80.5.9.130
+          no_proxy: 127.0.0.1,localhost,80.5.9.129,80.5.9.130
+      decode:
+        endpoint_host: 80.5.9.129
+        external: true
+        arguments:
+          --host: 0.0.0.0
+          --port: 18082
+          --data-parallel-size: 2
+          --tensor-parallel-size: 4
+          --pipeline-parallel-size: 1
+          --max-num-batched-tokens: 120
+          --kv-transfer-config:
+            kv_connector: MooncakeConnectorV1
+            kv_role: kv_consumer
+            kv_port: "36100"
+            engine_id: "1"
+            kv_connector_extra_config:
+              prefill:
+                dp_size: 1
+                tp_size: 4
+                pp_size: 2
+              decode:
+                dp_size: 2
+                tp_size: 4
+                pp_size: 1
+        environment:
+          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+          VLLM_HOST_IP: 80.5.9.129
+          HCCL_IF_IP: 80.5.9.129
+          GLOO_SOCKET_IFNAME: enp194s0f0
+          TP_SOCKET_IFNAME: enp194s0f0
+          HCCL_SOCKET_IFNAME: enp194s0f0
+          NO_PROXY: 127.0.0.1,localhost,80.5.9.129,80.5.9.130
+          no_proxy: 127.0.0.1,localhost,80.5.9.129,80.5.9.130
   cpp_0830:
     description: PD P 节点 0830 CPP 服务
     arguments:

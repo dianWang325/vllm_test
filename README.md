@@ -1,6 +1,6 @@
 # vllm_test
 
-这是一个面向 vLLM Ascend 的最小测试框架：负责启动一个 vLLM 服务，使用 AISBench 构造正式数据并发送性能或精度请求，最后从 AISBench 结构化结果中生成报告。框架不复用已运行的服务、不自动重试失败请求，也不提供旧配置兼容或回退路径。
+这是一个面向 vLLM Ascend 的最小测试框架：负责启动 vLLM 服务，使用 AISBench 构造正式数据并发送性能或精度请求，最后从 AISBench 结构化结果中生成报告。普通服务由框架完整管理；PD 配置也可以把某个角色标记为 `external: true`，由另一台主机使用同一份配置独立启动。框架不自动重试失败请求，也不提供旧配置兼容或回退路径。
 
 ## 目录
 
@@ -36,7 +36,11 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 
 编辑 `configs/*.yaml` 即可增加 model、profile、case 或 suite。每项均可填写 `description`；该字段只用于说明和 `selected.yaml`，不会参与服务、数据或请求参数。服务配置按 `server defaults < server profile < model < case overrides < suite case_overrides` 递归合并，列表和标量直接替换。
 
-`configs/server.yaml` 中的 `arguments` 和 `environment` 会直接传给 vLLM 服务。`arguments` 的键是完整参数名：值为 `null` 或 `true` 时只输出参数名，`false` 时不输出该参数，字符串或数字作为下一个命令行参数，字典或列表编码为紧凑 JSON。`environment` 的值必须是字符串或数字；`unset_environment` 用于明确删除继承的环境变量。`--host` 和 `--port` 同时用于 vLLM、健康检查和 AISBench，不配置额外地址。基础 profile 不传递 `--additional-config`，CPP 和 SRF 只在各自 profile 中声明所需的调度配置。
+`configs/server.yaml` 中的 `arguments` 和 `environment` 会直接传给 vLLM 服务。`arguments` 的键是完整参数名：值为 `null` 或 `true` 时只输出参数名，`false` 时不输出该参数，字符串或数字作为下一个命令行参数，字典或列表编码为紧凑 JSON。`environment` 的值必须是字符串或数字；`unset_environment` 用于明确删除继承的环境变量。普通服务使用 `--host` 和 `--port` 进行健康检查和请求；跨主机 PD 角色可额外设置 `endpoint_host` 作为其他节点实际访问的地址，并用 `external: true` 表示该角色仅做健康检查、不由当前 vtest 进程启动或停止。基础 profile 不传递 `--additional-config`，CPP 和 SRF 只在各自 profile 中声明所需的调度配置。
+
+## 双机 PD 性能测试
+
+DeepSeek V4 Flash 的 130 Prefill + 129 Decode 双机部署、容器 `hccn.conf` 挂载、IP/网卡迁移、启动顺序、健康检查、日志监控和停止方法见 [双机 PD 性能测试教程](docs/deepseek_v4_flash_two_host_pd.md)。
 
 `configs/model.yaml` 的根节点是 `models`。case 中的 `model` 是该集合中的模型名称；模型项中的 `model_tag` 是 `vllm serve <model_tag>` 使用的实际路径或模型标识，模型专用的 vLLM 参数仍放在 `arguments` 中。模型路径只保存在该文件。server 默认选择 `qwen3_30b_a3b_w8a8`，case 省略 `model` 时继承它；未显式配置 `--tokenizer` 时，框架与 vLLM 一样使用 `model_tag`。server 默认配置不传递 `--max-model-len`，由 vLLM 从模型自身配置读取；需要限制某个模型时，在该模型的 `arguments` 中显式设置。
 
