@@ -21,6 +21,14 @@ profiles:
     description: 变长序列性能请求参数
     concurrency: 4
     repeats: 3
+  deepseek_v4_pro_fixed_long:
+    description: DeepSeek V4 Pro 固定长序列性能请求参数
+    concurrency: 8
+    repeats: 3
+  deepseek_v4_pro_variable_long:
+    description: DeepSeek V4 Pro 变长序列性能请求参数
+    concurrency: 8
+    repeats: 3
   srf_mixed:
     description: 短长混合性能请求参数
     concurrency: 16

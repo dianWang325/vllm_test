@@ -1,14 +1,16 @@
 # DeepSeek V4 Flash/Pro 双机 PD 性能测试教程
 
-本文记录双机部署方式：在 `80.5.9.127` 使用 8 张卡运行 Prefill（PP=2、TP=4），在 `80.5.9.128` 使用 8 张卡运行 Decode（DP=2、TP=4），Proxy 和 AISBench 由 127 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 127 通过 SSH 控制 128。
+本文记录双机部署方式。当前 DeepSeek V4 Pro 0813 配置在 `80.5.9.127` 使用 16 张卡运行 Prefill（PP=2、TP=8），在 `80.5.9.128` 使用 `0-7` 共 8 张卡运行 Decode（DP=2、TP=4）；Proxy 和 AISBench 由 127 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 127 通过 SSH 控制 128。
 
 ## 1. 部署拓扑
 
 | 主机 | 角色 | 设备 | API 端口 | KV 端口基址 | 管理方式 |
 | --- | --- | --- | --- | --- | --- |
 | `80.5.9.127` | Proxy | - | `18080` | - | `vtest` 自动启动和停止 |
-| `80.5.9.127` | Prefill | `0-7` | `18081` | `36000` | `vtest` 自动启动和停止 |
-| `80.5.9.128` | Decode | `8-15` | `18082` | `36100` | 在 128 上用 `pd_role.py` 独立管理 |
+| `80.5.9.127` | Prefill | `0-15` | `18081` | `36000` | `vtest` 自动启动和停止 |
+| `80.5.9.128` | Decode | `0-7` | `18082` | `36100` | 在 128 上用 `pd_role.py` 独立管理 |
+
+上表对应 `deepseek_v4_pro_pd_two_host`。独立的 Flash profile 保留原有 Prefill PP=2/TP=4 和 Decode DP=2/TP=4 配置。
 
 当前配置使用：
 
@@ -17,7 +19,8 @@
 - vLLM 已验证提交：`ba07e4a48fc9`
 - vllm_test 分支：`dev/pd`
 - 容器：`wd_test0825`，使用 host network
-- 模型：`/home/weight/DeepSeek-V4-Flash-w8a8-mtp`
+- Pro 模型：127 使用 `/mnt/share/DeepSeekV4-pro-0813-w4a8`，128 使用 `/mnt/weight/DeepSeekV4-pro-0813-w4a8`
+- Flash 模型：`/home/weight/DeepSeek-V4-Flash-w8a8-mtp`
 - KV Connector：`MooncakeConnectorV1`
 
 `kv_connector_extra_config` 必须在 Prefill 和 Decode 两端保持完全一致，描述的是整个 PD 拓扑，而不只是本机进程：
@@ -25,7 +28,7 @@
 ```yaml
 prefill:
   dp_size: 1
-  tp_size: 4
+  tp_size: 8
   pp_size: 2
 decode:
   dp_size: 2
@@ -62,7 +65,7 @@ sha256sum /etc/hccn.conf
  -v /root/.cache:/root/.cache \
 ```
 
-基于当前脚本，关键片段应为：
+下面以 128 Decode 的 8 卡容器为例；127 Prefill 还需要按相同格式加入 `davinci8` 至 `davinci15`：
 
 ```bash
 docker run --privileged -it -d --net=host \
@@ -99,7 +102,7 @@ docker run --privileged -it -d --net=host \
 
 这不是运行 KV Connector 的必需项，`hccn.conf` 才是本次必须持久化到容器中的文件。
 
-设备列表应与该容器实际分配的物理卡一致。127 使用 `davinci0` 至 `davinci7`；若在 128 上按物理编号只暴露 8 至 15 卡，应把八行设备参数改为 `davinci8` 至 `davinci15`。当前脚本含 `--privileged`，但仍建议把设备列表写准确，便于迁移和审计；最终由 `ASCEND_RT_VISIBLE_DEVICES` 决定 vLLM 角色使用的卡。
+设备列表应与该容器实际分配的物理卡一致。Pro 配置在 127 使用 `davinci0` 至 `davinci15`，在 128 使用 `davinci0` 至 `davinci7`。当前脚本含 `--privileged`，但仍建议把设备列表写准确，便于迁移和审计；最终由 `ASCEND_RT_VISIBLE_DEVICES` 决定 vLLM 角色使用的卡。
 
 容器创建后验证挂载来自本机且为只读：
 
@@ -118,6 +121,7 @@ sha256sum /etc/hccn.conf
 ```text
 configs/server.yaml
 profiles.deepseek_v4_flash_pd_two_host
+profiles.deepseek_v4_pro_pd_two_host
 ```
 
 迁移主机时需要检查或修改以下字段：
@@ -146,7 +150,8 @@ ip -o -4 addr show
 - `arguments.--host: 0.0.0.0` 是 vLLM 的监听地址，为跨主机访问而设置，通常无需随主机 IP 修改。
 - `endpoint_host`、`VLLM_HOST_IP` 和 `HCCL_IF_IP` 必须填写对端可达的真实主机 IP，不能使用 `0.0.0.0`、`127.0.0.1` 或未经验证的其他网段地址。
 - 两台主机都使用同一份已提交的 `configs/server.yaml`；角色启动工具会从其中提取本机角色配置。
-- 模型路径不在 `server.yaml`。如模型目录变化，修改 `configs/model.yaml` 中 `models.deepseek_v4_flash_w8a8_mtp_pd.model_tag`。
+- Pro 的默认 Prefill/Tokenizer 模型路径在 `configs/model.yaml`，两个角色的主机专用路径由 `deepseek_v4_pro_pd_two_host` 的 `pd.prefill.model_tag` 和 `pd.decode.model_tag` 明确覆盖。
+- Flash 模型路径由 `configs/model.yaml` 中的 `models.deepseek_v4_flash_w8a8_mtp_pd.model_tag` 配置。
 - 卡号、API 端口、KV 端口以及 DP/TP/PP 也都位于 `configs/server.yaml` 的同一 profile 中。
 
 ## 4. 网络与端口准备
@@ -154,7 +159,7 @@ ip -o -4 addr show
 本方案使用 Docker host network，不需要 Docker `-p` 映射。两台主机之间至少需要放通：
 
 - API：`18081`（Prefill）、`18082`（Decode）；`18080` 是 127 上的 Proxy 入口。
-- KV 固定端口：Prefill `36000-36007`、Decode `36100-36107`。
+- KV 固定端口：Pro Prefill `36000-36015`、Decode `36100-36107`。
 - Mooncake Transfer Engine 动态 RPC 端口：默认 `15000-17000`。
 - AscendDirect 动态端口：每个可见 NPU 使用 1000 个端口；8 卡容器通常为 `20000-27999`。若容器可见 16 张卡，保守放通 `20000-35999`。
 
@@ -200,6 +205,8 @@ docker exec -it wd_test0825 bash -lc '
 ```bash
 docker exec wd_test0825 test -d /home/weight/DeepSeek-V4-Flash-w8a8-mtp
 docker exec wd_test0825 test -d /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+docker exec wd_test0825 test -d /mnt/share/DeepSeekV4-pro-0813-w4a8  # 127
+docker exec wd_test0825 test -d /mnt/weight/DeepSeekV4-pro-0813-w4a8  # 128
 ```
 
 ## 6. 启动 Decode（128）
@@ -263,7 +270,7 @@ docker exec -d \
 4. 依次执行 baseline、CPP、SRF、CPP+SRF 的 fixed/variable 八个 case。
 5. 在服务配置发生变化时管理本机服务生命周期；不会停止外部 Decode。
 
-DeepSeek V4 Pro 使用相同的双机拓扑。每个 case 在正式请求前先确认 Prefill 的 running/waiting 请求连续三次为零，再发送由模型最大长度派生的公共预热请求。四种轮换顺序分别使用：
+DeepSeek V4 Pro 使用 PP=2/TP=8 的 Prefill 和 DP=2/TP=4 的 Decode，fixed/variable 正式请求并发均为 8。每个 case 在正式请求前先确认 Prefill 的 running/waiting 请求连续三次为零，再发送由模型最大长度派生的公共预热请求。四种轮换顺序分别使用：
 
 ```text
 deepseek_v4_pro_pd_performance
@@ -314,7 +321,7 @@ grep -Ein 'ERROR|Traceback|Exception|FATAL|Failed|Killed|OOM|Out of memory' \
 python -m json.tool "$RUN_DIR/run.json"
 ```
 
-仅端口健康并不足以证明 KV 传输成功。还应在日志中看到 Prefill 公布 `80.5.9.127:36000-36007`，以及 Decode 成功接收来自 Prefill 的 KV block；若出现 transfer failed、超时或 block/rank 映射错误，本轮 PD 性能数据不应直接作为有效基线。
+仅端口健康并不足以证明 KV 传输成功。还应在日志中看到 Pro Prefill 公布 `80.5.9.127:36000-36015`，以及 Decode 成功接收来自 Prefill 的 KV block；若出现 transfer failed、超时或 block/rank 映射错误，本轮 PD 性能数据不应直接作为有效基线。
 
 ## 9. 正常停止和失败清理
 

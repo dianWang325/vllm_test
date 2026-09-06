@@ -44,9 +44,9 @@ models:
       --enable-auto-tool-choice: true
       --enable-expert-parallel: true
 
-  deepseek_v4_pro_w4a8_0505:
-    description: 单机 PD 性能测试使用的 DeepSeek V4 Pro W4A8 0505 模型
-    model_tag: /mnt/weight/DeepSeek-V4-Pro-w4a8-0505
+  deepseek_v4_pro_w4a8_0813:
+    description: 双机 PD 性能测试使用的 DeepSeek V4 Pro W4A8 0813 模型
+    model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
     arguments:
       --served-model-name: deepseek-v4-pro
       --quantization: ascend

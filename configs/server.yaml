@@ -296,7 +296,7 @@ profiles:
           NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
           no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
   deepseek_v4_pro_pd_two_host:
-    description: 127 Prefill 8 卡 + 128 Decode 8 卡的 DeepSeek V4 Pro PD 服务
+    description: 127 Prefill 16 卡 + 128 Decode 8 卡的 DeepSeek V4 Pro PD 服务
     arguments:
       --host: 127.0.0.1
       --port: 18080
@@ -306,11 +306,12 @@ profiles:
         script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
       prefill:
         endpoint_host: 80.5.9.127
+        model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
         arguments:
           --host: 0.0.0.0
           --port: 18081
           --data-parallel-size: 1
-          --tensor-parallel-size: 4
+          --tensor-parallel-size: 8
           --pipeline-parallel-size: 2
           --max-num-batched-tokens: 20480
           --kv-transfer-config:
@@ -321,14 +322,14 @@ profiles:
             kv_connector_extra_config:
               prefill:
                 dp_size: 1
-                tp_size: 4
+                tp_size: 8
                 pp_size: 2
               decode:
                 dp_size: 2
                 tp_size: 4
                 pp_size: 1
         environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
           VLLM_HOST_IP: 80.5.9.127
           HCCL_IF_IP: 80.5.9.127
           GLOO_SOCKET_IFNAME: enp194s0f0
@@ -339,6 +340,7 @@ profiles:
       decode:
         endpoint_host: 80.5.9.128
         external: true
+        model_tag: /mnt/weight/DeepSeekV4-pro-0813-w4a8
         arguments:
           --host: 0.0.0.0
           --port: 18082
@@ -354,14 +356,14 @@ profiles:
             kv_connector_extra_config:
               prefill:
                 dp_size: 1
-                tp_size: 4
+                tp_size: 8
                 pp_size: 2
               decode:
                 dp_size: 2
                 tp_size: 4
                 pp_size: 1
         environment:
-          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
           VLLM_HOST_IP: 80.5.9.128
           HCCL_IF_IP: 80.5.9.128
           GLOO_SOCKET_IFNAME: enp194s0f0

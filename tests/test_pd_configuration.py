@@ -50,19 +50,47 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
         for case in cases:
             effective = case["effective"]
             server = effective["server"]
-            assert server["model_tag"] == "/mnt/weight/DeepSeek-V4-Pro-w4a8-0505"
+            assert server["model_tag"] == "/mnt/share/DeepSeekV4-pro-0813-w4a8"
             assert server["arguments"]["--max-model-len"] == 1048576
             assert server["pd"]["prefill"]["endpoint_host"] == "80.5.9.127"
             assert server["pd"]["decode"]["endpoint_host"] == "80.5.9.128"
             assert server["pd"]["decode"]["external"] is True
+            prefill = _role_config(server, "prefill")
             decode = _role_config(server, "decode")
             expected_decode = expected_decode or decode
             assert decode == expected_decode
+            assert prefill["model_tag"] == "/mnt/share/DeepSeekV4-pro-0813-w4a8"
+            assert decode["model_tag"] == "/mnt/weight/DeepSeekV4-pro-0813-w4a8"
+            assert prefill["arguments"]["--data-parallel-size"] == 1
+            assert prefill["arguments"]["--tensor-parallel-size"] == 8
+            assert prefill["arguments"]["--pipeline-parallel-size"] == 2
+            assert decode["arguments"]["--data-parallel-size"] == 2
+            assert decode["arguments"]["--tensor-parallel-size"] == 4
+            assert decode["arguments"]["--pipeline-parallel-size"] == 1
+            prefill_topology = prefill["arguments"]["--kv-transfer-config"][
+                "kv_connector_extra_config"
+            ]
+            decode_topology = decode["arguments"]["--kv-transfer-config"][
+                "kv_connector_extra_config"
+            ]
+            assert prefill_topology == decode_topology
+            assert prefill_topology == {
+                "prefill": {"dp_size": 1, "tp_size": 8, "pp_size": 2},
+                "decode": {"dp_size": 2, "tp_size": 4, "pp_size": 1},
+            }
+            assert prefill["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+                "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            )
+            assert decode["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+                "0,1,2,3,4,5,6,7"
+            )
             for role in ("prefill", "decode"):
                 environment = server["pd"][role]["environment"]
                 assert environment["GLOO_SOCKET_IFNAME"] == "enp194s0f0"
                 assert environment["TP_SOCKET_IFNAME"] == "enp194s0f0"
                 assert environment["HCCL_SOCKET_IFNAME"] == "enp194s0f0"
+            assert effective["bench"]["concurrency"] == 8
+            assert effective["warmup_bench"]["concurrency"] == 1
             assert effective["warmup"]["input_length"] == 1048575
             assert effective["warmup"]["output_length"] == 1
 
@@ -84,6 +112,7 @@ def test_flash_suite_keeps_existing_warmup_scope() -> None:
         pd = case["effective"]["server"]["pd"]
         assert pd["prefill"]["endpoint_host"] == "80.5.9.127"
         assert pd["decode"]["endpoint_host"] == "80.5.9.128"
+        assert case["effective"]["bench"]["concurrency"] == 4
 
 
 def test_warmup_input_length_is_derived_from_model() -> None:
