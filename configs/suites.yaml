@@ -60,16 +60,45 @@ suites:
       - deepseek_v4_pro_pd_cpp_srf_fixed
       - deepseek_v4_pro_pd_cpp_srf_variable
     comparison: true
-    case_overrides:
-      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_0505_model
-        model: deepseek_v4_pro_w4a8_0505
-      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_cpp_fixed: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_cpp_variable: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_srf_fixed: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_srf_variable: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_0505_model
-      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_0505_model
+
+  deepseek_v4_pro_pd_performance_rotation_1:
+    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 CPP、SRF、CPP+SRF、baseline
+    cases:
+      - deepseek_v4_pro_pd_cpp_fixed
+      - deepseek_v4_pro_pd_cpp_variable
+      - deepseek_v4_pro_pd_srf_fixed
+      - deepseek_v4_pro_pd_srf_variable
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+    comparison: true
+
+  deepseek_v4_pro_pd_performance_rotation_2:
+    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 SRF、CPP+SRF、baseline、CPP
+    cases:
+      - deepseek_v4_pro_pd_srf_fixed
+      - deepseek_v4_pro_pd_srf_variable
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+      - deepseek_v4_pro_pd_cpp_fixed
+      - deepseek_v4_pro_pd_cpp_variable
+    comparison: true
+
+  deepseek_v4_pro_pd_performance_rotation_3:
+    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 CPP+SRF、baseline、CPP、SRF
+    cases:
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+      - deepseek_v4_pro_pd_cpp_fixed
+      - deepseek_v4_pro_pd_cpp_variable
+      - deepseek_v4_pro_pd_srf_fixed
+      - deepseek_v4_pro_pd_srf_variable
+    comparison: true
 
   deepseek_v4_flash_pd_performance:
     description: DeepSeek V4 Flash W8A8 的 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
@@ -87,9 +116,11 @@ suites:
       deepseek_v4_pro_pd_baseline_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: null
       deepseek_v4_pro_pd_baseline_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: null
       deepseek_v4_pro_pd_cpp_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
@@ -101,9 +132,11 @@ suites:
       deepseek_v4_pro_pd_srf_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: null
       deepseek_v4_pro_pd_srf_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: null
       deepseek_v4_pro_pd_cpp_srf_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd

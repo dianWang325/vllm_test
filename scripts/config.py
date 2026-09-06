@@ -70,6 +70,54 @@ def _case_definition(name: str) -> dict[str, Any]:
     return definition
 
 
+def _derive_warmup_input_length(
+    case_name: str,
+    effective: dict[str, Any],
+    selected: dict[str, Any],
+    overrides: dict[str, Any],
+) -> None:
+    warmup = effective.get("warmup")
+    if not isinstance(warmup, dict):
+        return
+    derive = warmup.pop("input_length_from_model_max", False)
+    if not isinstance(derive, bool):
+        raise ConfigurationError(
+            f"case {case_name} warmup input_length_from_model_max must be a boolean"
+        )
+    if not derive:
+        return
+
+    warmup_source = selected.get("warmup", {}).get("profile", {})
+    warmup_override = overrides.get("warmup", {})
+    if "input_length" in warmup_source or (
+        isinstance(warmup_override, dict) and "input_length" in warmup_override
+    ):
+        raise ConfigurationError(
+            f"case {case_name} warmup cannot set input_length when "
+            "input_length_from_model_max is enabled"
+        )
+
+    arguments = effective["server"].get("arguments", {})
+    max_model_len = arguments.get("--max-model-len")
+    output_length = warmup.get("output_length")
+    if isinstance(max_model_len, bool) or not isinstance(max_model_len, int):
+        raise ConfigurationError(
+            f"case {case_name} model --max-model-len must be a positive integer "
+            "for derived warmup input length"
+        )
+    if isinstance(output_length, bool) or not isinstance(output_length, int):
+        raise ConfigurationError(
+            f"case {case_name} warmup output_length must be a positive integer"
+        )
+    input_length = max_model_len - output_length
+    if max_model_len <= 0 or output_length <= 0 or input_length <= 0:
+        raise ConfigurationError(
+            f"case {case_name} has invalid model/warmup lengths: "
+            f"max_model_len={max_model_len}, output_length={output_length}"
+        )
+    warmup["input_length"] = input_length
+
+
 def _resolve_case(name: str, definition: dict[str, Any]) -> dict[str, Any]:
     run_type = definition.get("type")
     if run_type not in {"performance", "accuracy"}:
@@ -154,6 +202,7 @@ def _resolve_case(name: str, definition: dict[str, Any]) -> dict[str, Any]:
                 warm_merged, overrides.get("warmup_bench", {})
             )
 
+    _derive_warmup_input_length(name, effective, selected, overrides)
     return {
         "name": name,
         "type": run_type,

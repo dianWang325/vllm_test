@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import math
 import os
+import re
 import signal
 import socket
 import subprocess
@@ -11,6 +13,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 from typing import Any, TextIO
 
@@ -19,6 +22,46 @@ from .config import deep_merge, relative_to_root
 
 class ServerError(RuntimeError):
     pass
+
+
+_REQUEST_METRICS = {
+    "vllm:num_requests_running": "running",
+    "vllm:num_requests_waiting": "waiting",
+}
+_PROMETHEUS_SAMPLE = re.compile(
+    r"^([^\s{]+)(?:\{.*\})?\s+([^\s]+)(?:\s+[^\s]+)?$"
+)
+
+
+def _parse_request_metrics(payload: str) -> dict[str, float]:
+    totals = {label: 0.0 for label in _REQUEST_METRICS.values()}
+    found: set[str] = set()
+    for raw_line in payload.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        metric_name = line.split("{", 1)[0].split(None, 1)[0]
+        if metric_name not in _REQUEST_METRICS:
+            continue
+        match = _PROMETHEUS_SAMPLE.match(line)
+        if match is None or match.group(1) != metric_name:
+            raise ServerError(f"invalid Prometheus sample for {metric_name}: {line!r}")
+        try:
+            value = float(match.group(2))
+        except ValueError as exc:
+            raise ServerError(
+                f"invalid Prometheus value for {metric_name}: {match.group(2)!r}"
+            ) from exc
+        if not math.isfinite(value) or value < 0:
+            raise ServerError(
+                f"invalid Prometheus value for {metric_name}: {match.group(2)!r}"
+            )
+        totals[_REQUEST_METRICS[metric_name]] += value
+        found.add(metric_name)
+    missing = sorted(set(_REQUEST_METRICS) - found)
+    if missing:
+        raise ServerError(f"Prefill metrics are missing: {missing}")
+    return totals
 
 
 def _argument_value(value: Any) -> str:
@@ -349,6 +392,91 @@ class VllmServer:
                 return
             time.sleep(interval)
         raise ServerError("proxy health check timed out")
+
+    def wait_for_prefill_idle(self) -> dict[str, Any] | None:
+        if not self._pd_enabled():
+            return None
+        prefill_config, _, _ = self._build_pd_configs()
+        settings = prefill_config["lifecycle"].get("request_quiescence")
+        if not isinstance(settings, dict):
+            raise ServerError("lifecycle.request_quiescence must be a mapping")
+        metrics_path = settings.get("metrics_path")
+        if not isinstance(metrics_path, str) or not metrics_path.startswith("/"):
+            raise ServerError("request quiescence metrics_path must start with /")
+
+        def positive_number(name: str) -> float:
+            value = settings.get(name)
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or value <= 0
+            ):
+                raise ServerError(f"request quiescence {name} must be positive")
+            return float(value)
+
+        request_timeout = positive_number("request_timeout_seconds")
+        timeout = positive_number("timeout_seconds")
+        interval = positive_number("poll_interval_seconds")
+        required = settings.get("consecutive_idle_samples")
+        if isinstance(required, bool) or not isinstance(required, int) or required <= 0:
+            raise ServerError(
+                "request quiescence consecutive_idle_samples must be a positive integer"
+            )
+
+        url = (
+            f"http://{_endpoint_host(prefill_config)}:"
+            f"{prefill_config['arguments']['--port']}{metrics_path}"
+        )
+        started_at = datetime.now().astimezone()
+        started = time.monotonic()
+        deadline = started + timeout
+        consecutive = 0
+        polls = 0
+        last_metrics: dict[str, float] | None = None
+        last_network_error: str | None = None
+        while time.monotonic() < deadline:
+            process = self.processes.get("prefill")
+            if process is not None and process.poll() is not None:
+                raise ServerError(
+                    f"prefill exited while waiting for request quiescence: "
+                    f"{process.returncode}"
+                )
+            polls += 1
+            try:
+                with urllib.request.urlopen(url, timeout=request_timeout) as response:
+                    payload = response.read().decode("utf-8")
+                last_metrics = _parse_request_metrics(payload)
+                last_network_error = None
+            except (OSError, UnicodeDecodeError, urllib.error.HTTPError) as exc:
+                last_network_error = f"{type(exc).__name__}: {exc}"
+                consecutive = 0
+            else:
+                if last_metrics["running"] == 0 and last_metrics["waiting"] == 0:
+                    consecutive += 1
+                    if consecutive >= required:
+                        finished_at = datetime.now().astimezone()
+                        return {
+                            "endpoint": url,
+                            "started_at": started_at.isoformat(timespec="seconds"),
+                            "finished_at": finished_at.isoformat(timespec="seconds"),
+                            "waited_seconds": round(time.monotonic() - started, 3),
+                            "polls": polls,
+                            "consecutive_idle_samples": consecutive,
+                            "metrics": last_metrics,
+                        }
+                else:
+                    consecutive = 0
+            if time.monotonic() < deadline:
+                time.sleep(interval)
+        detail = (
+            f"last metrics: {last_metrics}"
+            if last_network_error is None
+            else f"last metrics request error: {last_network_error}"
+        )
+        raise ServerError(
+            f"prefill requests did not become quiescent within {timeout:g} seconds; "
+            f"{detail}"
+        )
 
     def _start_pd(self) -> dict[str, list[str]]:
         prefill_config, decode_config, proxy_config = self._build_pd_configs()

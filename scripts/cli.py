@@ -54,7 +54,10 @@ def _selected(
 
 
 def _execute_case(
-    case: dict[str, Any], run_dir: Path, state: dict[str, Any]
+    case: dict[str, Any],
+    run_dir: Path,
+    state: dict[str, Any],
+    server_process: VllmServer,
 ) -> None:
     name = case["name"]
     effective = case["effective"]
@@ -91,6 +94,10 @@ def _execute_case(
                 "output_length": int(effective["warmup"]["output_length"]),
             }
             warmup_log = run_dir / f"{name}-warmup.log"
+            quiescence = server_process.wait_for_prefill_idle()
+            if quiescence is not None:
+                case_state["prefill_quiescence"] = quiescence
+                _write_json(run_dir / "run.json", state)
             command = run_warmup(
                 server, effective["warmup_bench"], warmup_dataset, warmup_log
             )
@@ -119,6 +126,10 @@ def _execute_case(
                 "output_length": int(effective["warmup"]["output_length"]),
             }
             warmup_log = run_dir / f"{name}-warmup.log"
+            quiescence = server_process.wait_for_prefill_idle()
+            if quiescence is not None:
+                case_state["prefill_quiescence"] = quiescence
+                _write_json(run_dir / "run.json", state)
             command = run_warmup(
                 server, effective["warmup_bench"], warmup_dataset, warmup_log
             )
@@ -239,7 +250,10 @@ def execute(kind: str, name: str) -> list[Path]:
                 for case in segment:
                     try:
                         _execute_case(
-                            case, run_dirs[case["type"]], states[case["type"]]
+                            case,
+                            run_dirs[case["type"]],
+                            states[case["type"]],
+                            server,
                         )
                     except BaseException as case_exc:
                         case_state = states[case["type"]]["cases"][case["name"]]

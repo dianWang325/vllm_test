@@ -201,23 +201,28 @@ cases:
   deepseek_v4_pro_pd_baseline_fixed:
     description: DeepSeek V4 Pro PD baseline 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: fixed_long
+    warmup: deepseek_v4_pro_0505_max_len
     bench: fixed_long
     report: performance
 
   deepseek_v4_pro_pd_baseline_variable:
     description: DeepSeek V4 Pro PD baseline 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: variable_long
+    warmup: deepseek_v4_pro_0505_max_len
     bench: variable_long
     report: performance
 
   deepseek_v4_pro_pd_cpp_fixed:
     description: DeepSeek V4 Pro PD CPP 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: fixed_long
     warmup: deepseek_v4_pro_0505_max_len
     bench: fixed_long
@@ -237,7 +242,8 @@ cases:
   deepseek_v4_pro_pd_cpp_variable:
     description: DeepSeek V4 Pro PD CPP 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: variable_long
     warmup: deepseek_v4_pro_0505_max_len
     bench: variable_long
@@ -257,8 +263,10 @@ cases:
   deepseek_v4_pro_pd_srf_fixed:
     description: DeepSeek V4 Pro PD SRF 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: fixed_long
+    warmup: deepseek_v4_pro_0505_max_len
     bench: fixed_long
     report: performance
     overrides:
@@ -276,8 +284,10 @@ cases:
   deepseek_v4_pro_pd_srf_variable:
     description: DeepSeek V4 Pro PD SRF 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: variable_long
+    warmup: deepseek_v4_pro_0505_max_len
     bench: variable_long
     report: performance
     overrides:
@@ -295,7 +305,8 @@ cases:
   deepseek_v4_pro_pd_cpp_srf_fixed:
     description: DeepSeek V4 Pro PD CPP+SRF 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: fixed_long
     warmup: deepseek_v4_pro_0505_max_len
     bench: fixed_long
@@ -319,7 +330,8 @@ cases:
   deepseek_v4_pro_pd_cpp_srf_variable:
     description: DeepSeek V4 Pro PD CPP+SRF 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd
+    server: deepseek_v4_pro_pd_two_host
+    model: deepseek_v4_pro_w4a8_0505
     data: variable_long
     warmup: deepseek_v4_pro_0505_max_len
     bench: variable_long

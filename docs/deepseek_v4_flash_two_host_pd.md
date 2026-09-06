@@ -1,14 +1,14 @@
-# DeepSeek V4 Flash 双机 PD 性能测试教程
+# DeepSeek V4 Flash/Pro 双机 PD 性能测试教程
 
-本文记录已经验证成功的双机部署方式：在 `80.5.9.130` 使用 8 张卡运行 Prefill（PP=2、TP=4），在 `80.5.9.129` 使用 8 张卡运行 Decode（DP=2、TP=4），Proxy 和 AISBench 由 130 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 130 通过 SSH 控制 129。
+本文记录双机部署方式：在 `80.5.9.127` 使用 8 张卡运行 Prefill（PP=2、TP=4），在 `80.5.9.128` 使用 8 张卡运行 Decode（DP=2、TP=4），Proxy 和 AISBench 由 127 上的 `vtest` 管理。两台机器各自启动本机进程，不依赖 127 通过 SSH 控制 128。
 
 ## 1. 部署拓扑
 
 | 主机 | 角色 | 设备 | API 端口 | KV 端口基址 | 管理方式 |
 | --- | --- | --- | --- | --- | --- |
-| `80.5.9.130` | Proxy | - | `18080` | - | `vtest` 自动启动和停止 |
-| `80.5.9.130` | Prefill | `0-7` | `18081` | `36000` | `vtest` 自动启动和停止 |
-| `80.5.9.129` | Decode | `8-15` | `18082` | `36100` | 在 129 上用 `pd_role.py` 独立管理 |
+| `80.5.9.127` | Proxy | - | `18080` | - | `vtest` 自动启动和停止 |
+| `80.5.9.127` | Prefill | `0-7` | `18081` | `36000` | `vtest` 自动启动和停止 |
+| `80.5.9.128` | Decode | `8-15` | `18082` | `36100` | 在 128 上用 `pd_role.py` 独立管理 |
 
 当前配置使用：
 
@@ -37,7 +37,7 @@ decode:
 
 ### 2.1 为什么应在创建容器时处理
 
-`/etc/hccn.conf` 记录本机 NPU 的通信配置，AscendDirect/Mooncake 在建立跨机 KV 传输通道时会读取它。该文件属于具体宿主机，129 和 130 的内容不应互相复制，也不建议通过 Dockerfile `COPY` 固化到通用镜像中。推荐在 `docker run` 创建容器时只读绑定本机文件，这样容器重建后配置仍然存在，宿主机配置更新后也不必重新制作镜像。
+`/etc/hccn.conf` 记录本机 NPU 的通信配置，AscendDirect/Mooncake 在建立跨机 KV 传输通道时会读取它。该文件属于具体宿主机，127 和 128 的内容不应互相复制，也不建议通过 Dockerfile `COPY` 固化到通用镜像中。推荐在 `docker run` 创建容器时只读绑定本机文件，这样容器重建后配置仍然存在，宿主机配置更新后也不必重新制作镜像。
 
 创建容器前先确认本机文件存在：
 
@@ -99,7 +99,7 @@ docker run --privileged -it -d --net=host \
 
 这不是运行 KV Connector 的必需项，`hccn.conf` 才是本次必须持久化到容器中的文件。
 
-设备列表应与该容器实际分配的物理卡一致。130 使用 `davinci0` 至 `davinci7`；若在 129 上按物理编号只暴露 8 至 15 卡，应把八行设备参数改为 `davinci8` 至 `davinci15`。当前脚本含 `--privileged`，但仍建议把设备列表写准确，便于迁移和审计；最终由 `ASCEND_RT_VISIBLE_DEVICES` 决定 vLLM 角色使用的卡。
+设备列表应与该容器实际分配的物理卡一致。127 使用 `davinci0` 至 `davinci7`；若在 128 上按物理编号只暴露 8 至 15 卡，应把八行设备参数改为 `davinci8` 至 `davinci15`。当前脚本含 `--privileged`，但仍建议把设备列表写准确，便于迁移和审计；最终由 `ASCEND_RT_VISIBLE_DEVICES` 决定 vLLM 角色使用的卡。
 
 容器创建后验证挂载来自本机且为只读：
 
@@ -124,12 +124,12 @@ profiles.deepseek_v4_flash_pd_two_host
 
 | 位置 | 含义 | 当前值 |
 | --- | --- | --- |
-| `pd.prefill.endpoint_host` | Proxy 和 Decode 实际访问 Prefill 的地址 | `80.5.9.130` |
-| `pd.prefill.environment.VLLM_HOST_IP` | Prefill 向 Connector 公布的本机地址 | `80.5.9.130` |
-| `pd.prefill.environment.HCCL_IF_IP` | Prefill HCCL 通信地址 | `80.5.9.130` |
-| `pd.decode.endpoint_host` | Proxy 和健康检查实际访问 Decode 的地址 | `80.5.9.129` |
-| `pd.decode.environment.VLLM_HOST_IP` | Decode 向 Connector 公布的本机地址 | `80.5.9.129` |
-| `pd.decode.environment.HCCL_IF_IP` | Decode HCCL 通信地址 | `80.5.9.129` |
+| `pd.prefill.endpoint_host` | Proxy 和 Decode 实际访问 Prefill 的地址 | `80.5.9.127` |
+| `pd.prefill.environment.VLLM_HOST_IP` | Prefill 向 Connector 公布的本机地址 | `80.5.9.127` |
+| `pd.prefill.environment.HCCL_IF_IP` | Prefill HCCL 通信地址 | `80.5.9.127` |
+| `pd.decode.endpoint_host` | Proxy 和健康检查实际访问 Decode 的地址 | `80.5.9.128` |
+| `pd.decode.environment.VLLM_HOST_IP` | Decode 向 Connector 公布的本机地址 | `80.5.9.128` |
+| `pd.decode.environment.HCCL_IF_IP` | Decode HCCL 通信地址 | `80.5.9.128` |
 | 两端 `NO_PROXY`、`no_proxy` | 防止双机流量进入 HTTP 代理 | 两台主机 IP、localhost |
 | 两端 `GLOO_SOCKET_IFNAME` | Gloo 使用的网卡 | `enp194s0f0` |
 | 两端 `TP_SOCKET_IFNAME` | TP 通信使用的网卡 | `enp194s0f0` |
@@ -153,7 +153,7 @@ ip -o -4 addr show
 
 本方案使用 Docker host network，不需要 Docker `-p` 映射。两台主机之间至少需要放通：
 
-- API：`18081`（Prefill）、`18082`（Decode）；`18080` 是 130 上的 Proxy 入口。
+- API：`18081`（Prefill）、`18082`（Decode）；`18080` 是 127 上的 Proxy 入口。
 - KV 固定端口：Prefill `36000-36007`、Decode `36100-36107`。
 - Mooncake Transfer Engine 动态 RPC 端口：默认 `15000-17000`。
 - AscendDirect 动态端口：每个可见 NPU 使用 1000 个端口；8 卡容器通常为 `20000-27999`。若容器可见 16 张卡，保守放通 `20000-35999`。
@@ -172,7 +172,7 @@ source /home/w00985415/proxy.sh
 
 ## 5. 两台机器准备相同代码版本
 
-在 129 和 130 的宿主机分别执行，确保 `vllm_test` 都处于已推送的 `dev/pd`：
+在 127 和 128 的宿主机分别执行，确保 `vllm_test` 都处于已推送的 `dev/pd`：
 
 ```bash
 cd /home/w00985415/vllm_test
@@ -202,12 +202,12 @@ docker exec wd_test0825 test -d /home/weight/DeepSeek-V4-Flash-w8a8-mtp
 docker exec wd_test0825 test -d /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
 ```
 
-## 6. 启动 Decode（129）
+## 6. 启动 Decode（128）
 
-先在 129 上独立启动 Decode。`pd_role.py` 会解析 suite 的最终配置并启动一个带独立进程组的本机进程；`remote_process.py` 虽沿用历史文件名，但只管理当前主机上的 PID 文件和进程组，不建立 SSH 连接。
+先在 128 上独立启动 Decode。`pd_role.py` 会解析 suite 的最终配置并启动一个带独立进程组的本机进程；`remote_process.py` 虽沿用历史文件名，但只管理当前主机上的 PID 文件和进程组，不建立 SSH 连接。
 
 ```bash
-ssh 80.5.9.129
+ssh 80.5.9.128
 docker exec -d \
   -w /home/w00985415/vllm_test \
   wd_test0825 \
@@ -225,20 +225,20 @@ docker exec wd_test0825 tail -f /home/w00985415/vllm_test/runs/decode-two-host.l
 curl --fail --max-time 3 http://127.0.0.1:18082/health
 ```
 
-在 130 上也应能访问该地址：
+在 127 上也应能访问该地址：
 
 ```bash
-curl --fail --max-time 3 http://80.5.9.129:18082/health
+curl --fail --max-time 3 http://80.5.9.128:18082/health
 ```
 
-配置中的 `pd.decode.external: true` 表示 130 的 `vtest` 只等待并使用这个 Decode，不会远程启动或停止它。
+配置中的 `pd.decode.external: true` 表示 127 的 `vtest` 只等待并使用这个 Decode，不会远程启动或停止它。
 
-## 7. 启动 Prefill、Proxy 和性能 suite（130）
+## 7. 启动 Prefill、Proxy 和性能 suite（127）
 
-Decode 健康后，在 130 上启动完整 suite：
+Decode 健康后，在 127 上启动完整 suite：
 
 ```bash
-ssh 80.5.9.130
+ssh 80.5.9.127
 docker exec -it \
   -w /home/w00985415/vllm_test \
   wd_test0825 \
@@ -255,28 +255,39 @@ docker exec -d \
     >runs/two-host-suite.launcher.log 2>&1'
 ```
 
-130 上的 `vtest` 将按以下顺序工作：
+127 上的 `vtest` 将按以下顺序工作：
 
 1. 启动本机 Prefill。
-2. 等待 Prefill `80.5.9.130:18081/health` 和外部 Decode `80.5.9.129:18082/health`。
+2. 等待 Prefill `80.5.9.127:18081/health` 和外部 Decode `80.5.9.128:18082/health`。
 3. 启动本机 Proxy，并通过 `127.0.0.1:18080` 接收 AISBench 请求。
 4. 依次执行 baseline、CPP、SRF、CPP+SRF 的 fixed/variable 八个 case。
 5. 在服务配置发生变化时管理本机服务生命周期；不会停止外部 Decode。
+
+DeepSeek V4 Pro 使用相同的双机拓扑。每个 case 在正式请求前先确认 Prefill 的 running/waiting 请求连续三次为零，再发送由模型最大长度派生的公共预热请求。四种轮换顺序分别使用：
+
+```text
+deepseek_v4_pro_pd_performance
+deepseek_v4_pro_pd_performance_rotation_1
+deepseek_v4_pro_pd_performance_rotation_2
+deepseek_v4_pro_pd_performance_rotation_3
+```
+
+运行 Pro 时，把 Decode 和主 suite 命令中的 suite 名同时替换为本轮名称。每个 suite 结束后必须先使用 PID 文件停止 128 上的 external Decode，再重新启动下一轮。
 
 ## 8. 健康检查、日志和结果
 
 三项健康检查：
 
 ```bash
-# 130
+# 127
 curl --fail --max-time 3 http://127.0.0.1:18080/healthcheck
 curl --fail --max-time 3 http://127.0.0.1:18081/health
 
-# 129
+# 128
 curl --fail --max-time 3 http://127.0.0.1:18082/health
 ```
 
-运行目录会在 130 的 `runs/` 下创建，命名格式为：
+运行目录会在 127 的 `runs/` 下创建，命名格式为：
 
 ```text
 <服务器alias>_<vllm-ascend分支>_<MMDDHHMM>_performance
@@ -285,13 +296,13 @@ curl --fail --max-time 3 http://127.0.0.1:18082/health
 常用监控命令：
 
 ```bash
-# 130：定位最新运行目录、跟踪主服务日志
+# 127：定位最新运行目录、跟踪主服务日志
 cd /home/w00985415/vllm_test
 RUN_DIR=$(find runs -maxdepth 1 -type d -name '*_performance' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)
 echo "$RUN_DIR"
 tail -f "$RUN_DIR/server-01.log"
 
-# 129：Decode 独立日志
+# 128：Decode 独立日志
 tail -f /home/w00985415/vllm_test/runs/decode-two-host.log
 
 # 检查关键异常
@@ -303,11 +314,11 @@ grep -Ein 'ERROR|Traceback|Exception|FATAL|Failed|Killed|OOM|Out of memory' \
 python -m json.tool "$RUN_DIR/run.json"
 ```
 
-仅端口健康并不足以证明 KV 传输成功。还应在日志中看到 Prefill 公布 `80.5.9.130:36000-36007`，以及 Decode 成功接收来自 Prefill 的 KV block；若出现 transfer failed、超时或 block/rank 映射错误，本轮 PD 性能数据不应直接作为有效基线。
+仅端口健康并不足以证明 KV 传输成功。还应在日志中看到 Prefill 公布 `80.5.9.127:36000-36007`，以及 Decode 成功接收来自 Prefill 的 KV block；若出现 transfer failed、超时或 block/rank 映射错误，本轮 PD 性能数据不应直接作为有效基线。
 
 ## 9. 正常停止和失败清理
 
-正常情况下先等待 130 上的 suite 结束。`vtest` 会停止自己启动的 Proxy 和 Prefill。随后在 129 上用精确 PID 文件停止外部 Decode：
+正常情况下先等待 127 上的 suite 结束。`vtest` 会停止自己启动的 Proxy 和 Prefill。随后在 128 上用精确 PID 文件停止外部 Decode：
 
 ```bash
 docker exec \
@@ -322,9 +333,9 @@ docker exec \
 
 如果 suite 失败：
 
-1. 保存 130 的运行目录、`run.json` 和 `server-*.log`。
-2. 保存 129 的 Decode 日志。
-3. 确认 130 的本机 Proxy/Prefill 已退出。
+1. 保存 127 的运行目录、`run.json` 和 `server-*.log`。
+2. 保存 128 的 Decode 日志。
+3. 确认 127 的本机 Proxy/Prefill 已退出。
 4. 使用上面的 `pd_role.py stop` 停止 Decode。
 5. 修正配置后重新按 Decode → Prefill/Proxy/suite 的顺序启动。
 
