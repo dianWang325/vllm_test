@@ -63,7 +63,7 @@ formal:
 warmup:
   defaults:
     storage: persistent
-    tool_path: /home/w00985415/tools/aisbench_auto_tools_prefix
+    tool_path: /home/w00985415/vllm_test/deps/aisbench_auto_tools_prefix
     input_length: 65536
     output_length: 1
     request_count: 5
@@ -91,6 +91,12 @@ warmup:
       seed: 826
     deepseek_v4_pro_0505_max_len:
       description: DeepSeek V4 Pro 0505 最大上下文长度的 CPP 专属预热数据
+      input_length: 1048575
+      output_length: 1
+      request_count: 5
+      seed: 826
+    deepseek_v4_flash_w8a8_mtp_pd_max_len:
+      description: A3 DeepSeek V4 Flash W8A8 PD 最大上下文长度的 CPP 专属预热数据
       input_length: 1048575
       output_length: 1
       request_count: 5

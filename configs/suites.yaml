@@ -70,3 +70,37 @@ suites:
       deepseek_v4_pro_pd_srf_variable: *deepseek_v4_pro_0505_model
       deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_0505_model
       deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_0505_model
+
+  deepseek_v4_flash_pd_performance:
+    description: DeepSeek V4 Flash W8A8 的 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
+    cases:
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+      - deepseek_v4_pro_pd_cpp_fixed
+      - deepseek_v4_pro_pd_cpp_variable
+      - deepseek_v4_pro_pd_srf_fixed
+      - deepseek_v4_pro_pd_srf_variable
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+    comparison: true
+    case_overrides:
+      deepseek_v4_pro_pd_baseline_fixed:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+      deepseek_v4_pro_pd_baseline_variable:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+      deepseek_v4_pro_pd_cpp_fixed:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+      deepseek_v4_pro_pd_cpp_variable:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+      deepseek_v4_pro_pd_srf_fixed:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+      deepseek_v4_pro_pd_srf_variable:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+      deepseek_v4_pro_pd_cpp_srf_fixed:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+      deepseek_v4_pro_pd_cpp_srf_variable:
+        model: deepseek_v4_flash_w8a8_mtp_pd
+        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len

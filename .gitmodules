@@ -1,0 +1,3 @@
+[submodule "deps/aisbench_auto_tools_prefix"]
+	path = deps/aisbench_auto_tools_prefix
+	url = https://github.com/rayn-zzz/aisbench_auto_tools_prefix.git
