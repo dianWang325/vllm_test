@@ -40,7 +40,7 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 
 ## 双机 PD 性能测试
 
-DeepSeek V4 Flash/Pro 的 127 Prefill + 128 Decode 双机部署、容器 `hccn.conf` 挂载、IP/网卡迁移、启动顺序、健康检查、日志监控和停止方法见 [双机 PD 性能测试教程](docs/deepseek_v4_flash_two_host_pd.md)。
+DeepSeek V4 Flash 的 127 Prefill + 128 Decode、Pro 的 127 Prefill + 122 Decode 双机部署，以及容器 `hccn.conf`、IP/网卡迁移、启动顺序、健康检查、日志监控和停止方法见 [双机 PD 性能测试教程](docs/deepseek_v4_flash_two_host_pd.md)。
 
 `configs/model.yaml` 的根节点是 `models`。case 中的 `model` 是该集合中的模型名称；模型项中的 `model_tag` 是 `vllm serve <model_tag>` 使用的实际路径或模型标识，模型专用的 vLLM 参数仍放在 `arguments` 中。模型路径只保存在该文件。server 默认选择 `qwen3_30b_a3b_w8a8`，case 省略 `model` 时继承它；未显式配置 `--tokenizer` 时，框架与 vLLM 一样使用 `model_tag`。server 默认配置不传递 `--max-model-len`，由 vLLM 从模型自身配置读取；需要限制某个模型时，在该模型的 `arguments` 中显式设置。
 

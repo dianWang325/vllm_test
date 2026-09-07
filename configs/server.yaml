@@ -296,7 +296,7 @@ profiles:
           NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
           no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
   deepseek_v4_pro_pd_two_host:
-    description: 127 Prefill 16 卡 + 128 Decode 8 卡的 DeepSeek V4 Pro PD 服务
+    description: 127 Prefill 16 卡 + 122 Decode 16 卡的 DeepSeek V4 Pro PD 服务
     arguments:
       --host: 127.0.0.1
       --port: 18080
@@ -326,7 +326,7 @@ profiles:
                 pp_size: 2
               decode:
                 dp_size: 1
-                tp_size: 8
+                tp_size: 16
                 pp_size: 1
         environment:
           ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
@@ -335,17 +335,19 @@ profiles:
           GLOO_SOCKET_IFNAME: enp194s0f0
           TP_SOCKET_IFNAME: enp194s0f0
           HCCL_SOCKET_IFNAME: enp194s0f0
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+          HCCL_EXEC_TIMEOUT: "1800"
+          HCCL_OP_EXPANSION_MODE: AI_CPU
+          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
       decode:
-        endpoint_host: 80.5.9.128
+        endpoint_host: 80.5.17.122
         external: true
-        model_tag: /mnt/weight/DeepSeekV4-pro-0813-w4a8
+        model_tag: /mnt/share/weights/DeepSeekV4-pro-0813-w4a8
         arguments:
           --host: 0.0.0.0
           --port: 18082
           --data-parallel-size: 1
-          --tensor-parallel-size: 8
+          --tensor-parallel-size: 16
           --pipeline-parallel-size: 1
           --max-num-batched-tokens: 120
           --kv-transfer-config:
@@ -360,17 +362,19 @@ profiles:
                 pp_size: 2
               decode:
                 dp_size: 1
-                tp_size: 8
+                tp_size: 16
                 pp_size: 1
         environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-          VLLM_HOST_IP: 80.5.9.128
-          HCCL_IF_IP: 80.5.9.128
-          GLOO_SOCKET_IFNAME: enp194s0f0
-          TP_SOCKET_IFNAME: enp194s0f0
-          HCCL_SOCKET_IFNAME: enp194s0f0
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+          VLLM_HOST_IP: 80.5.17.122
+          HCCL_IF_IP: 80.5.17.122
+          GLOO_SOCKET_IFNAME: enp48s3u1u1
+          TP_SOCKET_IFNAME: enp48s3u1u1
+          HCCL_SOCKET_IFNAME: enp48s3u1u1
+          HCCL_EXEC_TIMEOUT: "1800"
+          HCCL_OP_EXPANSION_MODE: AI_CPU
+          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
   cpp_0830:
     description: PD P 节点 0830 CPP 服务
     arguments:

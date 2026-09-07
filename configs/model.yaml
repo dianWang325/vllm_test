@@ -60,10 +60,6 @@ models:
       --model-loader-extra-config:
         enable_multithread_load: true
         num_threads: 128
-      --speculative-config:
-        num_speculative_tokens: 1
-        method: mtp
-        enforce_eager: true
 
   deepseek_v4_flash_w8a8_mtp_pd:
     description: 单机 A3 PD 性能测试使用的 DeepSeek V4 Flash W8A8 模型
