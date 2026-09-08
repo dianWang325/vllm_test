@@ -8,8 +8,11 @@ from scripts import cli
 from scripts.config import (
     ConfigurationError,
     _derive_warmup_input_length,
+    load_yaml,
+    resolve_case,
     resolve_suite,
 )
+from scripts.data import generate_warmup
 from scripts.pd_role import _role_config
 from scripts.server import ServerError, VllmServer, _parse_request_metrics
 
@@ -105,24 +108,122 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             assert effective["warmup"]["output_length"] == 1
 
 
-def test_flash_suite_keeps_existing_warmup_scope() -> None:
+def test_flash_suite_uses_common_model_max_warmup() -> None:
     suite = resolve_suite("deepseek_v4_flash_pd_performance")
     warmups = [case["definition"].get("warmup") for case in suite["cases"]]
-    assert warmups == [
-        None,
-        None,
-        "deepseek_v4_flash_w8a8_mtp_pd_max_len",
-        "deepseek_v4_flash_w8a8_mtp_pd_max_len",
-        None,
-        None,
-        "deepseek_v4_flash_w8a8_mtp_pd_max_len",
-        "deepseek_v4_flash_w8a8_mtp_pd_max_len",
-    ]
+    assert warmups == ["model_max_len"] * 8
     for case in suite["cases"]:
-        pd = case["effective"]["server"]["pd"]
+        effective = case["effective"]
+        pd = effective["server"]["pd"]
         assert pd["prefill"]["endpoint_host"] == "80.5.9.127"
         assert pd["decode"]["endpoint_host"] == "80.5.9.128"
-        assert case["effective"]["bench"]["concurrency"] == 4
+        assert effective["bench"]["concurrency"] == 4
+        assert effective["warmup"]["input_length"] == 1048575
+        assert effective["warmup"]["output_length"] == 1
+
+
+def test_all_warmup_references_use_common_profile() -> None:
+    warmup = load_yaml("data")["warmup"]
+    assert "input_length" not in warmup["defaults"]
+    assert set(warmup["profiles"]) == {"model_max_len"}
+
+    cases = load_yaml("cases")["cases"]
+    case_references = {
+        definition["warmup"]
+        for definition in cases.values()
+        if "warmup" in definition
+    }
+    assert case_references == {"model_max_len"}
+    for case_name, definition in cases.items():
+        if "warmup" not in definition:
+            continue
+        effective = resolve_case(case_name)["effective"]
+        max_model_len = effective["server"]["arguments"]["--max-model-len"]
+        assert (
+            effective["warmup"]["input_length"]
+            + effective["warmup"]["output_length"]
+            == max_model_len
+        )
+
+    suites = load_yaml("suites")["suites"]
+    suite_references = [
+        override["warmup"]
+        for suite in suites.values()
+        for override in suite.get("case_overrides", {}).values()
+        if "warmup" in override
+    ]
+    assert suite_references
+    assert set(suite_references) == {"model_max_len"}
+
+
+def test_warmup_generation_does_not_require_git_metadata(tmp_path: Path) -> None:
+    tool_path = tmp_path / "tool"
+    tool_path.mkdir()
+    (tool_path / "generate_dataset.py").write_text(
+        "def create_dataset(_tokenizer, length, count, _offset):\n"
+        "    return ['x' * length for _ in range(count)]\n",
+        encoding="utf-8",
+    )
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    result = generate_warmup(
+        "model_max_len",
+        {
+            "storage": "per_run",
+            "tool_path": str(tool_path),
+            "input_length": 8,
+            "output_length": 1,
+            "request_count": 2,
+            "seed": 826,
+        },
+        "unused-tokenizer",
+        run_dir,
+        "test-case",
+    )
+
+    assert Path(result["path"]).is_file()
+    assert result["reused"] is False
+    assert "tool_revision" not in result
+
+
+def test_accuracy_profiles_use_dataset_model_output_names() -> None:
+    accuracy = load_yaml("accuracy")
+    defaults = accuracy["defaults"]
+    assert defaults["generation_kwargs"] == {
+        "temperature": 1,
+        "top_p": 0.95,
+        "repetition_penalty": 1,
+        "ignore_eos": False,
+    }
+    assert defaults["max_output_tokens"] == 32768
+    assert defaults["concurrency"] == 128
+    assert set(accuracy["profiles"]) == {
+        "gsm8k_dsv4_flash_32k",
+        "gpqa_dsv4_flash_32k",
+        "gpqa_dsv4_flash_60k",
+    }
+    for profile in accuracy["profiles"].values():
+        assert profile["generation_kwargs"] == {
+            "chat_template_kwargs": {"enable_thinking": True}
+        }
+
+    cases = load_yaml("cases")["cases"]
+    references = {
+        definition["accuracy"]
+        for definition in cases.values()
+        if "accuracy" in definition
+    }
+    assert references == set(accuracy["profiles"])
+    expected_generation_kwargs = {
+        **defaults["generation_kwargs"],
+        "chat_template_kwargs": {"enable_thinking": True},
+    }
+    for case_name, definition in cases.items():
+        if "accuracy" in definition:
+            assert (
+                resolve_case(case_name)["effective"]["accuracy"]["generation_kwargs"]
+                == expected_generation_kwargs
+            )
 
 
 def test_warmup_input_length_is_derived_from_model() -> None:

@@ -7,7 +7,6 @@ import importlib
 import json
 import os
 import random
-import subprocess
 import sys
 from contextlib import contextmanager
 from pathlib import Path
@@ -19,27 +18,6 @@ from .config import ROOT
 
 class DataError(RuntimeError):
     pass
-
-
-def _tool_revision(tool_path: Path) -> dict[str, Any]:
-    def git(*args: str) -> str:
-        result = subprocess.run(
-            ["git", "-C", str(tool_path), *args],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if result.returncode != 0:
-            raise DataError(
-                f"failed to read warmup generator revision: {result.stderr.strip()}"
-            )
-        return result.stdout.strip()
-
-    return {
-        "branch": git("symbolic-ref", "--quiet", "--short", "HEAD"),
-        "commit": git("rev-parse", "HEAD"),
-        "dirty": bool(git("status", "--porcelain")),
-    }
 
 
 def _canonical_hash(value: Any) -> str:
@@ -246,7 +224,6 @@ def generate_warmup(
     case_name: str,
 ) -> dict[str, Any]:
     tool_path = Path(config["tool_path"]).resolve()
-    tool_revision = _tool_revision(tool_path)
     identity = {"profile": profile, "config": config, "tokenizer": tokenizer_path}
     config_hash = _canonical_hash(identity)
     directory = (
@@ -269,7 +246,6 @@ def generate_warmup(
             return {
                 "generator": "aisbench_auto_tools_prefix.create_dataset",
                 "tool_path": str(tool_path),
-                "tool_revision": tool_revision,
                 "storage": "persistent",
                 "path": str(path),
                 "meta_path": str(meta_path),
@@ -300,7 +276,6 @@ def generate_warmup(
     return {
         "generator": "aisbench_auto_tools_prefix.create_dataset",
         "tool_path": str(tool_path),
-        "tool_revision": tool_revision,
         "storage": config["storage"],
         "path": str(path),
         "meta_path": str(meta_path),

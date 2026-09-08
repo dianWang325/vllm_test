@@ -58,9 +58,7 @@ def run_accuracy(
             "retries": int(settings["retries"]),
             "max_output_tokens": int(settings["max_output_tokens"]),
             "concurrency": int(settings["concurrency"]),
-            "temperature": settings["temperature"],
-            "repetition_penalty": settings["repetition_penalty"],
-            "ignore_eos": False,
+            "generation_kwargs": settings["generation_kwargs"],
         },
         "dataset": {
             "name": dataset_name,

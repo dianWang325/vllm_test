@@ -18,6 +18,15 @@ runtime = __import__("json").loads(
 )
 server = runtime["server"]
 settings = runtime["settings"]
+generation_kwargs = (
+    dict(settings["generation_kwargs"])
+    if "generation_kwargs" in settings
+    else dict(
+        temperature=settings["temperature"],
+        repetition_penalty=settings["repetition_penalty"],
+        ignore_eos=settings["ignore_eos"],
+    )
+)
 
 base_model = dict(
     attr="service",
@@ -33,11 +42,7 @@ base_model = dict(
     max_out_len=settings["max_output_tokens"],
     batch_size=settings["concurrency"],
     trust_remote_code=server["trust_remote_code"],
-    generation_kwargs=dict(
-        temperature=settings["temperature"],
-        repetition_penalty=settings["repetition_penalty"],
-        ignore_eos=settings["ignore_eos"],
-    ),
+    generation_kwargs=generation_kwargs,
 )
 
 if runtime["mode"] == "performance":

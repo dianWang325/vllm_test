@@ -11,7 +11,7 @@ cases:
     type: performance
     server: cpp
     data: functional_smoke
-    warmup: cpp_long
+    warmup: model_max_len
     bench: functional_smoke
     report: functional
   srf_smoke:
@@ -31,7 +31,7 @@ cases:
     type: performance
     server: cpp_srf
     data: srf_mixed
-    warmup: cpp_long
+    warmup: model_max_len
     bench: srf_mixed
     report: functional
     overrides:
@@ -53,7 +53,7 @@ cases:
     server: cpp
     model: deepseek_v4_flash
     data: fixed_long
-    warmup: cpp_long
+    warmup: model_max_len
     bench: fixed_long
     report: performance
   srf_mixed:
@@ -70,7 +70,7 @@ cases:
     server: cpp_srf
     model: deepseek_v4_flash
     data: srf_mixed
-    warmup: cpp_long
+    warmup: model_max_len
     bench: srf_mixed
     report: performance
   baseline_variable_long:
@@ -86,14 +86,14 @@ cases:
     type: accuracy
     server: baseline
     model: deepseek_v4_flash
-    accuracy: gsm8k
+    accuracy: gsm8k_dsv4_flash_32k
     report: accuracy
   baseline_gpqa:
     description: 基线服务 GPQA Diamond 精度测试
     type: accuracy
     server: baseline
     model: deepseek_v4_flash
-    accuracy: gpqa
+    accuracy: gpqa_dsv4_flash_32k
     report: accuracy
   pd_prefill_baseline_0830:
     description: PD P 节点 baseline 性能测试
@@ -117,7 +117,7 @@ cases:
     server: cpp_0830
     model: deepseek_v4_flash
     data: pd_prefill_variable_0830
-    warmup: deepseek_max_len_0830
+    warmup: model_max_len
     bench: pd_prefill_0830
     report: performance
   pd_prefill_srf_0830:
@@ -134,7 +134,7 @@ cases:
     server: cpp_srf_0830
     model: deepseek_v4_flash
     data: pd_prefill_variable_0830
-    warmup: deepseek_max_len_0830
+    warmup: model_max_len
     bench: pd_prefill_0830
     report: performance
   gpqa_baseline_server27_8cards:
@@ -142,60 +142,60 @@ cases:
     type: accuracy
     server: gpqa_baseline_server27_8cards
     model: deepseek_v4_flash_server27_8cards
-    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    accuracy: gpqa_dsv4_flash_32k
     report: accuracy
   gpqa_cpp_server27_8cards:
     description: server-27-8cards DeepSeek V4 Flash CPP GPQA 全量精度测试
     type: accuracy
     server: gpqa_cpp_server27_8cards
     model: deepseek_v4_flash_server27_8cards
-    warmup: deepseek_v4_flash_server27_8cards_max_len
-    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    warmup: model_max_len
+    accuracy: gpqa_dsv4_flash_32k
     report: accuracy
   gpqa_srf_server27_8cards:
     description: server-27-8cards DeepSeek V4 Flash SRF GPQA 全量精度测试
     type: accuracy
     server: gpqa_srf_server27_8cards
     model: deepseek_v4_flash_server27_8cards
-    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    accuracy: gpqa_dsv4_flash_32k
     report: accuracy
   gpqa_cpp_srf_server27_8cards:
     description: server-27-8cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
     type: accuracy
     server: gpqa_cpp_srf_server27_8cards
     model: deepseek_v4_flash_server27_8cards
-    warmup: deepseek_v4_flash_server27_8cards_max_len
-    accuracy: gpqa_deepseek_v4_flash_server27_8cards
+    warmup: model_max_len
+    accuracy: gpqa_dsv4_flash_32k
     report: accuracy
   gpqa_baseline_server14_16cards:
     description: server-14-16cards DeepSeek V4 Flash baseline GPQA 全量精度测试
     type: accuracy
     server: gpqa_baseline_server14_16cards
     model: deepseek_v4_flash_server14_16cards
-    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    accuracy: gpqa_dsv4_flash_60k
     report: accuracy
   gpqa_cpp_server14_16cards:
     description: server-14-16cards DeepSeek V4 Flash CPP GPQA 全量精度测试
     type: accuracy
     server: gpqa_cpp_server14_16cards
     model: deepseek_v4_flash_server14_16cards
-    warmup: deepseek_v4_flash_server14_16cards_max_len
-    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    warmup: model_max_len
+    accuracy: gpqa_dsv4_flash_60k
     report: accuracy
   gpqa_srf_server14_16cards:
     description: server-14-16cards DeepSeek V4 Flash SRF GPQA 全量精度测试
     type: accuracy
     server: gpqa_srf_server14_16cards
     model: deepseek_v4_flash_server14_16cards
-    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    accuracy: gpqa_dsv4_flash_60k
     report: accuracy
   gpqa_cpp_srf_server14_16cards:
     description: server-14-16cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
     type: accuracy
     server: gpqa_cpp_srf_server14_16cards
     model: deepseek_v4_flash_server14_16cards
-    warmup: deepseek_v4_flash_server14_16cards_max_len
-    accuracy: gpqa_deepseek_v4_flash_server14_16cards
+    warmup: model_max_len
+    accuracy: gpqa_dsv4_flash_60k
     report: accuracy
 
   deepseek_v4_pro_pd_baseline_fixed:
@@ -204,7 +204,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_fixed_long
     report: performance
 
@@ -214,7 +214,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_variable_long
     report: performance
 
@@ -224,7 +224,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_fixed_long
     report: performance
     overrides:
@@ -245,7 +245,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_variable_long
     report: performance
     overrides:
@@ -266,7 +266,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_fixed_long
     report: performance
     overrides:
@@ -287,7 +287,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_variable_long
     report: performance
     overrides:
@@ -308,7 +308,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_fixed_long
     report: performance
     overrides: &deepseek_v4_pro_pd_cpp_srf_overrides
@@ -333,7 +333,7 @@ cases:
     server: deepseek_v4_pro_pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
-    warmup: deepseek_v4_pro_0813_max_len
+    warmup: model_max_len
     bench: deepseek_v4_pro_variable_long
     report: performance
     overrides: *deepseek_v4_pro_pd_cpp_srf_overrides

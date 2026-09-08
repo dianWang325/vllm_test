@@ -116,40 +116,40 @@ suites:
       deepseek_v4_pro_pd_baseline_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: null
+        warmup: model_max_len
         bench: fixed_long
       deepseek_v4_pro_pd_baseline_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: null
+        warmup: model_max_len
         bench: variable_long
       deepseek_v4_pro_pd_cpp_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+        warmup: model_max_len
         bench: fixed_long
       deepseek_v4_pro_pd_cpp_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+        warmup: model_max_len
         bench: variable_long
       deepseek_v4_pro_pd_srf_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: null
+        warmup: model_max_len
         bench: fixed_long
       deepseek_v4_pro_pd_srf_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: null
+        warmup: model_max_len
         bench: variable_long
       deepseek_v4_pro_pd_cpp_srf_fixed:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+        warmup: model_max_len
         bench: fixed_long
       deepseek_v4_pro_pd_cpp_srf_variable:
         server: deepseek_v4_flash_pd_two_host
         model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: deepseek_v4_flash_w8a8_mtp_pd_max_len
+        warmup: model_max_len
         bench: variable_long

@@ -64,40 +64,10 @@ warmup:
   defaults:
     storage: persistent
     tool_path: /home/w00985415/vllm_test/deps/aisbench_auto_tools_prefix
-    input_length: 65536
     output_length: 1
     request_count: 5
     seed: 826
   profiles:
-    cpp_long:
-      description: CPP 与 CPP+SRF 用例的 64K 手动预热数据
-    deepseek_max_len_0830:
-      description: DeepSeek 最大上下文长度的 CPP 专属预热数据
-      input_length: 66559
-      output_length: 1
-      request_count: 5
-      seed: 826
-    deepseek_v4_flash_server14_16cards_max_len:
-      description: server-14-16cards DeepSeek V4 Flash 最大上下文长度的 CPP 专属预热数据
-      input_length: 1048575
-      output_length: 1
-      request_count: 5
-      seed: 826
-    deepseek_v4_flash_server27_8cards_max_len:
-      description: server-27-8cards DeepSeek V4 Flash 最大上下文长度的 CPP 专属预热数据
-      input_length: 66559
-      output_length: 1
-      request_count: 5
-      seed: 826
-    deepseek_v4_pro_0813_max_len:
-      description: DeepSeek V4 Pro 0813 最大上下文长度的公共预热数据
+    model_max_len:
+      description: 根据模型最大上下文长度派生的公共预热数据
       input_length_from_model_max: true
-      output_length: 1
-      request_count: 5
-      seed: 826
-    deepseek_v4_flash_w8a8_mtp_pd_max_len:
-      description: A3 DeepSeek V4 Flash W8A8 PD 最大上下文长度的 CPP 专属预热数据
-      input_length_from_model_max: true
-      output_length: 1
-      request_count: 5
-      seed: 826

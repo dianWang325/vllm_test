@@ -1,38 +1,37 @@
 defaults:
   executable: ais_bench
   request_rate: 0
-  temperature: 0
-  repetition_penalty: 1
   retries: 3
-  max_output_tokens: 4096
-  concurrency: 4
+  max_output_tokens: 32768
+  concurrency: 128
   num_warmups: 0
   dump_details: true
+  generation_kwargs:
+    temperature: 1
+    top_p: 0.95
+    repetition_penalty: 1
+    ignore_eos: false
 
 profiles:
-  gsm8k:
-    description: 使用本地 GSM8K test.jsonl 运行 0-shot CoT 精度测试
+  gsm8k_dsv4_flash_32k:
+    description: 使用 DeepSeek V4 Flash 运行最大输出 32K 的 GSM8K 0-shot CoT 精度测试
     dataset: gsm8k
     path: aisbench_workspace/datasets/gsm8k/test.jsonl
-  gpqa:
-    description: 使用本地 GPQA Diamond 运行 0-shot CoT 精度测试
+    generation_kwargs:
+      chat_template_kwargs:
+        enable_thinking: true
+  gpqa_dsv4_flash_32k:
+    description: 使用 DeepSeek V4 Flash 运行最大输出 32K 的 GPQA Diamond 0-shot CoT 精度测试
     dataset: gpqa
     path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
-  gpqa_deepseek_v4_flash_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash GPQA Diamond 全量精度测试
+    generation_kwargs:
+      chat_template_kwargs:
+        enable_thinking: true
+  gpqa_dsv4_flash_60k:
+    description: 使用 DeepSeek V4 Flash 运行最大输出 60K 的 GPQA Diamond 全量精度测试
     dataset: gpqa
     path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
-    request_rate: 0
-    temperature: 1.0
-    repetition_penalty: 1.0
     max_output_tokens: 61440
-    concurrency: 32
-  gpqa_deepseek_v4_flash_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash GPQA Diamond 全量精度测试
-    dataset: gpqa
-    path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
-    request_rate: 0
-    temperature: 1.0
-    repetition_penalty: 1.0
-    max_output_tokens: 30720
-    concurrency: 128
+    generation_kwargs:
+      chat_template_kwargs:
+        enable_thinking: true
