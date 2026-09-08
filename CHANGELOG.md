@@ -8,6 +8,21 @@ Git 提交正文使用 `Change-Record: <记录 ID>` 关联本文件条目。可�
 git log --all --fixed-strings --grep="Change-Record: 2026-09-08-01" --format=fuller --stat
 ```
 
+## 2026-09-08｜2026-09-08-03
+
+提交主题：`fix(pd): tune memory budgets and update four-case decode host`
+
+修改内容：
+
+- 将 `configs/server.yaml` 中两组 PD 配置的 `--gpu-memory-utilization` 从 `0.93` 降至 `0.90`，减少显存预算。
+- 将 Prefill 节点的 `--max-num-batched-tokens` 从 `20480` 降至 `16384`，以缓解启动 profile 阶段的激活显存压力；实际 OOM 改善效果待重新运行验证。
+- 同步记录本次工作区已有调整：Decode 节点的 `--max-num-batched-tokens` 从 `120` 增至 `320`。
+- 将 `deepseek_v4_pro_pd_performance_4case` 的 Decode IP 从 `80.5.9.129` 改为 `80.5.9.143`，同步更新 `endpoint_host`、`VLLM_HOST_IP`、`HCCL_IF_IP` 及两端的代理排除列表，并移除旧 IP 网卡注释；Prefill 保持 `80.5.9.139`。
+
+验证：
+
+- 核对本次配置差异；未运行模型启动或性能测试，不将参数调整视为 OOM 已解决。
+
 ## 2026-09-08｜2026-09-08-02
 
 提交主题：`fix(pd): move four-case suite to 108 and 109`

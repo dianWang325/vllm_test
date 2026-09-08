@@ -90,7 +90,7 @@ profiles:
     arguments:
       --host: 127.0.0.1
       --port: 18080
-      --gpu-memory-utilization: 0.93
+      --gpu-memory-utilization: 0.90
     pd:
       proxy:
         script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
@@ -98,7 +98,7 @@ profiles:
         arguments:
           --host: 127.0.0.1
           --port: 18081
-          --max-num-batched-tokens: 20480
+          --max-num-batched-tokens: 16384
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_producer
@@ -108,7 +108,7 @@ profiles:
         arguments:
           --host: 127.0.0.1
           --port: 18082
-          --max-num-batched-tokens: 120
+          --max-num-batched-tokens: 320
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_consumer
@@ -119,7 +119,7 @@ profiles:
     arguments:
       --host: 127.0.0.1
       --port: 18080
-      --gpu-memory-utilization: 0.93
+      --gpu-memory-utilization: 0.90
     pd:
       proxy:
         script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
@@ -127,7 +127,7 @@ profiles:
         arguments:
           --host: 0.0.0.0
           --port: 18081
-          --max-num-batched-tokens: 20480
+          --max-num-batched-tokens: 16384
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_producer
@@ -138,7 +138,7 @@ profiles:
         arguments:
           --host: 0.0.0.0
           --port: 18082
-          --max-num-batched-tokens: 120
+          --max-num-batched-tokens: 320
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_consumer

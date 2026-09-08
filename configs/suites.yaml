@@ -213,10 +213,10 @@ suites:
                   HCCL_SOCKET_IFNAME: enp194s0f0
                   HCCL_EXEC_TIMEOUT: "1800"
                   HCCL_OP_EXPANSION_MODE: AI_CPU
-                  NO_PROXY: 127.0.0.1,localhost,80.5.9.139,80.5.9.129
-                  no_proxy: 127.0.0.1,localhost,80.5.9.139,80.5.9.129
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.139,80.5.9.143
+                  no_proxy: 127.0.0.1,localhost,80.5.9.139,80.5.9.143
               decode:
-                endpoint_host: 80.5.9.129
+                endpoint_host: 80.5.9.143
                 model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
                 arguments:
                   --tensor-parallel-size: 16
@@ -225,16 +225,15 @@ suites:
                     kv_connector_extra_config: *deepseek_v4_pro_4case_topology
                 environment:
                   ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-                  VLLM_HOST_IP: 80.5.9.129
-                  HCCL_IF_IP: 80.5.9.129
-                  # 80.5.9.129 的通信网卡。
+                  VLLM_HOST_IP: 80.5.9.143
+                  HCCL_IF_IP: 80.5.9.143
                   GLOO_SOCKET_IFNAME: enp194s0f0
                   TP_SOCKET_IFNAME: enp194s0f0
                   HCCL_SOCKET_IFNAME: enp194s0f0
                   HCCL_EXEC_TIMEOUT: "1800"
                   HCCL_OP_EXPANSION_MODE: AI_CPU
-                  NO_PROXY: 127.0.0.1,localhost,80.5.9.139,80.5.9.129
-                  no_proxy: 127.0.0.1,localhost,80.5.9.139,80.5.9.129
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.139,80.5.9.143
+                  no_proxy: 127.0.0.1,localhost,80.5.9.139,80.5.9.143
       deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_4case_override
       deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_4case_override
       deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_4case_override
