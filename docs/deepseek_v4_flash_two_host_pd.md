@@ -304,7 +304,7 @@ docker exec -d \
 | fixed / `fixed_long` | 24 | 固定 65536 | 2560 |
 | variable / `variable_long` | 24 | 高斯分布，40960–81920，均值 65536，标准差 10240 | 2560 |
 
-每个 case 均启用 `model_max_len` 预热：输入长度 1048575、输出长度 1、5 个请求、并发 1，预热统计不计入正式报告。正式请求前先检查预热与正式数据的前缀不重复，再等待 Prefill running/waiting 连续三次为零，然后执行预热和正式压测。正式并发 Pro 为 8、Flash 为 4，当前默认重复次数为 1；实际 token 数以 AISBench 输出为准。
+每个 case 均启用 `model_max_len` 预热：Pro 最大上下文为 87295（约 85K），预热输入为 87294；Flash 最大上下文为 1048576，预热输入为 1048575。两者均输出 1 token、5 个请求、并发 1，预热统计不计入正式报告。正式请求前先检查预热与正式数据的前缀不重复，再等待 Prefill running/waiting 连续三次为零，然后执行预热和正式压测。正式并发 Pro 为 8、Flash 为 4，当前默认重复次数为 1；实际 token 数以 AISBench 输出为准。
 
 CPP 和 SRF 仅覆盖 Prefill 调度器：CPP `smooth_factor=1.0`、`need_timing=true`；SRF `threshold=65536`、`long_max_wait_ms=2000`。同一策略的 fixed / variable 相邻执行并复用相同服务配置，切换策略时重启框架管理的服务；八个 case 对应四个服务段，external Decode 保持运行。
 
@@ -430,7 +430,7 @@ docker exec -w /home/w00985415/vllm_test wd_test0825 \
 
 ### Prefill 启动时报 KV cache 内存不足
 
-日志若明确提示模型最大长度需要的 KV cache 大于可用值，先确认是否存在其他显存占用，再检查 `--gpu-memory-utilization` 和 `--max-model-len`。本配置 Prefill 与 Decode 均使用 `0.93`，模型最大长度保持 `1048576`。不要仅凭 Decode 能启动就推断 Prefill 一定能启动，两端并行布局和 KV cache 需求不同。
+日志若明确提示模型最大长度需要的 KV cache 大于可用值，先确认是否存在其他显存占用，再检查 `--gpu-memory-utilization` 和 `--max-model-len`。本配置 Prefill 与 Decode 均使用 `0.93`，Pro 模型最大长度为 `87295`，Flash 为 `1048576`。不要仅凭 Decode 能启动就推断 Prefill 一定能启动，两端并行布局和 KV cache 需求不同。
 
 ### API 健康但 KV 传输失败
 

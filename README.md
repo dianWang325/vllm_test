@@ -4,6 +4,8 @@
 
 框架遇到 case 或服务生命周期异常后停止，不自动重跑 case。请求级 `retries` 会传给 AISBench，当前性能和精度配置均为 `3`；这与框架级重跑是两回事。
 
+每次提交的修改内容及验证记录见 [提交修改记录](CHANGELOG.md)，提交时应同步新增对应条目。
+
 ## 目录
 
 ```text
@@ -47,7 +49,7 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 | 配置文件 | 职责 |
 | --- | --- |
 | `cases.yaml` | 定义单个测试；顶部注释表逐项列出当前 25 个 case（19 个性能、6 个精度）。 |
-| `suites.yaml` | 按顺序组合 case，并提供 `case_overrides`；顶部注释表列出当前 13 个 suite。 |
+| `suites.yaml` | 按顺序组合 case，并提供 `case_overrides`；顶部注释表列出当前 14 个 suite。 |
 | `server.yaml` | 定义非 PD/PD 公共服务结构、参数、环境变量和生命周期。 |
 | `model.yaml` | 定义模型标识、默认路径及模型专用参数。 |
 | `data.yaml` | 定义性能正式数据和独立手动预热数据。 |
@@ -74,6 +76,7 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 | 精度 | `baseline_gsm8k`、`baseline_gpqa` 可独立运行；`gpqa_deepseek_v4_flash_accuracy` 完整执行四种策略的 GPQA case。 |
 | 单机 PD | `baseline_pd_0830` suite 运行一个 Flash PD case，Prefill/Decode 各 8 卡；使用 `prefill_variable` 并覆盖输出为 256 token，4 并发。 |
 | 双机 PD | Pro 默认 suite、三个 rotation suite，以及 Flash suite；各执行四种策略 × 定长/变长的 8 个 case，生成 comparison。 |
+| 双机 PD 简易版 | `deepseek_v4_pro_pd_performance_4case` 在 133/138 上运行 baseline、CPP+SRF 的定长/变长共 4 个 case，每个 case 正式测试 1 轮，生成 comparison。 |
 
 非 PD Prefill 共 6 个 case：baseline/CPP 各有定长与变长，SRF/CPP+SRF 各有变长。统一使用 Flash 模型和 `concurrency_4`；CPP、CPP+SRF case 配置手动预热，baseline、SRF 不预热。性能 `bench` 当前默认 `repeats: 1`、`temperature: 0`、`ignore_eos: true`。
 
@@ -95,10 +98,39 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 | `baseline_pd_0830` | `pd` | 同机 0–7 卡，TP=4/PP=2 | 同机 8–15 卡，TP=8/PP=1 | 4 |
 | `deepseek_v4_flash_pd_performance` | `pd_two_host` | 80.5.9.127，0–7 卡，TP=4/PP=2 | 80.5.9.128，8–15 卡，TP=8/PP=1 | 4 |
 | `deepseek_v4_pro_pd_performance` 及 rotations | `pd_two_host` | 80.5.9.127，0–15 卡，TP=8/PP=2 | 80.5.17.122，0–15 卡，TP=16/PP=1 | 8 |
+| `deepseek_v4_pro_pd_performance_4case` | `pd_two_host` | 80.5.9.133，0–15 卡，TP=8/PP=2 | 80.5.9.138，0–15 卡，TP=16/PP=1 | 8 |
 
 Flash 和 Pro 两个性能 suite 都是双机 PD；Flash 复用 Pro 命名的 case，通过 suite 覆盖为 Flash 模型、4 并发和 Flash 部署参数。单机 PD 的三个角色由框架管理；双机模式仅管理本机 Prefill/Proxy，Decode 为 external。当前 PD 显存利用率为 0.93，Decode 的 `--max-num-batched-tokens` 为 120，Decode 不显式设置 DP。
 
 DeepSeek V4 Flash 的 127 Prefill + 128 Decode、Pro 的 127 Prefill + 122 Decode 双机部署，以及容器 `hccn.conf`、IP/网卡迁移、启动顺序、健康检查、日志监控和停止方法见 [双机 PD 性能测试教程](docs/deepseek_v4_flash_two_host_pd.md)。
+
+### Pro 双机 PD 简易版
+
+`deepseek_v4_pro_pd_performance_4case` 在 `configs/suites.yaml` 中定义，描述为“DeepSeek V4 Pro W4A8 0813 的双机 PD baseline与 CPP+SRF 性能对比【简易版】”。按 baseline 定长 → baseline 变长 → CPP+SRF 定长 → CPP+SRF 变长执行，显式设置 `overrides.bench.repeats: 1`；每个 case 仍保留独立预热，预热不计入正式轮次。相邻的定长/变长 case 共用服务，整个 suite 共两个服务段。
+
+模型路径、并行布局、并发和预热方式沿用原 Pro suite；Pro 最大上下文为 `87295` token（约 85K），预热输入自动派生为 `87294` token。通信地址及大小写 `NO_PROXY` 已改为 133/138；两台主机承载对应 IP 的实际网卡均为 `enp194s0f0`，新 suite 两端的 `GLOO_SOCKET_IFNAME`、`TP_SOCKET_IFNAME`、`HCCL_SOCKET_IFNAME` 已据此配置。
+
+两台主机同步配置后，在各自的测试容器项目目录执行。先在 **80.5.9.138** 启动 Decode（前台运行，保持该终端）：
+
+```bash
+python -m scripts.pd_role run --role decode \
+  --suite deepseek_v4_pro_pd_performance_4case \
+  --pid-file /tmp/vtest-deepseek-v4-pro-4case-decode.pid
+```
+
+Decode 健康后，在 **80.5.9.133** 执行 suite：
+
+```bash
+curl --fail --max-time 3 http://80.5.9.138:18082/health
+./vtest run suite deepseek_v4_pro_pd_performance_4case
+```
+
+suite 结束后，在 **80.5.9.138** 的另一个终端停止外部 Decode：
+
+```bash
+python -m scripts.pd_role stop --role decode \
+  --pid-file /tmp/vtest-deepseek-v4-pro-4case-decode.pid
+```
 
 ## 模型、预热与扩展配置
 
@@ -106,7 +138,7 @@ DeepSeek V4 Flash 的 127 Prefill + 128 Decode、Pro 的 127 Prefill + 122 Decod
 
 Flash 的 PD 与非 PD 测试统一引用 `deepseek_v4_flash_a8w8_mtp`，共用模型路径、1M 上下文和多线程加载配置。Server、data、bench、accuracy、report 的 profile 名称保持各自职责，不需要随模型键改名。使用 `model_max_len` 预热的 Flash case 会按最终 `--max-model-len` 自动派生输入长度；当前默认是 1048575 token 输入加 1 token 输出。
 
-Pro 使用 `deepseek_v4_pro_w4a8_0813`；当前两端角色路径均为 `/mnt/share/DeepSeekV4-pro-0813-w4a8`。Flash 和 Pro 的预热均为 5 个请求、并发 1；双机 PD 的全部 8 个 case（包括 baseline、SRF）均预热。PD 预热前检查 Prefill `/metrics`，要求 running/waiting 连续 3 次为零；该检查不用于非 PD 服务。
+Pro 使用 `deepseek_v4_pro_w4a8_0813`；当前两端角色路径均为 `/mnt/share/DeepSeekV4-pro-0813-w4a8`。最大上下文为 `87295` token（约 85K），预热为 `87294` token 输入加 `1` token 输出，对所有引用该模型的 Pro case 生效。Flash 和 Pro 的预热均为 5 个请求、并发 1；双机 PD 的全部 case（包括完整矩阵的 8 个 case 和简易版的 4 个 case）均预热。PD 预热前检查 Prefill `/metrics`，要求 running/waiting 连续 3 次为零；该检查不用于非 PD 服务。
 
 ```yaml
 models:

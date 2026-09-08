@@ -236,7 +236,7 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             effective = case["effective"]
             server = effective["server"]
             assert server["model_tag"] == "/mnt/share/DeepSeekV4-pro-0813-w4a8"
-            assert server["arguments"]["--max-model-len"] == 1048576
+            assert server["arguments"]["--max-model-len"] == 87295
             assert server["pd"]["prefill"]["endpoint_host"] == "80.5.9.127"
             assert server["pd"]["decode"]["endpoint_host"] == "80.5.17.122"
             assert server["pd"]["decode"]["external"] is True
@@ -286,7 +286,7 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             assert "80.5.17.122" in prefill_environment["NO_PROXY"].split(",")
             assert effective["bench"]["concurrency"] == 8
             assert effective["warmup_bench"]["concurrency"] == 1
-            assert effective["warmup"]["input_length"] == 1048575
+            assert effective["warmup"]["input_length"] == 87294
             assert effective["warmup"]["output_length"] == 1
 
 
