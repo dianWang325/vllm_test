@@ -64,6 +64,7 @@ def _execute_case(
     case_state = {"status": "running", "started_at": _now(), "commands": []}
     state["cases"][name] = case_state
     _write_json(run_dir / "run.json", state)
+    server_process.check_alive()
     if case["type"] == "performance":
         server = effective["server"]
         formal = generate_formal(
@@ -99,7 +100,8 @@ def _execute_case(
                 case_state["prefill_quiescence"] = quiescence
                 _write_json(run_dir / "run.json", state)
             command = run_warmup(
-                server, effective["warmup_bench"], warmup_dataset, warmup_log
+                server, effective["warmup_bench"], warmup_dataset, warmup_log,
+                server_process.check_alive,
             )
             case_state["commands"].append(command)
         formal_dataset = {
@@ -107,7 +109,8 @@ def _execute_case(
             "output_length": int(effective["data"]["output"]["length"]),
         }
         commands = run_performance(
-            name, server, effective["bench"], formal_dataset, run_dir
+            name, server, effective["bench"], formal_dataset, run_dir,
+            server_process.check_alive,
         )
         case_state["commands"].extend(commands)
     else:
@@ -131,13 +134,15 @@ def _execute_case(
                 case_state["prefill_quiescence"] = quiescence
                 _write_json(run_dir / "run.json", state)
             command = run_warmup(
-                server, effective["warmup_bench"], warmup_dataset, warmup_log
+                server, effective["warmup_bench"], warmup_dataset, warmup_log,
+                server_process.check_alive,
             )
             case_state["commands"].append(command)
         command = run_accuracy(
-            name, server, effective["accuracy"], run_dir
+            name, server, effective["accuracy"], run_dir, server_process.check_alive,
         )
         case_state["commands"].append(command)
+    server_process.check_alive()
     case_state["report"] = build_report(
         case["type"], name, effective["report"], run_dir
     )
@@ -236,16 +241,18 @@ def execute(kind: str, name: str) -> list[Path]:
                 segment[0]["effective"]["server"], primary_dir / log_name
             )
             segment_error: BaseException | None = None
+            record = {
+                "cases": [case["name"] for case in segment],
+                "log": log_name,
+                "nodes": server.node_records,
+            }
+            for run_type, state in states.items():
+                state["servers"].append(record)
+                _write_json(run_dirs[run_type] / "run.json", state)
             try:
-                command = server.start()
-                record = {
-                    "cases": [case["name"] for case in segment],
-                    "command": command,
-                    "log": log_name,
-                }
+                record["command"] = server.start()
                 for run_type, state in states.items():
                     state["status"] = "running"
-                    state["servers"].append(record)
                     _write_json(run_dirs[run_type] / "run.json", state)
                 for case in segment:
                     try:
@@ -274,10 +281,16 @@ def execute(kind: str, name: str) -> list[Path]:
             except BaseException as stop_exc:
                 if segment_error is None:
                     segment_error = stop_exc
+                record["stop_error"] = f"{type(stop_exc).__name__}: {stop_exc}"
+            for run_type, state in states.items():
+                _write_json(run_dirs[run_type] / "run.json", state)
+            logs = [log_name, *(node["log"] for node in server.node_records.values())]
             for run_dir in run_dirs.values():
-                destination = run_dir / log_name
-                if destination != server.log_path and server.log_path.exists():
-                    shutil.copy2(server.log_path, destination)
+                for filename in logs:
+                    source = primary_dir / filename
+                    destination = run_dir / filename
+                    if destination != source and source.exists():
+                        shutil.copy2(source, destination)
             if segment_error is not None:
                 raise segment_error
 

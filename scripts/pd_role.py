@@ -3,59 +3,57 @@
 from __future__ import annotations
 
 import argparse
-import subprocess
+import shlex
 from pathlib import Path
 
-from scripts.config import deep_merge, resolve_case, resolve_suite
+from scripts.config import pd_role_nodes, resolve_case, resolve_suite
 from scripts.remote_process import run as run_process
 from scripts.remote_process import stop as stop_process
-from scripts.server import build_command, build_environment
+from scripts.server import build_environment_command
 
 
 DEFAULT_SUITE = "deepseek_v4_flash_pd_performance"
 
 
-def _server_config(case_name: str | None, suite_name: str) -> dict:
-    if case_name is not None:
+def _server_config(case_name: str | None, suite_name: str | None) -> dict:
+    if case_name is not None and suite_name is None:
         return resolve_case(case_name)["effective"]["server"]
-    return resolve_suite(suite_name)["cases"][0]["effective"]["server"]
+    cases = resolve_suite(suite_name or DEFAULT_SUITE)["cases"]
+    if case_name is None:
+        return cases[0]["effective"]["server"]
+    for case in cases:
+        if case["name"] == case_name:
+            return case["effective"]["server"]
+    raise RuntimeError(f"case {case_name} is not in suite {suite_name}")
 
 
-def _role_config(server: dict, role: str) -> dict:
-    pd = server.get("pd")
-    if not isinstance(pd, dict) or not isinstance(pd.get(role), dict):
-        raise RuntimeError(f"server has no PD role: {role}")
-    base = {key: value for key, value in server.items() if key != "pd"}
-    return deep_merge(base, pd[role])
-
-
-def _environment_command(config: dict) -> list[str]:
-    build_environment(config)
-    command = ["env"]
-    for name in config.get("unset_environment", []):
-        command.extend(["-u", name])
-    for name, value in config.get("environment", {}).items():
-        command.append(f"{name}={value}")
-    command.extend(build_command(config))
-    return command
+def _role_config(server: dict, role: str, node: str | None = None) -> dict:
+    nodes = pd_role_nodes(server, role)
+    if node is None:
+        if len(nodes) != 1:
+            raise RuntimeError(f"pd.{role} has multiple nodes; specify --node")
+        return next(iter(nodes.values()))
+    return nodes[node]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("action", choices=("run", "stop", "command"))
     parser.add_argument("--role", choices=("prefill", "decode"), required=True)
-    parser.add_argument("--suite", default=DEFAULT_SUITE)
+    parser.add_argument("--suite")
     parser.add_argument("--case")
+    parser.add_argument("--node")
     parser.add_argument("--pid-file", type=Path)
     parser.add_argument("--timeout-seconds", type=float, default=120)
     args = parser.parse_args()
-    pid_file = args.pid_file or Path(f"/tmp/vtest-{args.role}.pid")
+    node_suffix = f"-{args.node}" if args.node else ""
+    pid_file = args.pid_file or Path(f"/tmp/vtest-{args.role}{node_suffix}.pid")
     if args.action == "stop":
         return stop_process(pid_file, args.timeout_seconds)
-    config = _role_config(_server_config(args.case, args.suite), args.role)
-    command = _environment_command(config)
+    config = _role_config(_server_config(args.case, args.suite), args.role, args.node)
+    command = build_environment_command(config)
     if args.action == "command":
-        print(subprocess.list2cmdline(command))
+        print(shlex.join(command))
         return 0
     return run_process(pid_file, command)
 

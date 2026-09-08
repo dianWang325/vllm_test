@@ -1,5 +1,5 @@
-# Suite 概览：共 14 项；Case 数为本 suite 实际启用的数量。
-# Pro/Flash PD 均为双机；rotation 复用相同 case 和部署配置，仅轮换策略顺序。
+# Suite 概览：共 15 项；Case 数为本 suite 实际启用的数量。
+# multi_pd 为 P/D 各双机；其他 Pro/Flash PD 为 P/D 各单机。
 # | Suite                                     | Case 数 | 对比报告 | 概述                                                |
 # | ----------------------------------------- | ------- | -------- | --------------------------------------------------- |
 # | baseline_smoke                            | 3       | 无       | Flash 基线冒烟 + GSM8K + GPQA；性能与精度混合       |
@@ -12,6 +12,7 @@
 # | gpqa_deepseek_v4_flash_accuracy           | 4       | 无       | Flash GPQA：baseline / CPP / SRF / CPP+SRF 全量精度 |
 # | deepseek_v4_pro_pd_performance            | 8       | 有       | Pro 双机 PD：baseline -> CPP -> SRF -> CPP+SRF      |
 # | deepseek_v4_pro_pd_performance_4case      | 4       | 有       | Pro 108/109 双机 PD：baseline / CPP+SRF，各跑一轮 |
+# | deepseek_v4_pro_multi_pd_performance_4case | 4      | 有       | Pro 四机 PD：P TP16/PP2，D DP2/TP16             |
 # | deepseek_v4_pro_pd_performance_rotation_1 | 8       | 有       | 同一 Pro PD 矩阵：CPP -> SRF -> CPP+SRF -> baseline |
 # | deepseek_v4_pro_pd_performance_rotation_2 | 8       | 有       | 同一 Pro PD 矩阵：SRF -> CPP+SRF -> baseline -> CPP |
 # | deepseek_v4_pro_pd_performance_rotation_3 | 8       | 有       | 同一 Pro PD 矩阵：CPP+SRF -> baseline -> CPP -> SRF |
@@ -170,6 +171,116 @@ suites:
       deepseek_v4_pro_pd_srf_variable: *deepseek_v4_pro_two_host_case_override
       deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_two_host_case_override
       deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_two_host_case_override
+
+  # 将 P0/P1/D0/D1_IP、*_SSH、*_IFNAME 替换为实际部署值。
+  # remote 在控制端经 SSH 进入已有容器；不创建容器、不同步代码或模型。
+  deepseek_v4_pro_multi_pd_performance_4case:
+    description: Pro 四机 PD baseline 与 CPP+SRF；P DP1/TP16/PP2，D DP2/TP16/PP1
+    cases:
+      - deepseek_v4_pro_pd_baseline_fixed
+      - deepseek_v4_pro_pd_baseline_variable
+      - deepseek_v4_pro_pd_cpp_srf_fixed
+      - deepseek_v4_pro_pd_cpp_srf_variable
+    comparison: true
+    case_overrides:
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_multi_pd_override
+        overrides:
+          server:
+            environment:
+              ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+              HCCL_EXEC_TIMEOUT: "1800"
+              HCCL_OP_EXPANSION_MODE: AI_CPU
+              NO_PROXY: &multi_pd_no_proxy 127.0.0.1,localhost,P0_IP,P1_IP,D0_IP,D1_IP
+              no_proxy: *multi_pd_no_proxy
+            pd:
+              proxy:
+                environment:
+                  NO_PROXY: *multi_pd_no_proxy
+                  no_proxy: *multi_pd_no_proxy
+              prefill:
+                arguments:
+                  --distributed-executor-backend: mp
+                  --data-parallel-size: 1
+                  --tensor-parallel-size: 16
+                  --pipeline-parallel-size: 2
+                  --nnodes: 2
+                  --master-addr: &multi_p0_ip P0_IP
+                  --master-port: 29500
+                  --kv-transfer-config:
+                    kv_connector_extra_config: &multi_pd_topology
+                      prefill: {dp_size: 1, tp_size: 16, pp_size: 2}
+                      decode: {dp_size: 2, tp_size: 16, pp_size: 1}
+                nodes:
+                  p0:
+                    endpoint_host: *multi_p0_ip
+                    remote:
+                      <<: &multi_pd_remote
+                        container: wd_test0825
+                        workdir: /home/w00985415/vllm_test
+                      host: P0_SSH
+                    arguments:
+                      --node-rank: 0
+                    environment:
+                      VLLM_HOST_IP: *multi_p0_ip
+                      HCCL_IF_IP: *multi_p0_ip
+                      GLOO_SOCKET_IFNAME: &multi_p0_ifname P0_IFNAME
+                      TP_SOCKET_IFNAME: *multi_p0_ifname
+                      HCCL_SOCKET_IFNAME: *multi_p0_ifname
+                  p1:
+                    endpoint_host: &multi_p1_ip P1_IP
+                    remote:
+                      <<: *multi_pd_remote
+                      host: P1_SSH
+                    arguments:
+                      --node-rank: 1
+                      --headless: true
+                    environment:
+                      VLLM_HOST_IP: *multi_p1_ip
+                      HCCL_IF_IP: *multi_p1_ip
+                      GLOO_SOCKET_IFNAME: &multi_p1_ifname P1_IFNAME
+                      TP_SOCKET_IFNAME: *multi_p1_ifname
+                      HCCL_SOCKET_IFNAME: *multi_p1_ifname
+              decode:
+                external: false
+                arguments:
+                  --distributed-executor-backend: mp
+                  --data-parallel-size: 2
+                  --tensor-parallel-size: 16
+                  --pipeline-parallel-size: 1
+                  --data-parallel-address: &multi_d0_ip D0_IP
+                  --data-parallel-rpc-port: 29510
+                  --kv-transfer-config:
+                    kv_connector_extra_config: *multi_pd_topology
+                nodes:
+                  d0:
+                    endpoint_host: *multi_d0_ip
+                    remote:
+                      <<: *multi_pd_remote
+                      host: D0_SSH
+                    arguments:
+                      --data-parallel-rank: 0
+                    environment:
+                      VLLM_HOST_IP: *multi_d0_ip
+                      HCCL_IF_IP: *multi_d0_ip
+                      GLOO_SOCKET_IFNAME: &multi_d0_ifname D0_IFNAME
+                      TP_SOCKET_IFNAME: *multi_d0_ifname
+                      HCCL_SOCKET_IFNAME: *multi_d0_ifname
+                  d1:
+                    endpoint_host: &multi_d1_ip D1_IP
+                    remote:
+                      <<: *multi_pd_remote
+                      host: D1_SSH
+                    arguments:
+                      --data-parallel-rank: 1
+                    environment:
+                      VLLM_HOST_IP: *multi_d1_ip
+                      HCCL_IF_IP: *multi_d1_ip
+                      GLOO_SOCKET_IFNAME: &multi_d1_ifname D1_IFNAME
+                      TP_SOCKET_IFNAME: *multi_d1_ifname
+                      HCCL_SOCKET_IFNAME: *multi_d1_ifname
+      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_multi_pd_override
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_multi_pd_override
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_multi_pd_override
 
   deepseek_v4_pro_pd_performance_4case:
     description: DeepSeek V4 Pro W4A8 0813 的双机 PD baseline与 CPP+SRF 性能对比【简易版】

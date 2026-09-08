@@ -1,4 +1,4 @@
-"""Build, start, health-check, and stop one vLLM server process group."""
+"""Manage a vLLM service or a PD deployment with local/SSH container nodes."""
 
 from __future__ import annotations
 
@@ -6,6 +6,7 @@ import json
 import math
 import os
 import re
+import shlex
 import signal
 import socket
 import subprocess
@@ -16,8 +17,9 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any, TextIO
+from uuid import uuid4
 
-from .config import deep_merge, relative_to_root
+from .config import deep_merge, pd_role_nodes, relative_to_root
 
 
 class ServerError(RuntimeError):
@@ -105,8 +107,8 @@ _PROXY_MANAGED_ARGUMENTS = {
 
 def build_proxy_command(
     config: dict[str, Any],
-    prefill_config: dict[str, Any],
-    decode_config: dict[str, Any],
+    prefill_nodes: dict[str, dict[str, Any]],
+    decode_nodes: dict[str, dict[str, Any]],
 ) -> list[str]:
     proxy = config["pd"]["proxy"]
     script = proxy.get("script")
@@ -127,8 +129,6 @@ def build_proxy_command(
         )
 
     public_arguments = config["arguments"]
-    prefill_arguments = prefill_config["arguments"]
-    decode_arguments = decode_config["arguments"]
     command = [
         sys.executable,
         str(script_path),
@@ -136,15 +136,11 @@ def build_proxy_command(
         str(public_arguments["--host"]),
         "--port",
         str(public_arguments["--port"]),
-        "--prefiller-hosts",
-        _endpoint_host(prefill_config),
-        "--prefiller-ports",
-        str(prefill_arguments["--port"]),
-        "--decoder-hosts",
-        _endpoint_host(decode_config),
-        "--decoder-ports",
-        str(decode_arguments["--port"]),
     ]
+    for role, nodes in (("prefiller", prefill_nodes), ("decoder", decode_nodes)):
+        endpoints = list(_api_nodes(nodes).values())
+        command.extend([f"--{role}-hosts", *(_endpoint_host(node) for node in endpoints)])
+        command.extend([f"--{role}-ports", *(str(node["arguments"]["--port"]) for node in endpoints)])
     for name, value in arguments.items():
         if not isinstance(name, str) or not name:
             raise ServerError("proxy argument names must be non-empty strings")
@@ -197,6 +193,34 @@ def _external(config: dict[str, Any]) -> bool:
     return value
 
 
+def _api_nodes(nodes: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    return {
+        name: config for name, config in nodes.items()
+        if config["arguments"].get("--headless", False) is False
+    }
+
+
+def build_environment_command(config: dict[str, Any]) -> list[str]:
+    build_environment(config)
+    command = ["env"]
+    for name in config.get("unset_environment", []):
+        command.extend(["-u", name])
+    for name, value in config.get("environment", {}).items():
+        if name not in config.get("unset_environment", []):
+            command.append(f"{name}={value}")
+    return [*command, *build_command(config)]
+
+
+def build_remote_command(config: dict[str, Any], pid_file: str) -> list[str]:
+    remote = config["remote"]
+    command = [
+        "docker", "exec", "-i", "-w", remote["workdir"], remote["container"],
+        "python", "-m", "scripts.remote_process", "run", "--pid-file", pid_file,
+        "--stop-on-stdin-close", "--", *build_environment_command(config),
+    ]
+    return ["ssh", "-T", "-o", "BatchMode=yes", remote["host"], shlex.join(command)]
+
+
 def _healthy(config: dict[str, Any]) -> bool:
     arguments = config["arguments"]
     lifecycle = config["lifecycle"]
@@ -228,10 +252,8 @@ def _proxy_healthy(config: dict[str, Any]) -> bool:
     return (
         isinstance(body, dict)
         and body.get("status") == "ok"
-        and isinstance(body.get("prefill_instances"), int)
-        and body["prefill_instances"] >= 1
-        and isinstance(body.get("decode_instances"), int)
-        and body["decode_instances"] >= 1
+        and body.get("prefill_instances") == config["expected_instances"]["prefill"]
+        and body.get("decode_instances") == config["expected_instances"]["decode"]
     )
 
 
@@ -242,6 +264,9 @@ class VllmServer:
         self.process: subprocess.Popen[str] | None = None
         self.processes: dict[str, subprocess.Popen[str]] = {}
         self._log: TextIO | None = None
+        self._node_logs: dict[str, TextIO] = {}
+        self._session_id = uuid4().hex
+        self.node_records: dict[str, dict[str, Any]] = {}
 
     def _pd_enabled(self) -> bool:
         pd = self.config.get("pd")
@@ -262,9 +287,11 @@ class VllmServer:
             if not isinstance(pd.get(role), dict):
                 raise ServerError(f"pd.{role} must be a mapping")
 
-        base = {key: value for key, value in self.config.items() if key != "pd"}
-        prefill_config = deep_merge(base, pd["prefill"])
-        decode_config = deep_merge(base, pd["decode"])
+        prefill_nodes = pd_role_nodes(self.config, "prefill")
+        decode_nodes = pd_role_nodes(self.config, "decode")
+        for role, nodes in (("prefill", prefill_nodes), ("decode", decode_nodes)):
+            if not _api_nodes(nodes):
+                raise ServerError(f"pd.{role} requires at least one API node")
         proxy_lifecycle = deep_merge(
             self.config["lifecycle"], {"health_path": "/healthcheck"}
         )
@@ -280,36 +307,30 @@ class VllmServer:
             "lifecycle": proxy_lifecycle,
             "environment": proxy.get("environment", {}),
             "unset_environment": proxy.get("unset_environment", []),
+            "expected_instances": {
+                "prefill": len(_api_nodes(prefill_nodes)),
+                "decode": len(_api_nodes(decode_nodes)),
+            },
         }
-        return prefill_config, decode_config, proxy_config
+        return prefill_nodes, decode_nodes, proxy_config
 
     def _check_pd_ports(
         self,
-        prefill_config: dict[str, Any],
-        decode_config: dict[str, Any],
+        prefill_nodes: dict[str, dict[str, Any]],
+        decode_nodes: dict[str, dict[str, Any]],
         proxy_config: dict[str, Any],
     ) -> None:
+        configs = {
+            **{f"prefill.{name}": node for name, node in _api_nodes(prefill_nodes).items()},
+            **{f"decode.{name}": node for name, node in _api_nodes(decode_nodes).items()},
+            "proxy": proxy_config,
+        }
         endpoints = {
-            "prefill": (
-                _endpoint_host(prefill_config),
-                int(prefill_config["arguments"]["--port"]),
-            ),
-            "decode": (
-                _endpoint_host(decode_config),
-                int(decode_config["arguments"]["--port"]),
-            ),
-            "proxy": (
-                str(proxy_config["arguments"]["--host"]),
-                int(proxy_config["arguments"]["--port"]),
-            ),
+            name: (_endpoint_host(config), int(config["arguments"]["--port"]))
+            for name, config in configs.items()
         }
         if len(set(endpoints.values())) != len(endpoints):
             raise ServerError("prefill, decode, and proxy endpoints must be distinct")
-        configs = {
-            "prefill": prefill_config,
-            "decode": decode_config,
-            "proxy": proxy_config,
-        }
         for role, (host, port) in endpoints.items():
             if _external(configs[role]):
                 continue
@@ -329,23 +350,34 @@ class VllmServer:
             f"$ {subprocess.list2cmdline(command)}\n"
         )
         self._log.flush()
+        log_path = self.log_path.with_name(f"{self.log_path.stem}-{role}.log")
+        node_log = log_path.open("w", encoding="utf-8")
+        self._node_logs[role] = node_log
+        self.node_records[role] = {"log": log_path.name}
         self.processes[role] = subprocess.Popen(
             command,
-            stdout=self._log,
+            stdout=node_log,
             stderr=subprocess.STDOUT,
+            stdin=subprocess.PIPE if "remote" in config else None,
             text=True,
-            env=build_environment(config),
+            env=None if "remote" in config else build_environment(config),
             start_new_session=True,
         )
 
+    def check_alive(self) -> None:
+        processes = self.processes if self._pd_enabled() else {"vLLM": self.process}
+        for name, process in processes.items():
+            if process is not None and process.poll() is not None:
+                raise ServerError(f"{name} exited: {process.returncode}")
+
     def _wait_pd_backends_healthy(
         self,
-        prefill_config: dict[str, Any],
-        decode_config: dict[str, Any],
+        prefill_nodes: dict[str, dict[str, Any]],
+        decode_nodes: dict[str, dict[str, Any]],
     ) -> None:
         configs = {
-            "prefill": prefill_config,
-            "decode": decode_config,
+            **{f"prefill.{name}": node for name, node in _api_nodes(prefill_nodes).items()},
+            **{f"decode.{name}": node for name, node in _api_nodes(decode_nodes).items()},
         }
         started_at = time.monotonic()
         deadlines = {
@@ -357,16 +389,11 @@ class VllmServer:
             float(config["lifecycle"]["health_interval_seconds"])
             for config in configs.values()
         )
-        healthy = {"prefill": False, "decode": False}
+        healthy = dict.fromkeys(configs, False)
         while not all(healthy.values()):
+            self.check_alive()
             now = time.monotonic()
             for role, config in configs.items():
-                process = self.processes.get(role)
-                if process is not None and process.poll() is not None:
-                    raise ServerError(
-                        f"{role} exited before becoming healthy: "
-                        f"{process.returncode}"
-                    )
                 if not healthy[role]:
                     if now >= deadlines[role]:
                         raise ServerError(f"{role} health check timed out")
@@ -381,13 +408,7 @@ class VllmServer:
         )
         interval = float(lifecycle["health_interval_seconds"])
         while time.monotonic() < deadline:
-            for role in ("prefill", "decode", "proxy"):
-                process = self.processes.get(role)
-                if process is not None and process.poll() is not None:
-                    raise ServerError(
-                        f"{role} exited before proxy became healthy: "
-                        f"{process.returncode}"
-                    )
+            self.check_alive()
             if _proxy_healthy(proxy_config):
                 return
             time.sleep(interval)
@@ -396,7 +417,13 @@ class VllmServer:
     def wait_for_prefill_idle(self) -> dict[str, Any] | None:
         if not self._pd_enabled():
             return None
-        prefill_config, _, _ = self._build_pd_configs()
+        prefill_nodes, _, _ = self._build_pd_configs()
+        return {
+            name: self._wait_node_idle(config)
+            for name, config in _api_nodes(prefill_nodes).items()
+        }
+
+    def _wait_node_idle(self, prefill_config: dict[str, Any]) -> dict[str, Any]:
         settings = prefill_config["lifecycle"].get("request_quiescence")
         if not isinstance(settings, dict):
             raise ServerError("lifecycle.request_quiescence must be a mapping")
@@ -435,12 +462,7 @@ class VllmServer:
         last_metrics: dict[str, float] | None = None
         last_network_error: str | None = None
         while time.monotonic() < deadline:
-            process = self.processes.get("prefill")
-            if process is not None and process.poll() is not None:
-                raise ServerError(
-                    f"prefill exited while waiting for request quiescence: "
-                    f"{process.returncode}"
-                )
+            self.check_alive()
             polls += 1
             try:
                 with urllib.request.urlopen(url, timeout=request_timeout) as response:
@@ -479,43 +501,36 @@ class VllmServer:
         )
 
     def _start_pd(self) -> dict[str, list[str]]:
-        prefill_config, decode_config, proxy_config = self._build_pd_configs()
-        self._check_pd_ports(prefill_config, decode_config, proxy_config)
-        commands = {
-            "prefill": build_command(prefill_config),
-            "decode": build_command(decode_config),
-            "proxy": build_proxy_command(
-                self.config, prefill_config, decode_config
-            ),
+        prefill_nodes, decode_nodes, proxy_config = self._build_pd_configs()
+        self._check_pd_ports(prefill_nodes, decode_nodes, proxy_config)
+        nodes = {
+            **{f"prefill.{name}": node for name, node in prefill_nodes.items()},
+            **{f"decode.{name}": node for name, node in decode_nodes.items()},
         }
-        build_environment(prefill_config)
-        build_environment(decode_config)
+        commands = {}
+        for index, (name, config) in enumerate(nodes.items()):
+            pid_file = f"/tmp/vtest-{self._session_id}-{index}.pid"
+            commands[name] = (
+                build_remote_command(config, pid_file)
+                if "remote" in config else build_command(config)
+            )
+            build_environment(config)
+        commands["proxy"] = build_proxy_command(self.config, prefill_nodes, decode_nodes)
         build_environment(proxy_config)
         self._log = self.log_path.open("w", encoding="utf-8")
-        try:
-            for role, config in (
-                ("prefill", prefill_config),
-                ("decode", decode_config),
-            ):
-                if _external(config):
-                    self._log.write(
-                        f"===== {role.upper()} (EXTERNAL) =====\n"
-                        f"endpoint: {_endpoint_host(config)}:"
-                        f"{config['arguments']['--port']}\n"
-                    )
-                    self._log.flush()
-                else:
-                    self._spawn(role, commands[role], config)
-            self._wait_pd_backends_healthy(prefill_config, decode_config)
-            self._spawn("proxy", commands["proxy"], proxy_config)
-            self._wait_proxy_healthy(proxy_config)
-            return commands
-        except BaseException:
-            try:
-                self.stop()
-            except BaseException:
-                pass
-            raise
+        for role, config in nodes.items():
+            if _external(config):
+                self._log.write(
+                    f"===== {role.upper()} (EXTERNAL) =====\n"
+                    f"$ {shlex.join(commands[role])}\n"
+                )
+                self._log.flush()
+            else:
+                self._spawn(role, commands[role], config)
+        self._wait_pd_backends_healthy(prefill_nodes, decode_nodes)
+        self._spawn("proxy", commands["proxy"], proxy_config)
+        self._wait_proxy_healthy(proxy_config)
+        return commands
 
     def start(self) -> list[str] | dict[str, list[str]]:
         if self._pd_enabled():
@@ -556,17 +571,22 @@ class VllmServer:
                 timeout = float(
                     self.config["lifecycle"]["shutdown_timeout_seconds"]
                 )
-                for role in ("proxy", "decode", "prefill"):
-                    process = self.processes.get(role)
-                    if process is None or process.poll() is not None:
+                # Signal every rank before waiting: distributed shutdown may
+                # require peers to leave their collectives together.
+                for role, process in reversed(list(self.processes.items())):
+                    if process.poll() is not None:
                         continue
                     try:
-                        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+                        if process.stdin is not None:
+                            process.stdin.close()
+                        else:
+                            os.killpg(os.getpgid(process.pid), signal.SIGTERM)
                     except ProcessLookupError:
                         continue
                     except OSError as exc:
                         errors.append(f"{role}: {exc}")
                         continue
+                for role, process in self.processes.items():
                     try:
                         process.wait(timeout=timeout)
                     except subprocess.TimeoutExpired:
@@ -574,7 +594,12 @@ class VllmServer:
                             f"{role} did not stop after SIGTERM; forced or broad "
                             "cleanup was not used"
                         )
+                    if role in self.node_records:
+                        self.node_records[role]["returncode"] = process.returncode
             finally:
+                for node_log in self._node_logs.values():
+                    node_log.close()
+                self._node_logs.clear()
                 if self._log is not None:
                     self._log.close()
                     self._log = None

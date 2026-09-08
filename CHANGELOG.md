@@ -8,6 +8,25 @@ Git 提交正文使用 `Change-Record: <记录 ID>` 关联本文件条目。可�
 git log --all --fixed-strings --grep="Change-Record: 2026-09-08-01" --format=fuller --stat
 ```
 
+## 2026-09-08｜2026-09-08-05
+
+修改主题：`feat(pd): manage multi-host prefill and data-parallel decode`
+
+修改内容：
+
+- 在 `dev/multi-pd` 分支统一 PD 的 role/nodes 配置展开，角色参数在 case/suite 覆盖后下发所有物理节点；`pd_role` 支持同时选择 suite、case、node。
+- 复用现有远端进程脚本，通过 SSH 与已有 Docker 容器管理节点；四节点先发起启动，再检查 API 健康。P1 headless 不进入 Proxy，D0/D1 均注册，Proxy 检查完整 1P/2D 数量。
+- 统一预热、性能和精度期间的受管进程检查；节点失败终止当前测试，按节点记录日志和退出码，策略段结束统一停止全部 rank。
+- 新增 `deepseek_v4_pro_multi_pd_performance_4case`：P DP1/TP16/PP2、D DP2/TP16/PP1，各机 16 卡；保留原有 suite。新部署 IP、SSH 目标和网卡使用显式占位值。
+- `MooncakeConnectorV1`、KV 端口、engine ID 不变；新 suite 仅填写新并行布局的 KV 拓扑元数据。不增加版本探测、Connector 替换、自动重试、部署回退或全局清理。
+- 逐模块检视并合并重复环境命令与存活检查，删除重复清理、重复启动命令记录及后台读取线程。社区依据和使用步骤见 `docs/multi_pd.md`。
+
+验证：
+
+- `python -B -m pytest -q -p no:cacheprovider tests`：35 passed，覆盖配置继承、原有 PD 回归、多端点 Proxy、启动/停止顺序、控制端 EOF、节点故障与 suite 生命周期。
+- 手动生成 P1 CPP+SRF、D1 baseline 命令，确认社区跨机参数、P1 headless、D1 DP rank 及 `MooncakeConnectorV1` 均正确。
+- 未连接远端、未启动模型或运行真实 AISBench；四机互联、NPU 显存及 OOM 改善效果待配置实际机器后实测。
+
 ## 2026-09-08｜2026-09-08-04
 
 提交主题：`fix(pd): lower prefill batch tokens to 8k and move decode to 127`

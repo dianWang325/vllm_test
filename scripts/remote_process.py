@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import select
 import signal
 import subprocess
 import sys
@@ -60,7 +61,9 @@ def _unlink_if_same(path: Path, pid: int) -> None:
         pass
 
 
-def run(pid_file: Path, command: list[str]) -> int:
+def run(
+    pid_file: Path, command: list[str], *, stop_on_stdin_close: bool = False
+) -> int:
     if command and command[0] == "--":
         command = command[1:]
     if not command:
@@ -71,7 +74,10 @@ def run(pid_file: Path, command: list[str]) -> int:
             f"managed process is already running with pid {existing['pid']}"
         )
     pid_file.unlink(missing_ok=True)
-    child = subprocess.Popen(command, start_new_session=True)
+    child = subprocess.Popen(
+        command, start_new_session=True,
+        stdin=subprocess.DEVNULL if stop_on_stdin_close else None,
+    )
     record = {
         "pid": child.pid,
         "pgid": os.getpgid(child.pid),
@@ -93,6 +99,13 @@ def run(pid_file: Path, command: list[str]) -> int:
     signal.signal(signal.SIGTERM, terminate)
     signal.signal(signal.SIGINT, terminate)
     try:
+        if stop_on_stdin_close:
+            # Wait for child exit or controller EOF without a background reader.
+            while child.poll() is None:
+                readable, _, _ = select.select([sys.stdin], [], [], 0.5)
+                if readable and not os.read(sys.stdin.fileno(), 4096):
+                    terminate(signal.SIGTERM, None)
+                    break
         return child.wait()
     finally:
         _unlink_if_same(pid_file, child.pid)
@@ -123,13 +136,16 @@ def main() -> int:
     subparsers = parser.add_subparsers(dest="action", required=True)
     run_parser = subparsers.add_parser("run")
     run_parser.add_argument("--pid-file", type=Path, required=True)
+    run_parser.add_argument("--stop-on-stdin-close", action="store_true")
     run_parser.add_argument("command", nargs=argparse.REMAINDER)
     stop_parser = subparsers.add_parser("stop")
     stop_parser.add_argument("--pid-file", type=Path, required=True)
     stop_parser.add_argument("--timeout-seconds", type=float, default=120)
     args = parser.parse_args()
     if args.action == "run":
-        return run(args.pid_file, args.command)
+        return run(
+            args.pid_file, args.command, stop_on_stdin_close=args.stop_on_stdin_close
+        )
     return stop(args.pid_file, args.timeout_seconds)
 
 

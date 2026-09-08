@@ -9,9 +9,9 @@ import shutil
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
-from .bench import AISBENCH_CONFIG, build_server_runtime
+from .bench import AISBENCH_CONFIG, build_server_runtime, run_client
 from .config import relative_to_root
 
 
@@ -44,6 +44,7 @@ def run_accuracy(
     server: dict[str, Any],
     settings: dict[str, Any],
     run_dir: Path,
+    check_alive: Callable[[], None],
 ) -> list[str]:
     dataset_path = relative_to_root(settings["path"])
     if not dataset_path.is_file():
@@ -83,20 +84,12 @@ def run_accuracy(
     environment = dict(os.environ)
     environment["VTEST_AISBENCH_RUNTIME"] = json.dumps(runtime, ensure_ascii=False)
     log_path = run_dir / f"{case_name}-accuracy.log"
-    with log_path.open("w", encoding="utf-8") as log:
-        log.write("$ " + subprocess.list2cmdline(command) + "\n")
-        result = subprocess.run(
-            command,
-            stdout=log,
-            stderr=subprocess.STDOUT,
-            text=True,
-            env=environment,
-            check=False,
-        )
-    if result.returncode != 0:
-        shutil.rmtree(work_dir)
-        raise AccuracyError(f"AISBench accuracy command failed: {result.returncode}")
     try:
+        with log_path.open("w", encoding="utf-8") as log:
+            log.write("$ " + subprocess.list2cmdline(command) + "\n")
+            returncode = run_client(command, environment, log, check_alive)
+        if returncode != 0:
+            raise AccuracyError(f"AISBench accuracy command failed: {returncode}")
         matches = sorted(
             path
             for path in work_dir.rglob(f"{dataset_abbr}.json")

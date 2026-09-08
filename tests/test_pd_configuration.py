@@ -545,8 +545,8 @@ def test_prefill_idle_requires_three_consecutive_samples(
     monkeypatch.setattr("scripts.server.time.sleep", lambda _seconds: None)
     result = server.wait_for_prefill_idle()
     assert result is not None
-    assert result["polls"] == 6
-    assert result["metrics"] == {"running": 0.0, "waiting": 0.0}
+    assert result["p0"]["polls"] == 6
+    assert result["p0"]["metrics"] == {"running": 0.0, "waiting": 0.0}
     assert seen[-1] == ("http://80.5.9.127:18081/metrics", 3.0)
 
 
@@ -598,6 +598,9 @@ def test_case_records_idle_check_before_warmup(
     events: list[str] = []
 
     class Server:
+        def check_alive(self) -> None:
+            pass
+
         def wait_for_prefill_idle(self) -> dict:
             events.append("idle")
             return {"metrics": {"running": 0.0, "waiting": 0.0}}

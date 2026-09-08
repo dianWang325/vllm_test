@@ -216,6 +216,18 @@ def resolve_case(name: str) -> dict[str, Any]:
     return _resolve_case(name, _case_definition(name))
 
 
+def pd_role_nodes(server: dict[str, Any], role: str) -> dict[str, dict[str, Any]]:
+    """Expand role defaults into physical nodes after all case/suite overrides."""
+    definition = server["pd"][role]
+    nodes = definition["nodes"]
+    if not isinstance(nodes, dict) or not nodes:
+        raise ConfigurationError(f"pd.{role}.nodes must be a non-empty mapping")
+    base = {key: value for key, value in server.items() if key != "pd"}
+    common = {key: value for key, value in definition.items() if key != "nodes"}
+    base = deep_merge(base, common)
+    return {name: deep_merge(base, overrides) for name, overrides in nodes.items()}
+
+
 def resolve_suite(name: str) -> dict[str, Any]:
     document = load_yaml("suites")
     suites = document.get("suites")

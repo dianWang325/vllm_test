@@ -1,6 +1,6 @@
 # vllm_test
 
-这是一个面向 vLLM Ascend 的配置驱动测试框架：负责服务启动与健康检查、测试数据准备、AISBench 性能或精度请求，以及结构化报告生成。支持非 PD、单机 PD 和双机 PD；双机 Decode 标记为 `external: true`，由对应主机独立启动和停止。
+这是一个面向 vLLM Ascend 的配置驱动测试框架：负责服务启动与健康检查、测试数据准备、AISBench 性能或精度请求，以及结构化报告生成。支持非 PD、单机 PD、P/D 各单机的双机 PD，以及 P/D 各双机的四机 PD。原双机 Decode 使用 `external: true` 独立管理；新四机 suite 由控制端统一管理全部节点。
 
 框架遇到 case 或服务生命周期异常后停止，不自动重跑 case。请求级 `retries` 会传给 AISBench，当前性能和精度配置均为 `3`；这与框架级重跑是两回事。
 
@@ -49,7 +49,7 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 | 配置文件 | 职责 |
 | --- | --- |
 | `cases.yaml` | 定义单个测试；顶部注释表逐项列出当前 25 个 case（19 个性能、6 个精度）。 |
-| `suites.yaml` | 按顺序组合 case，并提供 `case_overrides`；顶部注释表列出当前 14 个 suite。 |
+| `suites.yaml` | 按顺序组合 case，并提供 `case_overrides`；顶部注释表列出当前 15 个 suite。 |
 | `server.yaml` | 定义非 PD/PD 公共服务结构、参数、环境变量和生命周期。 |
 | `model.yaml` | 定义模型标识、默认路径及模型专用参数。 |
 | `data.yaml` | 定义性能正式数据和独立手动预热数据。 |
@@ -92,6 +92,8 @@ docker exec -it -w /home/w00985415/vllm_test wd_test0825 bash
 这里 K 表示 1024；长度是数据生成配置，实测 token 数以 AISBench 结果为准。
 
 ## PD 部署方式
+
+新增 `deepseek_v4_pro_multi_pd_performance_4case`：P 为双机 DP1/TP16/PP2（P1 headless），D 为双机 DP2/TP16/PP1（两个 API 端点）。四个节点均使用 `MooncakeConnectorV1`；需要先填写新 suite 中的实际 IP、SSH 目标及网卡。配置、主社区参考和运行方式见 [P/D 各双机部署说明](docs/multi_pd.md)。下表保留原单机/双机方案，实际地址以 `configs/suites.yaml` 为准。
 
 | Suite | Server profile | Prefill | Decode | 正式并发 |
 | --- | --- | --- | --- | ---: |
