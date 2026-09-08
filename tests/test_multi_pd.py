@@ -181,6 +181,8 @@ def test_four_host_suite_topology_and_connector_are_explicit() -> None:
                 args = node["arguments"]
                 assert not node.get("external", False)
                 assert len(node["environment"]["ASCEND_RT_VISIBLE_DEVICES"].split(",")) == 16
+                assert node["environment"]["HCCL_EXEC_TIMEOUT"] == "1800"
+                assert node["environment"]["HCCL_CONNECT_TIMEOUT"] == ("120" if role == "prefill" else "1200")
                 assert args["--distributed-executor-backend"] == "mp"
                 assert args["--tensor-parallel-size"] == 16
                 transfer = args["--kv-transfer-config"]

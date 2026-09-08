@@ -242,6 +242,8 @@ suites:
                       HCCL_SOCKET_IFNAME: *multi_p1_ifname
               decode:
                 external: false
+                environment:
+                  HCCL_CONNECT_TIMEOUT: "1200"
                 arguments:
                   --distributed-executor-backend: mp
                   --data-parallel-size: 2
