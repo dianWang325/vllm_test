@@ -8,6 +8,19 @@ Git 提交正文使用 `Change-Record: <记录 ID>` 关联本文件条目。可�
 git log --all --fixed-strings --grep="Change-Record: 2026-09-08-01" --format=fuller --stat
 ```
 
+## 2026-09-08｜2026-09-08-04
+
+提交主题：`fix(pd): lower prefill batch tokens to 8k and move decode to 127`
+
+修改内容：
+
+- 将 `configs/server.yaml` 中两组 PD 配置的 Prefill `--max-num-batched-tokens` 从 `16384` 进一步降至 `8192`（8K），以降低 profile 激活峰值并争取更多 KV cache 预算；4case 及其他引用这些共享配置的 suite 均会生效。
+- 将 `deepseek_v4_pro_pd_performance_4case` 的 Decode IP 从 `80.5.9.143` 改为 `80.5.9.127`，同步更新 `endpoint_host`、`VLLM_HOST_IP`、`HCCL_IF_IP` 及两端的 `NO_PROXY`、`no_proxy`；Prefill 保持 `80.5.9.139`。
+
+验证：
+
+- 核对本地配置差异；未运行模型启动或性能测试，显存预算及服务启动结果待实测。
+
 ## 2026-09-08｜2026-09-08-03
 
 提交主题：`fix(pd): tune memory budgets and update four-case decode host`
