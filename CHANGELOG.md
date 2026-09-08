@@ -8,6 +8,23 @@ Git 提交正文使用 `Change-Record: <记录 ID>` 关联本文件条目。可�
 git log --all --fixed-strings --grep="Change-Record: 2026-09-08-01" --format=fuller --stat
 ```
 
+## 2026-09-08｜2026-09-08-02
+
+提交主题：`fix(pd): move four-case suite to 108 and 109`
+
+修改内容：
+
+- 将 `deepseek_v4_pro_pd_performance_4case` 的 Prefill 从 `80.5.9.133` 改为 `80.5.17.108`，Decode 从 `80.5.9.138` 改为 `80.5.17.109`。
+- 同步修改两端的 `endpoint_host`、`VLLM_HOST_IP`、`HCCL_IF_IP`、`NO_PROXY` 和 `no_proxy`，两端通信网卡 `GLOO_SOCKET_IFNAME`、`TP_SOCKET_IFNAME`、`HCCL_SOCKET_IFNAME` 统一改为 `enp48s3u1u1`。
+- 更新 suite 配置内的概览及网卡注释；四个 case 的顺序、单轮执行、模型、预热及并行布局保持不变。
+- 按本次要求保留 README 内容；其 4case 主机信息仍为上一版，当前部署参数以 `configs/suites.yaml` 为准。
+
+验证：
+
+- 本地配置测试通过：`python -B -m pytest -q -p no:cacheprovider tests/test_pd_configuration.py`，结果为 `20 passed`。
+- 四个 case 的最终配置及角色启动参数检查通过，确认新 IP、网卡与代理白名单全部生效；其他 suite 和 README 无变化。
+- 本次范围为本地修改与提交。
+
 ## 2026-09-08｜2026-09-08-01
 
 提交主题：`feat(pd): add four-case Pro suite for 133 and 138`
