@@ -27,11 +27,3 @@ profiles:
     generation_kwargs:
       chat_template_kwargs:
         enable_thinking: true
-  gpqa_dsv4_flash_60k:
-    description: 使用 DeepSeek V4 Flash 运行最大输出 60K 的 GPQA Diamond 全量精度测试
-    dataset: gpqa
-    path: aisbench_workspace/datasets/gpqa/gpqa_diamond.csv
-    max_output_tokens: 61440
-    generation_kwargs:
-      chat_template_kwargs:
-        enable_thinking: true

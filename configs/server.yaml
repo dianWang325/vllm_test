@@ -22,22 +22,18 @@ defaults:
     --host: 127.0.0.1
     --port: 18080
     --trust-remote-code: true
-    --data-parallel-size: 2
     --tensor-parallel-size: 4
     --pipeline-parallel-size: 2
     --max-num-batched-tokens: 20480
-    --max-num-seqs: 16
-    --gpu-memory-utilization: 0.9
-    --block-size: 128
+    --block-size: 64
     --enable-chunked-prefill: true
-    --scheduling-policy: fcfs
     --enable-request-id-headers: true
-    --uvicorn-log-level: info
     --enforce-eager: true
     --no-enable-prefix-caching: true
     --no-async-scheduling: true
+    --enable-expert-parallel: true
   environment:
-    ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+    ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
     VLLM_USE_V2_MODEL_RUNNER: "1"
     VLLM_ALLOW_LONG_MAX_MODEL_LEN: "1"
     VLLM_LOGGING_LEVEL: INFO
@@ -56,10 +52,10 @@ defaults:
     - ASCEND_LAUNCH_BLOCKING
 
 profiles:
-  baseline:
-    description: 不启用 CPP 或 SRF 的基线服务
-  cpp:
-    description: 启用动态 CPP 的服务
+  non_pd_baseline:
+    description: 非 PD、不启用 CPP 或 SRF 的基线服务
+  non_pd_cpp:
+    description: 非 PD、启用动态 CPP 的服务
     arguments:
       --additional-config:
         scheduler_config:
@@ -67,17 +63,17 @@ profiles:
             enabled: true
             smooth_factor: 1.0
             need_timing: true
-  srf:
-    description: 启用短请求优先调度的服务
+  non_pd_srf:
+    description: 非 PD、启用短请求优先调度的服务
     arguments:
       --additional-config:
         scheduler_config:
           short_request_first_config:
             enabled: true
-            threshold: 4096
+            threshold: 40960
             long_max_wait_ms: 2000
-  cpp_srf:
-    description: 同时启用动态 CPP 与 SRF 的服务
+  non_pd_cpp_srf:
+    description: 非 PD、同时启用动态 CPP 与 SRF 的服务
     arguments:
       --additional-config:
         scheduler_config:
@@ -87,83 +83,10 @@ profiles:
             need_timing: true
           short_request_first_config:
             enabled: true
-            threshold: 4096
+            threshold: 40960
             long_max_wait_ms: 2000
-  baseline_0830:
-    description: PD P 节点 0830 基线服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  baseline_pd_0830:
-    description: 单机 8 卡 Prefill + 8 卡 Decode PD baseline 服务
-    arguments:
-      --host: 127.0.0.1
-      --port: 18080
-    pd:
-      proxy:
-        script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
-      prefill:
-        arguments:
-          --host: 127.0.0.1
-          --port: 18081
-          --data-parallel-size: 1
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 2
-          --kv-transfer-config:
-            kv_connector: MooncakeConnectorV1
-            kv_buffer_device: npu
-            kv_role: kv_producer
-            kv_parallel_size: 1
-            kv_port: "36000"
-            kv_rank: 0
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      decode:
-        arguments:
-          --host: 127.0.0.1
-          --port: 18082
-          --data-parallel-size: 2
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 1
-          --kv-transfer-config:
-            kv_connector: MooncakeConnectorV1
-            kv_buffer_device: npu
-            kv_role: kv_consumer
-            kv_parallel_size: 1
-            kv_port: "36100"
-            kv_rank: 1
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
-  deepseek_v4_pro_pd:
-    description: 单机 8 卡 Prefill + 8 卡 Decode 的 DeepSeek V4 Pro PD 服务
+  pd:
+    description: 单机、由框架同时管理 Prefill 和 Decode 的通用 PD 服务
     arguments:
       --host: 127.0.0.1
       --port: 18080
@@ -175,54 +98,24 @@ profiles:
         arguments:
           --host: 127.0.0.1
           --port: 18081
-          --data-parallel-size: 1
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 2
           --max-num-batched-tokens: 20480
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_producer
             kv_port: "36000"
             engine_id: "0"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-          VLLM_USE_V2_MODEL_RUNNER: "1"
       decode:
         arguments:
           --host: 127.0.0.1
           --port: 18082
-          --data-parallel-size: 2
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 1
           --max-num-batched-tokens: 120
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_consumer
             kv_port: "36100"
             engine_id: "1"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
-          VLLM_USE_V2_MODEL_RUNNER: "1"
-  deepseek_v4_flash_pd_two_host:
-    description: 127 Prefill 8 卡 + 128 Decode 8 卡的 DeepSeek V4 Flash PD 服务
+  pd_two_host:
+    description: 跨节点、由框架管理 Prefill 并复用 external Decode 的通用 PD 服务
     arguments:
       --host: 127.0.0.1
       --port: 18080
@@ -231,382 +124,23 @@ profiles:
       proxy:
         script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
       prefill:
-        endpoint_host: 80.5.9.127
         arguments:
           --host: 0.0.0.0
           --port: 18081
-          --data-parallel-size: 1
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 2
           --max-num-batched-tokens: 20480
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_producer
             kv_port: "36000"
             engine_id: "0"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-          VLLM_HOST_IP: 80.5.9.127
-          HCCL_IF_IP: 80.5.9.127
-          GLOO_SOCKET_IFNAME: enp194s0f0
-          TP_SOCKET_IFNAME: enp194s0f0
-          HCCL_SOCKET_IFNAME: enp194s0f0
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
       decode:
-        endpoint_host: 80.5.9.128
         external: true
         arguments:
           --host: 0.0.0.0
           --port: 18082
-          --data-parallel-size: 2
-          --tensor-parallel-size: 4
-          --pipeline-parallel-size: 1
           --max-num-batched-tokens: 120
           --kv-transfer-config:
             kv_connector: MooncakeConnectorV1
             kv_role: kv_consumer
             kv_port: "36100"
             engine_id: "1"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 4
-                pp_size: 2
-              decode:
-                dp_size: 2
-                tp_size: 4
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
-          VLLM_HOST_IP: 80.5.9.128
-          HCCL_IF_IP: 80.5.9.128
-          GLOO_SOCKET_IFNAME: enp194s0f0
-          TP_SOCKET_IFNAME: enp194s0f0
-          HCCL_SOCKET_IFNAME: enp194s0f0
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
-  deepseek_v4_pro_pd_two_host:
-    description: 127 Prefill 16 卡 + 122 Decode 16 卡的 DeepSeek V4 Pro PD 服务
-    arguments:
-      --host: 127.0.0.1
-      --port: 18080
-      --gpu-memory-utilization: 0.93
-    pd:
-      proxy:
-        script: /home/w00985415/proj_0825/deps/vllm-ascend/examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py
-      prefill:
-        endpoint_host: 80.5.9.127
-        model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
-        arguments:
-          --host: 0.0.0.0
-          --port: 18081
-          --data-parallel-size: 1
-          --tensor-parallel-size: 8
-          --pipeline-parallel-size: 2
-          --max-num-batched-tokens: 20480
-          --kv-transfer-config:
-            kv_connector: MooncakeConnectorV1
-            kv_role: kv_producer
-            kv_port: "36000"
-            engine_id: "0"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 8
-                pp_size: 2
-              decode:
-                dp_size: 1
-                tp_size: 16
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-          VLLM_HOST_IP: 80.5.9.127
-          HCCL_IF_IP: 80.5.9.127
-          GLOO_SOCKET_IFNAME: enp194s0f0
-          TP_SOCKET_IFNAME: enp194s0f0
-          HCCL_SOCKET_IFNAME: enp194s0f0
-          HCCL_EXEC_TIMEOUT: "1800"
-          HCCL_OP_EXPANSION_MODE: AI_CPU
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
-      decode:
-        endpoint_host: 80.5.17.122
-        external: true
-        model_tag: /mnt/share/weights/DeepSeekV4-pro-0813-w4a8
-        arguments:
-          --host: 0.0.0.0
-          --port: 18082
-          --data-parallel-size: 1
-          --tensor-parallel-size: 16
-          --pipeline-parallel-size: 1
-          --max-num-batched-tokens: 120
-          --kv-transfer-config:
-            kv_connector: MooncakeConnectorV1
-            kv_role: kv_consumer
-            kv_port: "36100"
-            engine_id: "1"
-            kv_connector_extra_config:
-              prefill:
-                dp_size: 1
-                tp_size: 8
-                pp_size: 2
-              decode:
-                dp_size: 1
-                tp_size: 16
-                pp_size: 1
-        environment:
-          ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-          VLLM_HOST_IP: 80.5.17.122
-          HCCL_IF_IP: 80.5.17.122
-          GLOO_SOCKET_IFNAME: enp48s3u1u1
-          TP_SOCKET_IFNAME: enp48s3u1u1
-          HCCL_SOCKET_IFNAME: enp48s3u1u1
-          HCCL_EXEC_TIMEOUT: "1800"
-          HCCL_OP_EXPANSION_MODE: AI_CPU
-          NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
-          no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
-  cpp_0830:
-    description: PD P 节点 0830 CPP 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  srf_0830:
-    description: PD P 节点 0830 SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  cpp_srf_0830:
-    description: PD P 节点 0830 CPP+SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_baseline_server27_8cards:
-    description: server-27-8cards GPQA baseline 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --max-num-seqs: 128
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_cpp_server27_8cards:
-    description: server-27-8cards GPQA CPP 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --max-num-seqs: 128
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_srf_server27_8cards:
-    description: server-27-8cards GPQA SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --max-num-seqs: 128
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_cpp_srf_server27_8cards:
-    description: server-27-8cards GPQA CPP+SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 4
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --max-num-seqs: 128
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_baseline_server14_16cards:
-    description: server-14-16cards GPQA baseline 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 8
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_cpp_server14_16cards:
-    description: server-14-16cards GPQA CPP 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 8
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_srf_server14_16cards:
-    description: server-14-16cards GPQA SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 8
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-      VLLM_USE_V2_MODEL_RUNNER: "1"
-  gpqa_cpp_srf_server14_16cards:
-    description: server-14-16cards GPQA CPP+SRF 服务
-    arguments:
-      --data-parallel-size: 1
-      --pipeline-parallel-size: 2
-      --tensor-parallel-size: 8
-      --gpu-memory-utilization: 0.9
-      --max-num-batched-tokens: 20480
-      --enable-expert-parallel: true
-      --enforce-eager: true
-      --no-async-scheduling: true
-      --no-enable-prefix-caching: true
-      --additional-config:
-        scheduler_config:
-          profiling_chunk_config:
-            enabled: true
-            smooth_factor: 0.8
-            need_timing: true
-          short_request_first_config:
-            enabled: true
-            threshold: 4096
-            long_max_wait_ms: 2000
-    environment:
-      ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
-      VLLM_USE_V2_MODEL_RUNNER: "1"

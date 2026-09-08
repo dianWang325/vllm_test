@@ -1,231 +1,241 @@
+# Case 概览：共 25 项（performance 19 项，accuracy 6 项）。
+# 冒烟模型由默认值或 suite 覆盖；Pro PD case 均预热，部署参数由 suite 补齐。
+# | Case                                 | 类型        | 概述                                                       |
+# | ------------------------------------ | ----------- | ---------------------------------------------------------- |
+# | baseline_smoke                       | performance | 基线冒烟：1K/64K 混合输入，8 并发                          |
+# | cpp_smoke                            | performance | CPP 冒烟：混合输入，8 并发，手动预热                       |
+# | srf_smoke                            | performance | SRF 冒烟：混合输入，8 并发                                 |
+# | cpp_srf_smoke                        | performance | CPP+SRF 冒烟：混合输入，8 并发，手动预热                   |
+# | prefill_baseline_fixed               | performance | 非 PD baseline：32K 定长输入、1 token 输出，4 并发         |
+# | prefill_cpp_fixed                    | performance | 非 PD CPP：32K 定长输入、1 token 输出，4 并发，预热        |
+# | prefill_baseline_variable            | performance | 非 PD baseline：8K~64K 变长输入、1 token 输出，4 并发      |
+# | prefill_cpp_variable                 | performance | 非 PD CPP：变长输入、1 token 输出，4 并发，预热            |
+# | prefill_srf_variable                 | performance | 非 PD SRF：变长输入、1 token 输出，4 并发                  |
+# | prefill_cpp_srf_variable             | performance | 非 PD CPP+SRF：变长输入、1 token 输出，4 并发，预热        |
+# | baseline_gsm8k                       | accuracy    | 基线 GSM8K 精度：accuracy 配置，最大输出 32K，128 并发     |
+# | baseline_gpqa                        | accuracy    | 基线 GPQA Diamond 精度：最大输出 32K，128 并发             |
+# | baseline_pd_0830                     | performance | 单机 PD baseline：变长输入、256 token 输出，4 并发         |
+# | gpqa_deepseek_v4_flash_baseline      | accuracy    | Flash baseline GPQA 全量精度：最大输出 32K，128 并发       |
+# | gpqa_deepseek_v4_flash_cpp           | accuracy    | Flash CPP GPQA 全量精度：128 并发，手动预热                |
+# | gpqa_deepseek_v4_flash_srf           | accuracy    | Flash SRF GPQA 全量精度：128 并发                          |
+# | gpqa_deepseek_v4_flash_cpp_srf       | accuracy    | Flash CPP+SRF GPQA 全量精度：128 并发，手动预热            |
+# | deepseek_v4_pro_pd_baseline_fixed    | performance | Pro PD baseline：64K 定长输入、2560 token 输出，8 并发     |
+# | deepseek_v4_pro_pd_baseline_variable | performance | Pro PD baseline：40K~80K 变长输入、2560 token 输出，8 并发 |
+# | deepseek_v4_pro_pd_cpp_fixed         | performance | Pro PD CPP：定长性能测试，8 并发                           |
+# | deepseek_v4_pro_pd_cpp_variable      | performance | Pro PD CPP：变长性能测试，8 并发                           |
+# | deepseek_v4_pro_pd_srf_fixed         | performance | Pro PD SRF：定长性能测试，8 并发                           |
+# | deepseek_v4_pro_pd_srf_variable      | performance | Pro PD SRF：变长性能测试，8 并发                           |
+# | deepseek_v4_pro_pd_cpp_srf_fixed     | performance | Pro PD CPP+SRF：定长性能测试，8 并发                       |
+# | deepseek_v4_pro_pd_cpp_srf_variable  | performance | Pro PD CPP+SRF：变长性能测试，8 并发                       |
+
 cases:
+  # ==========================================================================
+  # 1. 冒烟测试
+  # ==========================================================================
+
   baseline_smoke:
     description: 基线服务功能冒烟
     type: performance
-    server: baseline
-    data: functional_smoke
-    bench: functional_smoke
+    server: non_pd_baseline
+    data: srf_mixed
+    bench: concurrency_8
     report: functional
+
   cpp_smoke:
     description: CPP 服务功能冒烟并执行手动预热
     type: performance
-    server: cpp
-    data: functional_smoke
+    server: non_pd_cpp
+    data: srf_mixed
     warmup: model_max_len
-    bench: functional_smoke
+    bench: concurrency_8
     report: functional
+
   srf_smoke:
     description: SRF 服务短长混合功能验证
     type: performance
-    server: srf
+    server: non_pd_srf
     data: srf_mixed
-    bench: srf_mixed
+    bench: concurrency_8
     report: functional
-    overrides:
-      data:
-        request_count: 8
-      bench:
-        repeats: 1
+
   cpp_srf_smoke:
     description: CPP+SRF 服务短长混合功能验证并执行手动预热
     type: performance
-    server: cpp_srf
+    server: non_pd_cpp_srf
     data: srf_mixed
     warmup: model_max_len
-    bench: srf_mixed
+    bench: concurrency_8
     report: functional
-    overrides:
-      data:
-        request_count: 8
-      bench:
-        repeats: 1
-  baseline_fixed_long:
-    description: 基线服务固定长序列性能测试
+
+  # ==========================================================================
+  # 2. Prefill 性能测试（非 PD）
+  # ==========================================================================
+
+  prefill_baseline_fixed:
+    description: 非 PD 基线服务 Prefill 定长性能测试
     type: performance
-    server: baseline
-    model: deepseek_v4_flash
-    data: fixed_long
-    bench: fixed_long
+    server: non_pd_baseline
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_fix
+    bench: concurrency_4
     report: performance
-  cpp_fixed_long:
-    description: CPP 服务固定长序列性能测试
+
+  prefill_cpp_fixed:
+    description: 非 PD CPP 服务 Prefill 定长性能测试
     type: performance
-    server: cpp
-    model: deepseek_v4_flash
-    data: fixed_long
+    server: non_pd_cpp
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_fix
     warmup: model_max_len
-    bench: fixed_long
+    bench: concurrency_4
     report: performance
-  srf_mixed:
-    description: SRF 服务短长混合性能测试
+
+  prefill_baseline_variable:
+    description: 非 PD 基线服务 Prefill 变长性能测试
     type: performance
-    server: srf
-    model: deepseek_v4_flash
-    data: srf_mixed
-    bench: srf_mixed
+    server: non_pd_baseline
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_variable
+    bench: concurrency_4
     report: performance
-  cpp_srf_mixed:
-    description: CPP+SRF 服务短长混合性能测试
+
+  prefill_cpp_variable:
+    description: 非 PD CPP 服务 Prefill 变长专项性能测试
     type: performance
-    server: cpp_srf
-    model: deepseek_v4_flash
-    data: srf_mixed
+    server: non_pd_cpp
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_variable
     warmup: model_max_len
-    bench: srf_mixed
+    bench: concurrency_4
     report: performance
-  baseline_variable_long:
-    description: 基线服务变长序列性能测试
+
+  prefill_srf_variable:
+    description: 非 PD SRF 服务 Prefill 变长专项性能测试
     type: performance
-    server: baseline
-    model: deepseek_v4_flash
-    data: variable_long
-    bench: variable_long
+    server: non_pd_srf
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_variable
+    bench: concurrency_4
     report: performance
+
+  prefill_cpp_srf_variable:
+    description: 非 PD CPP+SRF 服务 Prefill 变长专项性能测试
+    type: performance
+    server: non_pd_cpp_srf
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_variable
+    warmup: model_max_len
+    bench: concurrency_4
+    report: performance
+
+  # ==========================================================================
+  # 3. 基础精度测试
+  # ==========================================================================
+
   baseline_gsm8k:
     description: 基线服务 GSM8K 精度测试
     type: accuracy
-    server: baseline
-    model: deepseek_v4_flash
+    server: non_pd_baseline
+    model: deepseek_v4_flash_a8w8_mtp
     accuracy: gsm8k_dsv4_flash_32k
     report: accuracy
+
   baseline_gpqa:
     description: 基线服务 GPQA Diamond 精度测试
     type: accuracy
-    server: baseline
-    model: deepseek_v4_flash
+    server: non_pd_baseline
+    model: deepseek_v4_flash_a8w8_mtp
     accuracy: gpqa_dsv4_flash_32k
     report: accuracy
-  pd_prefill_baseline_0830:
-    description: PD P 节点 baseline 性能测试
-    type: performance
-    server: baseline_0830
-    model: deepseek_v4_flash
-    data: pd_prefill_variable_0830
-    bench: pd_prefill_0830
-    report: performance
+
+  # ==========================================================================
+  # 4. 单节点PD功能测试
+  # ==========================================================================
+
   baseline_pd_0830:
     description: 完整 P+D+Proxy PD baseline 性能测试
     type: performance
-    server: baseline_pd_0830
-    model: deepseek_v4_flash
-    data: pd_prefill_variable_0830
-    bench: pd_prefill_0830
+    server: pd
+    model: deepseek_v4_flash_a8w8_mtp
+    data: prefill_variable
+    bench: concurrency_4
     report: performance
-  pd_prefill_cpp_0830:
-    description: PD P 节点 CPP 性能测试
-    type: performance
-    server: cpp_0830
-    model: deepseek_v4_flash
-    data: pd_prefill_variable_0830
-    warmup: model_max_len
-    bench: pd_prefill_0830
-    report: performance
-  pd_prefill_srf_0830:
-    description: PD P 节点 SRF 性能测试
-    type: performance
-    server: srf_0830
-    model: deepseek_v4_flash
-    data: pd_prefill_variable_0830
-    bench: pd_prefill_0830
-    report: performance
-  pd_prefill_cpp_srf_0830:
-    description: PD P 节点 CPP+SRF 性能测试
-    type: performance
-    server: cpp_srf_0830
-    model: deepseek_v4_flash
-    data: pd_prefill_variable_0830
-    warmup: model_max_len
-    bench: pd_prefill_0830
-    report: performance
-  gpqa_baseline_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash baseline GPQA 全量精度测试
+    overrides:
+      data:
+        output:
+          length: 256
+
+
+  # ==========================================================================
+  # 5. DeepSeek V4 Flash GPQA 特性对比
+  # ==========================================================================
+
+  gpqa_deepseek_v4_flash_baseline:
+    description: DeepSeek V4 Flash baseline GPQA 全量精度测试
     type: accuracy
-    server: gpqa_baseline_server27_8cards
-    model: deepseek_v4_flash_server27_8cards
+    server: non_pd_baseline
+    model: deepseek_v4_flash_a8w8_mtp
     accuracy: gpqa_dsv4_flash_32k
     report: accuracy
-  gpqa_cpp_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash CPP GPQA 全量精度测试
+
+  gpqa_deepseek_v4_flash_cpp:
+    description: DeepSeek V4 Flash CPP GPQA 全量精度测试
     type: accuracy
-    server: gpqa_cpp_server27_8cards
-    model: deepseek_v4_flash_server27_8cards
+    server: non_pd_cpp
+    model: deepseek_v4_flash_a8w8_mtp
     warmup: model_max_len
     accuracy: gpqa_dsv4_flash_32k
     report: accuracy
-  gpqa_srf_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash SRF GPQA 全量精度测试
+
+  gpqa_deepseek_v4_flash_srf:
+    description: DeepSeek V4 Flash SRF GPQA 全量精度测试
     type: accuracy
-    server: gpqa_srf_server27_8cards
-    model: deepseek_v4_flash_server27_8cards
+    server: non_pd_srf
+    model: deepseek_v4_flash_a8w8_mtp
     accuracy: gpqa_dsv4_flash_32k
     report: accuracy
-  gpqa_cpp_srf_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
+
+  gpqa_deepseek_v4_flash_cpp_srf:
+    description: DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
     type: accuracy
-    server: gpqa_cpp_srf_server27_8cards
-    model: deepseek_v4_flash_server27_8cards
+    server: non_pd_cpp_srf
+    model: deepseek_v4_flash_a8w8_mtp
     warmup: model_max_len
     accuracy: gpqa_dsv4_flash_32k
     report: accuracy
-  gpqa_baseline_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash baseline GPQA 全量精度测试
-    type: accuracy
-    server: gpqa_baseline_server14_16cards
-    model: deepseek_v4_flash_server14_16cards
-    accuracy: gpqa_dsv4_flash_60k
-    report: accuracy
-  gpqa_cpp_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash CPP GPQA 全量精度测试
-    type: accuracy
-    server: gpqa_cpp_server14_16cards
-    model: deepseek_v4_flash_server14_16cards
-    warmup: model_max_len
-    accuracy: gpqa_dsv4_flash_60k
-    report: accuracy
-  gpqa_srf_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash SRF GPQA 全量精度测试
-    type: accuracy
-    server: gpqa_srf_server14_16cards
-    model: deepseek_v4_flash_server14_16cards
-    accuracy: gpqa_dsv4_flash_60k
-    report: accuracy
-  gpqa_cpp_srf_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash CPP+SRF GPQA 全量精度测试
-    type: accuracy
-    server: gpqa_cpp_srf_server14_16cards
-    model: deepseek_v4_flash_server14_16cards
-    warmup: model_max_len
-    accuracy: gpqa_dsv4_flash_60k
-    report: accuracy
+
+  # ==========================================================================
+  # 6. DeepSeek V4 Pro 双机 PD 性能矩阵
+  # ==========================================================================
 
   deepseek_v4_pro_pd_baseline_fixed:
     description: DeepSeek V4 Pro PD baseline 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_fixed_long
+    bench: concurrency_8
     report: performance
 
   deepseek_v4_pro_pd_baseline_variable:
     description: DeepSeek V4 Pro PD baseline 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_variable_long
+    bench: concurrency_8
     report: performance
 
   deepseek_v4_pro_pd_cpp_fixed:
     description: DeepSeek V4 Pro PD CPP 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_fixed_long
+    bench: concurrency_8
     report: performance
     overrides:
       server:
@@ -242,11 +252,11 @@ cases:
   deepseek_v4_pro_pd_cpp_variable:
     description: DeepSeek V4 Pro PD CPP 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_variable_long
+    bench: concurrency_8
     report: performance
     overrides:
       server:
@@ -263,11 +273,11 @@ cases:
   deepseek_v4_pro_pd_srf_fixed:
     description: DeepSeek V4 Pro PD SRF 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_fixed_long
+    bench: concurrency_8
     report: performance
     overrides:
       server:
@@ -284,11 +294,11 @@ cases:
   deepseek_v4_pro_pd_srf_variable:
     description: DeepSeek V4 Pro PD SRF 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_variable_long
+    bench: concurrency_8
     report: performance
     overrides:
       server:
@@ -305,11 +315,11 @@ cases:
   deepseek_v4_pro_pd_cpp_srf_fixed:
     description: DeepSeek V4 Pro PD CPP+SRF 固定长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: fixed_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_fixed_long
+    bench: concurrency_8
     report: performance
     overrides: &deepseek_v4_pro_pd_cpp_srf_overrides
       server:
@@ -330,10 +340,10 @@ cases:
   deepseek_v4_pro_pd_cpp_srf_variable:
     description: DeepSeek V4 Pro PD CPP+SRF 变长序列性能测试
     type: performance
-    server: deepseek_v4_pro_pd_two_host
+    server: pd_two_host
     model: deepseek_v4_pro_w4a8_0813
     data: variable_long
     warmup: model_max_len
-    bench: deepseek_v4_pro_variable_long
+    bench: concurrency_8
     report: performance
     overrides: *deepseek_v4_pro_pd_cpp_srf_overrides

@@ -41,6 +41,188 @@ ROTATIONS = {
 }
 
 
+def test_block_size_matches_model_runtime_support() -> None:
+    cases = load_yaml("cases")["cases"]
+    for case_name in cases:
+        server = resolve_case(case_name)["effective"]["server"]
+        block_size = server["arguments"]["--block-size"]
+        if server["model"] == "qwen3_30b_a3b_w8a8":
+            assert block_size == 128
+        else:
+            assert block_size == 64
+
+
+def test_non_pd_server_profiles_share_common_defaults() -> None:
+    server = load_yaml("server")
+    defaults = server["defaults"]
+    assert defaults["arguments"]["--enable-expert-parallel"] is True
+    assert "--max-num-seqs" not in defaults["arguments"]
+    assert defaults["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+        "0,1,2,3,4,5,6,7"
+    )
+
+    profile_names = {
+        "non_pd_baseline",
+        "non_pd_cpp",
+        "non_pd_srf",
+        "non_pd_cpp_srf",
+    }
+    assert profile_names <= set(server["profiles"])
+    for name in profile_names:
+        profile = server["profiles"][name]
+        assert "--max-num-seqs" not in profile.get("arguments", {})
+        assert "ASCEND_RT_VISIBLE_DEVICES" not in profile.get("environment", {})
+
+
+def test_prefill_variable_suite_reuses_non_pd_profiles_and_scheduler_defaults() -> None:
+    server = load_yaml("server")
+    assert not any(name.endswith("_0830") for name in server["profiles"])
+    suite = resolve_suite("prefill_variable_performance")
+    assert suite["definition"]["comparison"] is True
+    cases = {
+        case["name"]: case for case in suite["cases"]
+    }
+    strategies = ("baseline", "cpp", "srf", "cpp_srf")
+    assert list(cases) == [f"prefill_{strategy}_variable" for strategy in strategies]
+    for strategy in strategies:
+        case = cases[f"prefill_{strategy}_variable"]
+        assert case["definition"]["server"] == f"non_pd_{strategy}"
+        assert case["definition"]["data"] == "prefill_variable"
+        assert case["effective"]["data"]["output"]["length"] == 1
+        assert case["effective"]["bench"]["concurrency"] == 4
+        profile = server["profiles"][f"non_pd_{strategy}"]
+        assert "ASCEND_RT_VISIBLE_DEVICES" not in profile.get("environment", {})
+        for argument in {
+            "--data-parallel-size",
+            "--pipeline-parallel-size",
+            "--tensor-parallel-size",
+            "--max-num-batched-tokens",
+            "--enforce-eager",
+            "--no-async-scheduling",
+            "--no-enable-prefix-caching",
+        }:
+            assert argument not in profile.get("arguments", {})
+
+        effective = case["effective"]["server"]
+        assert effective["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+            "0,1,2,3,4,5,6,7"
+        )
+        assert effective["arguments"].get("--data-parallel-size", 1) == 1
+        assert effective["arguments"]["--pipeline-parallel-size"] == 2
+        assert effective["arguments"]["--tensor-parallel-size"] == 4
+        assert effective["arguments"]["--max-num-batched-tokens"] == 20480
+        standalone = resolve_case(case["name"])["effective"]["server"]
+        assert effective == standalone
+        scheduler = effective["arguments"].get("--additional-config", {}).get(
+            "scheduler_config", {}
+        )
+        if strategy == "baseline":
+            assert scheduler == {}
+        if "cpp" in strategy:
+            assert scheduler["profiling_chunk_config"] == {
+                "enabled": True, "smooth_factor": 1.0, "need_timing": True,
+            }
+        if "srf" in strategy:
+            assert scheduler["short_request_first_config"] == (
+                profile["arguments"]["--additional-config"]["scheduler_config"][
+                    "short_request_first_config"
+                ]
+            )
+
+
+def test_pd_profiles_only_define_common_service_structure() -> None:
+    profiles = load_yaml("server")["profiles"]
+    assert {"pd", "pd_two_host"} <= set(profiles)
+    assert not {
+        "pd_deepseek_v4_pro",
+        "pd_deepseek_v4_flash_two_host",
+        "pd_deepseek_v4_pro_two_host",
+    } & set(profiles)
+
+    deployment_arguments = {
+        "--data-parallel-size",
+        "--tensor-parallel-size",
+        "--pipeline-parallel-size",
+    }
+    for profile_name in ("pd", "pd_two_host"):
+        pd = profiles[profile_name]["pd"]
+        for role_name in ("prefill", "decode"):
+            role = pd[role_name]
+            assert "endpoint_host" not in role
+            assert "model_tag" not in role
+            assert "environment" not in role
+            assert not deployment_arguments & set(role["arguments"])
+
+        prefill_transfer = pd["prefill"]["arguments"]["--kv-transfer-config"]
+        decode_transfer = pd["decode"]["arguments"]["--kv-transfer-config"]
+        assert prefill_transfer == {
+            "kv_connector": "MooncakeConnectorV1",
+            "kv_role": "kv_producer",
+            "kv_port": "36000",
+            "engine_id": "0",
+        }
+        assert decode_transfer == {
+            "kv_connector": "MooncakeConnectorV1",
+            "kv_role": "kv_consumer",
+            "kv_port": "36100",
+            "engine_id": "1",
+        }
+
+    assert profiles["pd_two_host"]["pd"]["decode"]["external"] is True
+
+
+def test_decode_uses_tp_only_and_keeps_the_visible_device_count() -> None:
+    single_host_case = resolve_suite("baseline_pd_0830")["cases"][0]
+    assert single_host_case["definition"]["server"] == "pd"
+    single_host = single_host_case["effective"]["server"]
+    deployments = [
+        (single_host, 8),
+        (
+            resolve_suite("deepseek_v4_pro_pd_performance")["cases"][0][
+                "effective"
+            ]["server"],
+            16,
+        ),
+        (
+            resolve_suite("deepseek_v4_flash_pd_performance")["cases"][0][
+                "effective"
+            ]["server"],
+            8,
+        ),
+    ]
+    for server, expected_tp in deployments:
+        prefill = _role_config(server, "prefill")
+        decode = _role_config(server, "decode")
+        arguments = decode["arguments"]
+        assert "--data-parallel-size" not in arguments
+        assert arguments["--tensor-parallel-size"] == expected_tp
+        assert len(
+            decode["environment"]["ASCEND_RT_VISIBLE_DEVICES"].split(",")
+        ) == expected_tp
+        assert arguments["--kv-transfer-config"][
+            "kv_connector_extra_config"
+        ]["decode"] == {
+            "dp_size": 1,
+            "tp_size": expected_tp,
+            "pp_size": 1,
+        }
+        assert prefill["arguments"]["--kv-transfer-config"][
+            "kv_connector_extra_config"
+        ] == arguments["--kv-transfer-config"]["kv_connector_extra_config"]
+
+    prefill = _role_config(single_host, "prefill")
+    decode = _role_config(single_host, "decode")
+    assert prefill["arguments"]["--tensor-parallel-size"] == 4
+    assert prefill["arguments"]["--pipeline-parallel-size"] == 2
+    assert prefill["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == "0,1,2,3,4,5,6,7"
+    assert decode["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == "8,9,10,11,12,13,14,15"
+    for role, engine_id in ((prefill, "0"), (decode, "1")):
+        assert role.get("external", False) is False
+        transfer = role["arguments"]["--kv-transfer-config"]
+        assert transfer["engine_id"] == engine_id
+        assert not {"kv_rank", "kv_parallel_size", "kv_buffer_device"} & set(transfer)
+
+
 def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
     expected_cases = set(ROTATIONS["deepseek_v4_pro_pd_performance"])
     expected_decode = None
@@ -64,12 +246,12 @@ def test_pro_suites_use_two_host_server_and_model_warmup() -> None:
             assert decode == expected_decode
             assert prefill["model_tag"] == "/mnt/share/DeepSeekV4-pro-0813-w4a8"
             assert decode["model_tag"] == (
-                "/mnt/share/weights/DeepSeekV4-pro-0813-w4a8"
+                "/mnt/share/DeepSeekV4-pro-0813-w4a8"
             )
             assert prefill["arguments"]["--data-parallel-size"] == 1
             assert prefill["arguments"]["--tensor-parallel-size"] == 8
             assert prefill["arguments"]["--pipeline-parallel-size"] == 2
-            assert decode["arguments"]["--data-parallel-size"] == 1
+            assert "--data-parallel-size" not in decode["arguments"]
             assert decode["arguments"]["--tensor-parallel-size"] == 16
             assert decode["arguments"]["--pipeline-parallel-size"] == 1
             prefill_topology = prefill["arguments"]["--kv-transfer-config"][
@@ -112,11 +294,36 @@ def test_flash_suite_uses_common_model_max_warmup() -> None:
     suite = resolve_suite("deepseek_v4_flash_pd_performance")
     warmups = [case["definition"].get("warmup") for case in suite["cases"]]
     assert warmups == ["model_max_len"] * 8
+    assert len(cli._server_segments(suite["cases"])) == 4
     for case in suite["cases"]:
         effective = case["effective"]
-        pd = effective["server"]["pd"]
+        server = effective["server"]
+        pd = server["pd"]
         assert pd["prefill"]["endpoint_host"] == "80.5.9.127"
         assert pd["decode"]["endpoint_host"] == "80.5.9.128"
+        assert pd["decode"]["external"] is True
+        prefill = _role_config(server, "prefill")
+        decode = _role_config(server, "decode")
+        assert prefill["arguments"]["--data-parallel-size"] == 1
+        assert prefill["arguments"]["--tensor-parallel-size"] == 4
+        assert prefill["arguments"]["--pipeline-parallel-size"] == 2
+        assert "--data-parallel-size" not in decode["arguments"]
+        assert decode["arguments"]["--tensor-parallel-size"] == 8
+        assert decode["arguments"]["--pipeline-parallel-size"] == 1
+        assert prefill["arguments"]["--kv-transfer-config"][
+            "kv_connector_extra_config"
+        ] == decode["arguments"]["--kv-transfer-config"][
+            "kv_connector_extra_config"
+        ]
+        assert decode["arguments"]["--kv-transfer-config"][
+            "kv_connector_extra_config"
+        ]["decode"] == {"dp_size": 1, "tp_size": 8, "pp_size": 1}
+        assert prefill["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+            "0,1,2,3,4,5,6,7"
+        )
+        assert decode["environment"]["ASCEND_RT_VISIBLE_DEVICES"] == (
+            "8,9,10,11,12,13,14,15"
+        )
         assert effective["bench"]["concurrency"] == 4
         assert effective["warmup"]["input_length"] == 1048575
         assert effective["warmup"]["output_length"] == 1
@@ -200,7 +407,6 @@ def test_accuracy_profiles_use_dataset_model_output_names() -> None:
     assert set(accuracy["profiles"]) == {
         "gsm8k_dsv4_flash_32k",
         "gpqa_dsv4_flash_32k",
-        "gpqa_dsv4_flash_60k",
     }
     for profile in accuracy["profiles"].values():
         assert profile["generation_kwargs"] == {

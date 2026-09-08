@@ -1,55 +1,97 @@
+# Suite 概览：共 13 项；Case 数为本 suite 实际启用的数量。
+# Pro/Flash PD 均为双机；rotation 复用相同 case 和部署配置，仅轮换策略顺序。
+# | Suite                                     | Case 数 | 对比报告 | 概述                                                |
+# | ----------------------------------------- | ------- | -------- | --------------------------------------------------- |
+# | baseline_smoke                            | 3       | 无       | Flash 基线冒烟 + GSM8K + GPQA；性能与精度混合       |
+# | baseline_performance                      | 2       | 无       | 非 PD baseline Prefill 定长 + 变长                  |
+# | cpp_validation                            | 2       | 无       | 非 PD CPP Prefill 定长 + 变长                       |
+# | srf_validation                            | 1       | 无       | 非 PD SRF Prefill 变长                              |
+# | cpp_srf_validation                        | 1       | 无       | 非 PD CPP+SRF Prefill 变长                          |
+# | prefill_variable_performance              | 4       | 有       | 非 PD Prefill 变长：baseline / CPP / SRF / CPP+SRF  |
+# | baseline_pd_0830                          | 1       | 无       | Flash 单机 PD：Prefill 8 卡 + Decode 8 卡           |
+# | gpqa_deepseek_v4_flash_accuracy           | 4       | 无       | Flash GPQA：baseline / CPP / SRF / CPP+SRF 全量精度 |
+# | deepseek_v4_pro_pd_performance            | 8       | 有       | Pro 双机 PD：baseline -> CPP -> SRF -> CPP+SRF      |
+# | deepseek_v4_pro_pd_performance_rotation_1 | 8       | 有       | 同一 Pro PD 矩阵：CPP -> SRF -> CPP+SRF -> baseline |
+# | deepseek_v4_pro_pd_performance_rotation_2 | 8       | 有       | 同一 Pro PD 矩阵：SRF -> CPP+SRF -> baseline -> CPP |
+# | deepseek_v4_pro_pd_performance_rotation_3 | 8       | 有       | 同一 Pro PD 矩阵：CPP+SRF -> baseline -> CPP -> SRF |
+# | deepseek_v4_flash_pd_performance          | 8       | 有       | 复用 Pro case 矩阵，覆盖为 Flash 双机 PD、4 并发    |
+
 suites:
   baseline_smoke:
     description: 基线服务功能与两项精度测试
     cases: [baseline_smoke, baseline_gsm8k, baseline_gpqa]
     case_overrides:
       baseline_smoke:
-        model: deepseek_v4_flash
+        model: deepseek_v4_flash_a8w8_mtp
+
   baseline_performance:
-    description: 基线服务的固定、变长性能测试
-    cases: [baseline_fixed_long, baseline_variable_long]
+    description: 非 PD 基线服务的 Prefill 定长、变长性能测试
+    cases: [prefill_baseline_fixed, prefill_baseline_variable]
   cpp_validation:
-    description: CPP 服务的功能与固定长序列性能测试
-    cases: [cpp_smoke, cpp_fixed_long]
-    case_overrides:
-      cpp_smoke:
-        model: deepseek_v4_flash
+    description: 非 PD CPP 服务的 Prefill 定长、变长性能测试
+    cases: [prefill_cpp_fixed, prefill_cpp_variable]
   srf_validation:
-    description: SRF 服务的功能与短长混合性能测试
-    cases: [srf_smoke, srf_mixed]
-    case_overrides:
-      srf_smoke:
-        model: deepseek_v4_flash
+    description: 非 PD SRF 服务的 Prefill 变长性能测试
+    cases: [prefill_srf_variable]
   cpp_srf_validation:
-    description: CPP+SRF 服务的功能与短长混合性能测试
-    cases: [cpp_srf_smoke, cpp_srf_mixed]
-    case_overrides:
-      cpp_srf_smoke:
-        model: deepseek_v4_flash
-  pd_prefill_0830:
-    description: PD P 节点 baseline、CPP、SRF 与 CPP+SRF 性能对比
+    description: 非 PD CPP+SRF 服务的 Prefill 变长性能测试
+    cases: [prefill_cpp_srf_variable]
+
+  prefill_variable_performance:
+    description: 非 PD Prefill baseline、CPP、SRF 与 CPP+SRF 变长性能对比
     cases:
-      # - pd_prefill_baseline_0830
-      - pd_prefill_cpp_0830
-      - pd_prefill_srf_0830
-      - pd_prefill_cpp_srf_0830
+      - prefill_baseline_variable
+      - prefill_cpp_variable
+      - prefill_srf_variable
+      - prefill_cpp_srf_variable
     comparison: true
-  gpqa_accuracy_server27_8cards:
-    description: server-27-8cards DeepSeek V4 Flash baseline、CPP、SRF 与 CPP+SRF GPQA 全量精度测试
+
+
+  baseline_pd_0830:
+    description: 单机 Prefill 8 卡（TP=4/PP=2）+ Decode 8 卡（TP=8）的 PD baseline 性能测试
+    cases: [baseline_pd_0830]
+    case_overrides:
+      baseline_pd_0830:
+        overrides:
+          server:
+            pd:
+              prefill:
+                arguments:
+                  --data-parallel-size: 1
+                  --tensor-parallel-size: 4
+                  --pipeline-parallel-size: 2
+                  --kv-transfer-config:
+                    kv_connector_extra_config: &pd_0830_topology
+                      prefill:
+                        dp_size: 1
+                        tp_size: 4
+                        pp_size: 2
+                      decode:
+                        dp_size: 1
+                        tp_size: 8
+                        pp_size: 1
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+              decode:
+                arguments:
+                  --tensor-parallel-size: 8
+                  --pipeline-parallel-size: 1
+                  --kv-transfer-config:
+                    kv_connector_extra_config: *pd_0830_topology
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+
+
+
+  gpqa_deepseek_v4_flash_accuracy:
+    description: DeepSeek V4 Flash baseline、CPP、SRF 与 CPP+SRF GPQA 全量精度测试
     cases:
-      # - gpqa_baseline_server27_8cards
-      - gpqa_cpp_server27_8cards
-      # - gpqa_srf_server27_8cards
-      - gpqa_cpp_srf_server27_8cards
-  gpqa_accuracy_server14_16cards:
-    description: server-14-16cards DeepSeek V4 Flash baseline、CPP、SRF 与 CPP+SRF GPQA 全量精度测试
-    cases:
-      - gpqa_baseline_server14_16cards
-      - gpqa_cpp_server14_16cards
-      - gpqa_srf_server14_16cards
-      - gpqa_cpp_srf_server14_16cards
+      - gpqa_deepseek_v4_flash_baseline
+      - gpqa_deepseek_v4_flash_cpp
+      - gpqa_deepseek_v4_flash_srf
+      - gpqa_deepseek_v4_flash_cpp_srf
   deepseek_v4_pro_pd_performance:
-    description: DeepSeek V4 Pro 0505 的 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
+    description: DeepSeek V4 Pro W4A8 0813 的双机 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
     cases:
       - deepseek_v4_pro_pd_baseline_fixed
       - deepseek_v4_pro_pd_baseline_variable
@@ -60,9 +102,76 @@ suites:
       - deepseek_v4_pro_pd_cpp_srf_fixed
       - deepseek_v4_pro_pd_cpp_srf_variable
     comparison: true
+    case_overrides: &deepseek_v4_pro_two_host_case_overrides
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_two_host_case_override
+        overrides:
+          server: &deepseek_v4_pro_two_host_deployment
+            pd:
+              prefill:
+                endpoint_host: 80.5.9.127
+                model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
+                arguments:
+                  --data-parallel-size: 1
+                  --tensor-parallel-size: 8
+                  --pipeline-parallel-size: 2
+                  --kv-transfer-config:
+                    kv_connector_extra_config:
+                      prefill:
+                        dp_size: 1
+                        tp_size: 8
+                        pp_size: 2
+                      decode:
+                        dp_size: 1
+                        tp_size: 16
+                        pp_size: 1
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+                  VLLM_HOST_IP: 80.5.9.127
+                  HCCL_IF_IP: 80.5.9.127
+                  GLOO_SOCKET_IFNAME: enp194s0f0
+                  TP_SOCKET_IFNAME: enp194s0f0
+                  HCCL_SOCKET_IFNAME: enp194s0f0
+                  HCCL_EXEC_TIMEOUT: "1800"
+                  HCCL_OP_EXPANSION_MODE: AI_CPU
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+                  no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+              decode:
+                endpoint_host: 80.5.17.122
+                model_tag: /mnt/share/DeepSeekV4-pro-0813-w4a8
+                arguments:
+                  --tensor-parallel-size: 16
+                  --pipeline-parallel-size: 1
+                  --kv-transfer-config:
+                    kv_connector_extra_config:
+                      prefill:
+                        dp_size: 1
+                        tp_size: 8
+                        pp_size: 2
+                      decode:
+                        dp_size: 1
+                        tp_size: 16
+                        pp_size: 1
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+                  VLLM_HOST_IP: 80.5.17.122
+                  HCCL_IF_IP: 80.5.17.122
+                  GLOO_SOCKET_IFNAME: enp48s3u1u1
+                  TP_SOCKET_IFNAME: enp48s3u1u1
+                  HCCL_SOCKET_IFNAME: enp48s3u1u1
+                  HCCL_EXEC_TIMEOUT: "1800"
+                  HCCL_OP_EXPANSION_MODE: AI_CPU
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+                  no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.17.122
+      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_cpp_fixed: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_cpp_variable: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_srf_fixed: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_srf_variable: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_two_host_case_override
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_two_host_case_override
 
   deepseek_v4_pro_pd_performance_rotation_1:
-    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 CPP、SRF、CPP+SRF、baseline
+    description: DeepSeek V4 Pro W4A8 0813 的双机 PD 性能对比，顺序为 CPP、SRF、CPP+SRF、baseline
     cases:
       - deepseek_v4_pro_pd_cpp_fixed
       - deepseek_v4_pro_pd_cpp_variable
@@ -73,9 +182,10 @@ suites:
       - deepseek_v4_pro_pd_baseline_fixed
       - deepseek_v4_pro_pd_baseline_variable
     comparison: true
+    case_overrides: *deepseek_v4_pro_two_host_case_overrides
 
   deepseek_v4_pro_pd_performance_rotation_2:
-    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 SRF、CPP+SRF、baseline、CPP
+    description: DeepSeek V4 Pro W4A8 0813 的双机 PD 性能对比，顺序为 SRF、CPP+SRF、baseline、CPP
     cases:
       - deepseek_v4_pro_pd_srf_fixed
       - deepseek_v4_pro_pd_srf_variable
@@ -86,9 +196,10 @@ suites:
       - deepseek_v4_pro_pd_cpp_fixed
       - deepseek_v4_pro_pd_cpp_variable
     comparison: true
+    case_overrides: *deepseek_v4_pro_two_host_case_overrides
 
   deepseek_v4_pro_pd_performance_rotation_3:
-    description: DeepSeek V4 Pro 0505 的 PD 性能对比，顺序为 CPP+SRF、baseline、CPP、SRF
+    description: DeepSeek V4 Pro W4A8 0813 的双机 PD 性能对比，顺序为 CPP+SRF、baseline、CPP、SRF
     cases:
       - deepseek_v4_pro_pd_cpp_srf_fixed
       - deepseek_v4_pro_pd_cpp_srf_variable
@@ -99,6 +210,7 @@ suites:
       - deepseek_v4_pro_pd_srf_fixed
       - deepseek_v4_pro_pd_srf_variable
     comparison: true
+    case_overrides: *deepseek_v4_pro_two_host_case_overrides
 
   deepseek_v4_flash_pd_performance:
     description: DeepSeek V4 Flash W8A8 的 PD baseline、CPP、SRF 与 CPP+SRF 性能对比
@@ -113,43 +225,73 @@ suites:
       - deepseek_v4_pro_pd_cpp_srf_variable
     comparison: true
     case_overrides:
-      deepseek_v4_pro_pd_baseline_fixed:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_flash_two_host_fixed_case_override
+        server: pd_two_host
+        model: deepseek_v4_flash_a8w8_mtp
         warmup: model_max_len
-        bench: fixed_long
-      deepseek_v4_pro_pd_baseline_variable:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
+        bench: concurrency_4
+        overrides:
+          server: &deepseek_v4_flash_two_host_deployment
+            pd:
+              prefill:
+                endpoint_host: 80.5.9.127
+                arguments:
+                  --data-parallel-size: 1
+                  --tensor-parallel-size: 4
+                  --pipeline-parallel-size: 2
+                  --kv-transfer-config:
+                    kv_connector_extra_config:
+                      prefill:
+                        dp_size: 1
+                        tp_size: 4
+                        pp_size: 2
+                      decode:
+                        dp_size: 1
+                        tp_size: 8
+                        pp_size: 1
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7"
+                  VLLM_HOST_IP: 80.5.9.127
+                  HCCL_IF_IP: 80.5.9.127
+                  GLOO_SOCKET_IFNAME: enp194s0f0
+                  TP_SOCKET_IFNAME: enp194s0f0
+                  HCCL_SOCKET_IFNAME: enp194s0f0
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+                  no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+              decode:
+                endpoint_host: 80.5.9.128
+                arguments:
+                  --tensor-parallel-size: 8
+                  --pipeline-parallel-size: 1
+                  --kv-transfer-config:
+                    kv_connector_extra_config:
+                      prefill:
+                        dp_size: 1
+                        tp_size: 4
+                        pp_size: 2
+                      decode:
+                        dp_size: 1
+                        tp_size: 8
+                        pp_size: 1
+                environment:
+                  ASCEND_RT_VISIBLE_DEVICES: "8,9,10,11,12,13,14,15"
+                  VLLM_HOST_IP: 80.5.9.128
+                  HCCL_IF_IP: 80.5.9.128
+                  GLOO_SOCKET_IFNAME: enp194s0f0
+                  TP_SOCKET_IFNAME: enp194s0f0
+                  HCCL_SOCKET_IFNAME: enp194s0f0
+                  NO_PROXY: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+                  no_proxy: 127.0.0.1,localhost,80.5.9.127,80.5.9.128
+      deepseek_v4_pro_pd_baseline_variable: &deepseek_v4_flash_two_host_variable_case_override
+        server: pd_two_host
+        model: deepseek_v4_flash_a8w8_mtp
         warmup: model_max_len
-        bench: variable_long
-      deepseek_v4_pro_pd_cpp_fixed:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: fixed_long
-      deepseek_v4_pro_pd_cpp_variable:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: variable_long
-      deepseek_v4_pro_pd_srf_fixed:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: fixed_long
-      deepseek_v4_pro_pd_srf_variable:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: variable_long
-      deepseek_v4_pro_pd_cpp_srf_fixed:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: fixed_long
-      deepseek_v4_pro_pd_cpp_srf_variable:
-        server: deepseek_v4_flash_pd_two_host
-        model: deepseek_v4_flash_w8a8_mtp_pd
-        warmup: model_max_len
-        bench: variable_long
+        bench: concurrency_4
+        overrides:
+          server: *deepseek_v4_flash_two_host_deployment
+      deepseek_v4_pro_pd_cpp_fixed: *deepseek_v4_flash_two_host_fixed_case_override
+      deepseek_v4_pro_pd_cpp_variable: *deepseek_v4_flash_two_host_variable_case_override
+      deepseek_v4_pro_pd_srf_fixed: *deepseek_v4_flash_two_host_fixed_case_override
+      deepseek_v4_pro_pd_srf_variable: *deepseek_v4_flash_two_host_variable_case_override
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_flash_two_host_fixed_case_override
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_flash_two_host_variable_case_override

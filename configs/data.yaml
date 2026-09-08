@@ -14,7 +14,7 @@ formal:
         length: 1024
     fixed_long:
       description: 固定 64K 输入、2560 token 输出的长序列性能数据
-      request_count: 12
+      request_count: 24
       input:
         method: fixed
         length: 65536
@@ -46,8 +46,8 @@ formal:
       output:
         method: fixed
         length: 128
-    pd_prefill_variable_0830:
-      description: PD 分离系统 P 节点的变长输入、1 token 输出性能数据
+    prefill_variable:
+      description: 输入为变长8k~64k，输出为1，侧重测试prefill性能
       request_count: 64
       seed: 827
       input:
@@ -56,6 +56,16 @@ formal:
         stddev: 49152
         min: 8192
         max: 65536
+      output:
+        method: fixed
+        length: 1
+    prefill_fix:
+      description: 输入固定为32768，输出为1，侧重测试prefill性能
+      request_count: 64
+      seed: 827
+      input:
+        method: fixed
+        length: 32768
       output:
         method: fixed
         length: 1
