@@ -10,7 +10,7 @@ models:
 
   deepseek_v4_flash_a8w8_mtp:
     description: PD 与非 PD 共用的 DeepSeek V4 Flash W8A8 MTP 模型
-    model_tag: /home/weight/DeepSeek-V4-Flash-w8a8-mtp
+    model_tag: /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
     arguments:
       --served-model-name: deepseek-v4-flash
       --quantization: ascend

@@ -30,7 +30,7 @@ Pro 的角色与端口如下（Flash 仅将 Decode 主机换为 128，并使用�
 当前模型路径和 Connector：
 
 - Pro 模型：127 和 122 均使用 `/mnt/share/DeepSeekV4-pro-0813-w4a8`
-- Flash 模型：127 和 128 均使用 `/home/weight/DeepSeek-V4-Flash-w8a8-mtp`
+- Flash 模型：127 和 128 均使用 `/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp`
 - KV Connector：`MooncakeConnectorV1`
 
 以下分支、提交和容器是原部署记录，供环境复现参考，并非当前 YAML 强制锁定的依赖版本；运行前需自行核对两端实际环境：
@@ -231,7 +231,7 @@ docker exec -it wd_test0825 bash -lc '
 检查模型路径；如果实际模型放在备用目录，则只修改前述 `model_tag`：
 
 ```bash
-docker exec wd_test0825 test -d /home/weight/DeepSeek-V4-Flash-w8a8-mtp
+docker exec wd_test0825 test -d /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
 docker exec wd_test0825 test -d /mnt/share/DeepSeekV4-pro-0813-w4a8  # 127
 docker exec wd_test0825 test -d /mnt/share/DeepSeekV4-pro-0813-w4a8  # 122
 ```
