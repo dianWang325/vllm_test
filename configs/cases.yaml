@@ -78,7 +78,7 @@ cases:
     model: deepseek_v4_flash_a8w8_mtp
     data: prefill_fix
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   prefill_cpp_fixed:
     description: 非 PD CPP 服务 Prefill 定长性能测试
@@ -88,7 +88,7 @@ cases:
     data: prefill_fix
     warmup: model_max_len
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   prefill_baseline_variable:
     description: 非 PD 基线服务 Prefill 变长性能测试
@@ -97,7 +97,7 @@ cases:
     model: deepseek_v4_flash_a8w8_mtp
     data: prefill_variable
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   prefill_cpp_variable:
     description: 非 PD CPP 服务 Prefill 变长专项性能测试
@@ -107,7 +107,7 @@ cases:
     data: prefill_variable
     warmup: model_max_len
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   prefill_srf_variable:
     description: 非 PD SRF 服务 Prefill 变长专项性能测试
@@ -116,7 +116,7 @@ cases:
     model: deepseek_v4_flash_a8w8_mtp
     data: prefill_variable
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   prefill_cpp_srf_variable:
     description: 非 PD CPP+SRF 服务 Prefill 变长专项性能测试
@@ -126,7 +126,7 @@ cases:
     data: prefill_variable
     warmup: model_max_len
     bench: concurrency_4
-    report: performance
+    report: prefill
 
   # ==========================================================================
   # 3. 基础精度测试
