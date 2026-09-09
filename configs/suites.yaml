@@ -304,7 +304,7 @@ suites:
               ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
               HCCL_EXEC_TIMEOUT: "1800"
               HCCL_OP_EXPANSION_MODE: AI_CPU
-              NO_PROXY: &flash_multi_pd_no_proxy 127.0.0.1,localhost,P_IP,D_IP
+              NO_PROXY: &flash_multi_pd_no_proxy 127.0.0.1,localhost,80.5.17.112,80.5.17.113
               no_proxy: *flash_multi_pd_no_proxy
             pd:
               proxy:
@@ -323,18 +323,15 @@ suites:
                       decode: {dp_size: 2, tp_size: 8, pp_size: 1}
                 nodes:
                   p0:
-                    endpoint_host: &flash_multi_p_ip P_IP
-                    remote:
-                      <<: *multi_pd_remote
-                      host: P_SSH
+                    endpoint_host: &flash_multi_p_ip 80.5.17.112
                     environment:
                       VLLM_HOST_IP: *flash_multi_p_ip
                       HCCL_IF_IP: *flash_multi_p_ip
-                      GLOO_SOCKET_IFNAME: &flash_multi_p_ifname P_IFNAME
+                      GLOO_SOCKET_IFNAME: &flash_multi_p_ifname enp48s3u1u1
                       TP_SOCKET_IFNAME: *flash_multi_p_ifname
                       HCCL_SOCKET_IFNAME: *flash_multi_p_ifname
               decode:
-                external: false
+                external: true
                 environment:
                   HCCL_CONNECT_TIMEOUT: "1200"
                 arguments:
@@ -346,14 +343,11 @@ suites:
                     kv_connector_extra_config: *flash_multi_pd_topology
                 nodes:
                   d0:
-                    endpoint_host: &flash_multi_d_ip D_IP
-                    remote:
-                      <<: *multi_pd_remote
-                      host: D_SSH
+                    endpoint_host: &flash_multi_d_ip 80.5.17.113
                     environment:
                       VLLM_HOST_IP: *flash_multi_d_ip
                       HCCL_IF_IP: *flash_multi_d_ip
-                      GLOO_SOCKET_IFNAME: &flash_multi_d_ifname D_IFNAME
+                      GLOO_SOCKET_IFNAME: &flash_multi_d_ifname enp48s3u1u1
                       TP_SOCKET_IFNAME: *flash_multi_d_ifname
                       HCCL_SOCKET_IFNAME: *flash_multi_d_ifname
       deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_flash_multi_pd_mtp_override
