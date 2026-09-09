@@ -1,5 +1,5 @@
 # Suite 概览：共 17 项；Case 数为本 suite 实际启用的数量。
-# multi_pd 为 P/D 各双机；其他 Pro/Flash PD 为 P/D 各单机。
+# Pro multi_pd 为 P/D 各双机；Flash MTP multi_pd 为 P/D 各单机。
 # | Suite                                     | Case 数 | 对比报告 | 概述                                                |
 # | ----------------------------------------- | ------- | -------- | --------------------------------------------------- |
 # | baseline_smoke                            | 3       | 无       | Flash 基线冒烟 + GSM8K + GPQA；性能与精度混合       |
@@ -13,7 +13,7 @@
 # | deepseek_v4_pro_pd_performance            | 8       | 有       | Pro 双机 PD：baseline -> CPP -> SRF -> CPP+SRF      |
 # | deepseek_v4_pro_pd_performance_4case      | 4       | 有       | Pro 108/109 双机 PD：baseline / CPP+SRF，各跑一轮 |
 # | deepseek_v4_pro_multi_pd_performance_4case | 4      | 有       | Pro 四机 PD：P TP16/PP2，D DP2/TP16             |
-# | deepseek_v4_flash_multi_pd_mtp_performance_4case | 4 | 有     | 复用四机 PD，Flash W8A8 MTP                    |
+# | deepseek_v4_flash_multi_pd_mtp_performance_4case | 4 | 有     | Flash 双机 PD：P TP8/PP2，D DP2/TP8，均开启 MTP |
 # | deepseek_v4_pro_multi_pd_dspark_performance_4case | 4 | 有    | 复用四机 PD，Pro W4A8 0813 DSpark              |
 # | deepseek_v4_pro_pd_performance_rotation_1 | 8       | 有       | 同一 Pro PD 矩阵：CPP -> SRF -> CPP+SRF -> baseline |
 # | deepseek_v4_pro_pd_performance_rotation_2 | 8       | 有       | 同一 Pro PD 矩阵：SRF -> CPP+SRF -> baseline -> CPP |
@@ -288,18 +288,74 @@ suites:
 
   deepseek_v4_flash_multi_pd_mtp_performance_4case:
     <<: *deepseek_v4_pro_multi_pd_suite
-    description: DeepSeek-V4-Flash-w8a8-mtp 四机 PD，开启 MTP，baseline 与 CPP+SRF 定长/变长对比
+    description: DeepSeek-V4-Flash-w8a8-mtp 双机 PD；P DP1/TP8/PP2，D DP2/TP8/PP1，均开启 MTP
     case_overrides:
       deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_flash_multi_pd_mtp_override
+        server: pd_two_host
         model: deepseek_v4_flash_a8w8_mtp
         overrides:
           server:
-            <<: *deepseek_v4_pro_multi_pd_server
             arguments:
               --speculative-config:
                 method: mtp
                 num_speculative_tokens: 1
                 enforce_eager: true
+            environment:
+              ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+              HCCL_EXEC_TIMEOUT: "1800"
+              HCCL_OP_EXPANSION_MODE: AI_CPU
+              NO_PROXY: &flash_multi_pd_no_proxy 127.0.0.1,localhost,P_IP,D_IP
+              no_proxy: *flash_multi_pd_no_proxy
+            pd:
+              proxy:
+                environment:
+                  NO_PROXY: *flash_multi_pd_no_proxy
+                  no_proxy: *flash_multi_pd_no_proxy
+              prefill:
+                arguments:
+                  --distributed-executor-backend: mp
+                  --data-parallel-size: 1
+                  --tensor-parallel-size: 8
+                  --pipeline-parallel-size: 2
+                  --kv-transfer-config:
+                    kv_connector_extra_config: &flash_multi_pd_topology
+                      prefill: {dp_size: 1, tp_size: 8, pp_size: 2}
+                      decode: {dp_size: 2, tp_size: 8, pp_size: 1}
+                nodes:
+                  p0:
+                    endpoint_host: &flash_multi_p_ip P_IP
+                    remote:
+                      <<: *multi_pd_remote
+                      host: P_SSH
+                    environment:
+                      VLLM_HOST_IP: *flash_multi_p_ip
+                      HCCL_IF_IP: *flash_multi_p_ip
+                      GLOO_SOCKET_IFNAME: &flash_multi_p_ifname P_IFNAME
+                      TP_SOCKET_IFNAME: *flash_multi_p_ifname
+                      HCCL_SOCKET_IFNAME: *flash_multi_p_ifname
+              decode:
+                external: false
+                environment:
+                  HCCL_CONNECT_TIMEOUT: "1200"
+                arguments:
+                  --distributed-executor-backend: mp
+                  --data-parallel-size: 2
+                  --tensor-parallel-size: 8
+                  --pipeline-parallel-size: 1
+                  --kv-transfer-config:
+                    kv_connector_extra_config: *flash_multi_pd_topology
+                nodes:
+                  d0:
+                    endpoint_host: &flash_multi_d_ip D_IP
+                    remote:
+                      <<: *multi_pd_remote
+                      host: D_SSH
+                    environment:
+                      VLLM_HOST_IP: *flash_multi_d_ip
+                      HCCL_IF_IP: *flash_multi_d_ip
+                      GLOO_SOCKET_IFNAME: &flash_multi_d_ifname D_IFNAME
+                      TP_SOCKET_IFNAME: *flash_multi_d_ifname
+                      HCCL_SOCKET_IFNAME: *flash_multi_d_ifname
       deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_flash_multi_pd_mtp_override
       deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_flash_multi_pd_mtp_override
       deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_flash_multi_pd_mtp_override

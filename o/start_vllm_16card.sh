@@ -13,4 +13,5 @@ exec vllm serve "${MODEL_PATH}" \
   --port "${PORT}" \
   --data-parallel-size 2 \
   --tensor-parallel-size 8 \
+  --enforce-eager \
   --trust-remote-code
