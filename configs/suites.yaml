@@ -1,4 +1,4 @@
-# Suite 概览：共 15 项；Case 数为本 suite 实际启用的数量。
+# Suite 概览：共 17 项；Case 数为本 suite 实际启用的数量。
 # multi_pd 为 P/D 各双机；其他 Pro/Flash PD 为 P/D 各单机。
 # | Suite                                     | Case 数 | 对比报告 | 概述                                                |
 # | ----------------------------------------- | ------- | -------- | --------------------------------------------------- |
@@ -13,6 +13,8 @@
 # | deepseek_v4_pro_pd_performance            | 8       | 有       | Pro 双机 PD：baseline -> CPP -> SRF -> CPP+SRF      |
 # | deepseek_v4_pro_pd_performance_4case      | 4       | 有       | Pro 108/109 双机 PD：baseline / CPP+SRF，各跑一轮 |
 # | deepseek_v4_pro_multi_pd_performance_4case | 4      | 有       | Pro 四机 PD：P TP16/PP2，D DP2/TP16             |
+# | deepseek_v4_flash_multi_pd_mtp_performance_4case | 4 | 有     | 复用四机 PD，Flash W8A8 MTP                    |
+# | deepseek_v4_pro_multi_pd_dspark_performance_4case | 4 | 有    | 复用四机 PD，Pro W4A8 0813 DSpark              |
 # | deepseek_v4_pro_pd_performance_rotation_1 | 8       | 有       | 同一 Pro PD 矩阵：CPP -> SRF -> CPP+SRF -> baseline |
 # | deepseek_v4_pro_pd_performance_rotation_2 | 8       | 有       | 同一 Pro PD 矩阵：SRF -> CPP+SRF -> baseline -> CPP |
 # | deepseek_v4_pro_pd_performance_rotation_3 | 8       | 有       | 同一 Pro PD 矩阵：CPP+SRF -> baseline -> CPP -> SRF |
@@ -174,7 +176,7 @@ suites:
 
   # 将 P0/P1/D0/D1_IP、*_SSH、*_IFNAME 替换为实际部署值。
   # remote 在控制端经 SSH 进入已有容器；不创建容器、不同步代码或模型。
-  deepseek_v4_pro_multi_pd_performance_4case:
+  deepseek_v4_pro_multi_pd_performance_4case: &deepseek_v4_pro_multi_pd_suite
     description: Pro 四机 PD baseline 与 CPP+SRF；P DP1/TP16/PP2，D DP2/TP16/PP1
     cases:
       - deepseek_v4_pro_pd_baseline_fixed
@@ -185,7 +187,7 @@ suites:
     case_overrides:
       deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_multi_pd_override
         overrides:
-          server:
+          server: &deepseek_v4_pro_multi_pd_server
             environment:
               ASCEND_RT_VISIBLE_DEVICES: "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
               HCCL_EXEC_TIMEOUT: "1800"
@@ -283,6 +285,41 @@ suites:
       deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_multi_pd_override
       deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_multi_pd_override
       deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_multi_pd_override
+
+  deepseek_v4_flash_multi_pd_mtp_performance_4case:
+    <<: *deepseek_v4_pro_multi_pd_suite
+    description: DeepSeek-V4-Flash-w8a8-mtp 四机 PD，开启 MTP，baseline 与 CPP+SRF 定长/变长对比
+    case_overrides:
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_flash_multi_pd_mtp_override
+        model: deepseek_v4_flash_a8w8_mtp
+        overrides:
+          server:
+            <<: *deepseek_v4_pro_multi_pd_server
+            arguments:
+              --speculative-config:
+                method: mtp
+                num_speculative_tokens: 1
+                enforce_eager: true
+      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_flash_multi_pd_mtp_override
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_flash_multi_pd_mtp_override
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_flash_multi_pd_mtp_override
+
+  deepseek_v4_pro_multi_pd_dspark_performance_4case:
+    <<: *deepseek_v4_pro_multi_pd_suite
+    description: DeepSeek-V4-Pro-0813-w4a8 四机 PD，开启 DSpark，baseline 与 CPP+SRF 定长/变长对比
+    case_overrides:
+      deepseek_v4_pro_pd_baseline_fixed: &deepseek_v4_pro_multi_pd_dspark_override
+        overrides:
+          server:
+            <<: *deepseek_v4_pro_multi_pd_server
+            arguments:
+              --speculative-config:
+                method: dspark
+                num_speculative_tokens: 5
+                enforce_eager: true
+      deepseek_v4_pro_pd_baseline_variable: *deepseek_v4_pro_multi_pd_dspark_override
+      deepseek_v4_pro_pd_cpp_srf_fixed: *deepseek_v4_pro_multi_pd_dspark_override
+      deepseek_v4_pro_pd_cpp_srf_variable: *deepseek_v4_pro_multi_pd_dspark_override
 
   deepseek_v4_pro_pd_performance_4case:
     description: DeepSeek V4 Pro W4A8 0813 的双机 PD baseline与 CPP+SRF 性能对比【简易版】

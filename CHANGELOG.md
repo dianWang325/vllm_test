@@ -8,6 +8,21 @@ Git 提交正文使用 `Change-Record: <记录 ID>` 关联本文件条目。可�
 git log --all --fixed-strings --grep="Change-Record: 2026-09-08-01" --format=fuller --stat
 ```
 
+## 2026-09-09｜2026-09-09-01
+
+提交主题：`feat(pd): add MTP and DSpark multi-host suites`
+
+修改内容：
+
+- 新增 Flash MTP 与 Pro DSpark 四机 PD suite，复用现有 P 双机 TP16/PP2、D 双机 DP2/TP16 拓扑。
+- MTP 使用 `num_speculative_tokens: 1`，DSpark 使用 `num_speculative_tokens: 5`，配置同时下发 P0/P1/D0/D1。
+- 保持 `MooncakeConnectorV1`、KV 端口、engine ID 和节点编排不变。
+
+验证：
+
+- `python -B -m pytest -q -p no:cacheprovider tests`：35 passed。
+- 核对两个 suite 的最终解析结果，确认四个节点均获得对应 speculative config，Connector 均为 `MooncakeConnectorV1`。
+
 ## 2026-09-08｜2026-09-08-05
 
 修改主题：`feat(pd): manage multi-host prefill and data-parallel decode`
