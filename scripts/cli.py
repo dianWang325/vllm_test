@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import re
 import shutil
 import sys
 from dataclasses import asdict
@@ -13,7 +15,14 @@ from typing import Any
 
 from .accuracy import run_accuracy
 from .bench import run_performance, run_warmup
-from .config import ROOT, dump_yaml, list_entries, resolve_case, resolve_suite
+from .config import (
+    ConfigurationError,
+    ROOT,
+    dump_yaml,
+    list_entries,
+    resolve_case,
+    resolve_suite,
+)
 from .data import assert_prefix_disjoint, generate_formal, generate_warmup
 from .report import build_report, build_suite_comparison
 from .runtime_info import build_run_id, read_runtime_info
@@ -28,6 +37,67 @@ def _write_json(path: Path, value: dict[str, Any]) -> None:
     path.write_text(
         json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+
+
+def _runtime_run_tag() -> str | None:
+    value = os.environ.get("VTEST_RUN_TAG")
+    if value is None:
+        return None
+    value = value.strip()
+    if not value or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", value) is None:
+        raise ConfigurationError(
+            "VTEST_RUN_TAG must contain only letters, numbers, '.', '_' or '-'"
+        )
+    return value
+
+
+def _tag_run_id(run_id: str, tag: str | None) -> str:
+    if tag is None:
+        return run_id
+    prefix, run_type = run_id.rsplit("_", 1)
+    return f"{prefix}_{tag}_{run_type}"
+
+
+def _runtime_server_overrides(cases: list[dict[str, Any]]) -> None:
+    visible_devices = os.environ.get("ASCEND_RT_VISIBLE_DEVICES")
+    server_port = os.environ.get("VTEST_SERVER_PORT")
+    if visible_devices is None and server_port is None:
+        return
+
+    normalized_devices: str | None = None
+    if visible_devices is not None:
+        parts = [part.strip() for part in visible_devices.split(",")]
+        if not parts or any(not part.isdigit() for part in parts):
+            raise ConfigurationError(
+                "ASCEND_RT_VISIBLE_DEVICES must be a comma-separated list of device IDs"
+            )
+        device_ids = [int(part) for part in parts]
+        if len(device_ids) != len(set(device_ids)):
+            raise ConfigurationError("ASCEND_RT_VISIBLE_DEVICES contains duplicate IDs")
+        normalized_devices = ",".join(str(device_id) for device_id in device_ids)
+
+    parsed_port: int | None = None
+    if server_port is not None:
+        try:
+            parsed_port = int(server_port)
+        except ValueError as exc:
+            raise ConfigurationError("VTEST_SERVER_PORT must be an integer") from exc
+        if not 1 <= parsed_port <= 65535:
+            raise ConfigurationError("VTEST_SERVER_PORT must be between 1 and 65535")
+
+    for case in cases:
+        server = case["effective"]["server"]
+        pd = server.get("pd")
+        if isinstance(pd, dict) and ("prefill" in pd or "decode" in pd):
+            raise ConfigurationError(
+                "runtime device/port overrides currently support non-PD servers only"
+            )
+        if normalized_devices is not None:
+            server.setdefault("environment", {})[
+                "ASCEND_RT_VISIBLE_DEVICES"
+            ] = normalized_devices
+        if parsed_port is not None:
+            server.setdefault("arguments", {})["--port"] = parsed_port
 
 
 def _tokenizer(server: dict[str, Any]) -> str:
@@ -174,15 +244,21 @@ def execute(kind: str, name: str) -> list[Path]:
     else:
         suite = resolve_suite(name)
         cases = suite["cases"]
+    _runtime_server_overrides(cases)
+    run_tag = _runtime_run_tag()
     runtime_info = read_runtime_info()
     created_at = datetime.now().astimezone()
     runtime = asdict(runtime_info)
+    if run_tag is not None:
+        runtime["run_tag"] = run_tag
     by_type: dict[str, list[dict[str, Any]]] = {}
     for case in cases:
         by_type.setdefault(case["type"], []).append(case)
 
     run_ids = {
-        run_type: build_run_id(runtime_info, run_type, created_at)
+        run_type: _tag_run_id(
+            build_run_id(runtime_info, run_type, created_at), run_tag
+        )
         for run_type in by_type
     }
     planned_dirs = {run_type: ROOT / "runs" / run_id for run_type, run_id in run_ids.items()}
@@ -191,7 +267,9 @@ def execute(kind: str, name: str) -> list[Path]:
         raise RuntimeError(f"run path already exists: {existing[0]}")
     suite_manifest: Path | None = None
     if kind == "suite":
-        prefix = build_run_id(runtime_info, "performance", created_at).rsplit("_", 1)[0]
+        prefix = _tag_run_id(
+            build_run_id(runtime_info, "performance", created_at), run_tag
+        ).rsplit("_", 1)[0]
         suite_manifest = ROOT / "runs" / f"{prefix}_{name}_suite.yaml"
         if suite_manifest.exists():
             raise RuntimeError(f"suite manifest already exists: {suite_manifest}")

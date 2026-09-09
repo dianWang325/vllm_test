@@ -17,8 +17,6 @@ profiles:
       - E2EL.total.P90
       - TTFT.total.Average
       - TTFT.total.P90
-      - TPOT.total.Average
-      - TPOT.total.P90
   functional:
     description: 汇总功能冒烟请求是否全部成功
     metrics:
