@@ -48,7 +48,7 @@ formal:
         length: 128
     prefill_variable:
       description: 输入为变长8k~64k，输出为1，侧重测试prefill性能
-      request_count: 64
+      request_count: 24
       seed: 827
       input:
         method: gaussian
@@ -61,7 +61,7 @@ formal:
         length: 1
     prefill_fix:
       description: 输入固定为32768，输出为1，侧重测试prefill性能
-      request_count: 64
+      request_count: 24
       seed: 827
       input:
         method: fixed

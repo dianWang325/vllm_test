@@ -14,7 +14,7 @@ models:
     arguments:
       --served-model-name: deepseek-v4-flash
       --quantization: ascend
-      --max-model-len: 1048576
+      --max-model-len: 87295
       --tokenizer-mode: deepseek_v4
       --tool-call-parser: deepseek_v4
       --reasoning-parser: deepseek_v4

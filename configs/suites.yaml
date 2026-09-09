@@ -1,4 +1,4 @@
-# Suite 概览：共 17 项；Case 数为本 suite 实际启用的数量。
+# Suite 概览：共 19 项；Case 数为本 suite 实际启用的数量。
 # Pro multi_pd 为 P/D 各双机；Flash MTP multi_pd 为 P/D 各单机。
 # | Suite                                     | Case 数 | 对比报告 | 概述                                                |
 # | ----------------------------------------- | ------- | -------- | --------------------------------------------------- |
@@ -8,6 +8,8 @@
 # | srf_validation                            | 1       | 无       | 非 PD SRF Prefill 变长                              |
 # | cpp_srf_validation                        | 1       | 无       | 非 PD CPP+SRF Prefill 变长                          |
 # | prefill_variable_performance              | 4       | 有       | 非 PD Prefill 变长：baseline / CPP / SRF / CPP+SRF  |
+# | prefill_baseline_cpp_v2_runner_1_performance | 4     | 有       | 非 PD Prefill 定长/变长：baseline / CPP，V2 Runner=1 |
+# | prefill_baseline_cpp_v2_runner_0_performance | 4     | 有       | 非 PD Prefill 定长/变长：baseline / CPP，V2 Runner=0 |
 # | baseline_pd_0830                          | 1       | 无       | Flash 单机 PD：Prefill 8 卡 + Decode 8 卡           |
 # | gpqa_deepseek_v4_flash_accuracy           | 4       | 无       | Flash GPQA：baseline / CPP / SRF / CPP+SRF 全量精度 |
 # | deepseek_v4_pro_pd_performance            | 8       | 有       | Pro 双机 PD：baseline -> CPP -> SRF -> CPP+SRF      |
@@ -49,6 +51,43 @@ suites:
       - prefill_srf_variable
       - prefill_cpp_srf_variable
     comparison: true
+
+  prefill_baseline_cpp_v2_runner_1_performance:
+    description: DeepSeek V4 Flash 非 PD baseline、CPP 定长/变长性能对比，V2 Model Runner=1；每个 case 独立启动服务
+    cases:
+      - prefill_baseline_fixed
+      - prefill_cpp_fixed
+      - prefill_baseline_variable
+      - prefill_cpp_variable
+    comparison: true
+    case_overrides:
+      prefill_baseline_fixed:
+        warmup: model_max_len
+      prefill_baseline_variable:
+        warmup: model_max_len
+
+  prefill_baseline_cpp_v2_runner_0_performance:
+    description: DeepSeek V4 Flash 非 PD baseline、CPP 定长/变长性能对比，V2 Model Runner=0；每个 case 独立启动服务
+    cases:
+      - prefill_baseline_fixed
+      - prefill_cpp_fixed
+      - prefill_baseline_variable
+      - prefill_cpp_variable
+    comparison: true
+    case_overrides:
+      prefill_baseline_fixed:
+        warmup: model_max_len
+        overrides: &prefill_non_pd_v2_runner_0_overrides
+          server:
+            environment:
+              VLLM_USE_V2_MODEL_RUNNER: "0"
+      prefill_cpp_fixed:
+        overrides: *prefill_non_pd_v2_runner_0_overrides
+      prefill_baseline_variable:
+        warmup: model_max_len
+        overrides: *prefill_non_pd_v2_runner_0_overrides
+      prefill_cpp_variable:
+        overrides: *prefill_non_pd_v2_runner_0_overrides
 
 
   baseline_pd_0830:
