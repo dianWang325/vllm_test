@@ -1,6 +1,6 @@
 from ais_bench.benchmark.calculators import DefaultPerfMetricCalculator
 from ais_bench.benchmark.datasets import CustomDataset
-from ais_bench.benchmark.models import VLLMCustomAPI
+from ais_bench.benchmark.models import VLLMCustomAPIStream
 from ais_bench.benchmark.openicl.icl_evaluator import AccEvaluator
 from ais_bench.benchmark.openicl.icl_inferencer import GenInferencer
 from ais_bench.benchmark.openicl.icl_prompt_template import PromptTemplate
@@ -8,23 +8,20 @@ from ais_bench.benchmark.openicl.icl_retriever import ZeroRetriever
 from ais_bench.benchmark.summarizers import DefaultPerfSummarizer
 
 
-DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/formal/prefill_fix-a96f35d6532e-d8284422c405.jsonl"
+DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/formal/fixed_long-3eed0bf1b271-32476f486437.jsonl"
 
 models = [
     dict(
-        type=VLLMCustomAPI,
-        stream=True,
+        type=VLLMCustomAPIStream,
         attr="service",
         abbr="vtest",
-        path="/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp",
+        path="/home/w00985415/vllm_test/aisbench_workspace/tokenizers/deepseek-v4-flash",
         model="deepseek-v4-flash",
-        api_key="",
         request_rate=0,
-        use_timestamp=False,
         retry=3,
         host_ip="127.0.0.1",
         host_port=18080,
-        max_out_len=1,
+        max_out_len=2560,
         batch_size=4,
         trust_remote_code=True,
         generation_kwargs=dict(
@@ -48,7 +45,6 @@ datasets = [
         abbr="vtest_data",
         type=CustomDataset,
         path=DATASET_PATH,
-        meta_path=DATASET_PATH + ".meta.json",
         reader_cfg=reader_cfg,
         infer_cfg=infer_cfg,
         eval_cfg=eval_cfg,

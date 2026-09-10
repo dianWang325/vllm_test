@@ -2,11 +2,11 @@
 
 本文说明如何使用以下配置向已经启动的 OpenAI 兼容模型服务发送 Prefill 性能请求：
 
-- `prefill_warmup.py`：5 条预热请求，并发 1。
-- `prefill_variable.py`：24 条正式请求，并发 4，输入长度覆盖 8K～64K。
-- `prefill_fixed.py`：24 条正式请求，并发 4，输入长度固定为 32K。
+- `prefill_warmup.py`：5 条预热请求，并发 1，输出 1 token。
+- `prefill_variable.py`：24 条正式请求，并发 4，输入长度为 40K～80K 的高斯分布（均值 64K、标准差 10K），输出 2560 token。
+- `prefill_fixed.py`：24 条正式请求，并发 4，输入长度固定为 64K，输出 2560 token。
 
-三个配置的输出长度均为 1 token，因此不统计 TPOT。
+warmup 输出长度为 1 token，不统计 TPOT；两个正式测试输出 2560 token，需要统计 TPOT。
 
 ## 一、适用条件
 
@@ -44,13 +44,13 @@ prefill_warmup.py
 prefill_variable.py
 ```
 
-`prefill_fixed.py` 尚未完成当前容器 AISBench 版本的兼容修正，不应直接运行。使用前需要与另外两个配置保持一致：
+`prefill_fixed.py` 已与另外两个配置完成相同的兼容修正，可以直接使用：
 
-1. 模型类改为 `VLLMCustomAPIStream`。
-2. 删除不支持的 `stream`、`api_key` 和 `use_timestamp`。
-3. 从 `DefaultPerfSummarizer` 中删除 `attr`。
-4. 从 `CustomDataset` 中删除 `meta_path`。
-5. 将 tokenizer 的 `path` 设置为 `${PROJECT}/aisbench_workspace/tokenizers/deepseek-v4-flash`，避免模型目录中的 YAML 使 AISBench 误选 `MindformersTokenizer`。
+- 模型类使用 `VLLMCustomAPIStream`。
+- 未传递当前 AISBench 不支持的 `stream`、`api_key` 和 `use_timestamp`。
+- `DefaultPerfSummarizer` 设置当前 AISBench CLI 必需的 `attr="performance"`；CLI 会在实例化 summarizer 前消费该字段。
+- `CustomDataset` 未传递不支持的 `meta_path`。
+- tokenizer 的 `path` 指向 `${PROJECT}/aisbench_workspace/tokenizers/deepseek-v4-flash`，避免模型目录中的 YAML 使 AISBench 误选 `MindformersTokenizer`。
 
 ## 三、标准执行流程
 
@@ -121,12 +121,15 @@ docker exec -w "${PROJECT}" "${CONTAINER}" \
 ```text
 Success Requests = 24
 Failed Requests  = 0
-输入长度范围     = 8192～65536
+输入长度范围     = 40960～81920
+配置分布均值     = 65536
+配置标准差       = 10240
+输出长度         = 2560
 ```
 
 ### 5. 执行固定长度 Prefill 测试
 
-仅在 `prefill_fixed.py` 完成第二节中的兼容修正后运行：
+`prefill_fixed.py` 已完成兼容修正，可直接运行：
 
 ```bash
 docker exec -w "${PROJECT}" "${CONTAINER}" \
@@ -137,7 +140,7 @@ docker exec -w "${PROJECT}" "${CONTAINER}" \
   --debug
 ```
 
-预期为 24 条固定 32K 输入请求，并发 4，全部成功且无失败请求。
+预期为 24 条固定 64K 输入请求、2560 token 输出，并发 4，全部成功且无失败请求。
 
 ## 四、固定运行约束
 
@@ -146,7 +149,8 @@ docker exec -w "${PROJECT}" "${CONTAINER}" \
 - 不传递 `--num-warmups`。
 - 无需额外传递 `--num-prompts`，请求数量由对应 JSONL 数据集决定。
 - 每轮和每个阶段使用独立的 `--work-dir`。
-- 输出长度固定为 1 token；TPOT 缺失是正常现象，不能因此判定测试失败。
+- warmup 输出长度为 1 token，TPOT 缺失是正常现象。
+- fixed/variable 正式测试输出长度为 2560 token，应检查并汇报 TPOT。
 
 ## 五、成功判定与结果检查
 
@@ -163,28 +167,30 @@ docker exec -w "${PROJECT}" "${CONTAINER}" \
 
 ```bash
 find "${RUN_ROOT}" \
-  -path "*/performances/vtest/customdataset.json" \
-  -o -path "*/performances/vtest/customdataset.csv"
+  -path "*/performances/vtest/vtest_data.json" \
+  -o -path "*/performances/vtest/vtest_data.csv"
 ```
 
 检查文件非空：
 
 ```bash
 find "${RUN_ROOT}" \
-  -path "*/performances/vtest/customdataset.json" \
+  -path "*/performances/vtest/vtest_data.json" \
   -type f -size +0c
 
 find "${RUN_ROOT}" \
-  -path "*/performances/vtest/customdataset.csv" \
+  -path "*/performances/vtest/vtest_data.csv" \
   -type f -size +0c
 ```
 
 结果通常位于：
 
 ```text
-<work-dir>/<时间戳>/performances/vtest/customdataset.json
-<work-dir>/<时间戳>/performances/vtest/customdataset.csv
+<work-dir>/<时间戳>/performances/vtest/vtest_data.json
+<work-dir>/<时间戳>/performances/vtest/vtest_data.csv
 ```
+
+部分旧版 AISBench 可能使用 `customdataset.json`/`customdataset.csv`；以实际日志打印的 `Performance Result files located in ...` 目录为准。
 
 ## 六、建议汇报指标
 
@@ -197,8 +203,9 @@ find "${RUN_ROOT}" \
 - Total Token Throughput
 - Success Requests / Failed Requests
 - TTFT Average / Median / P90 / P95 / P99
+- TPOT Average / Median / P90 / P95 / P99
 - E2EL Average / Median / P90 / P95 / P99
 - 总输入 Token、平均输入长度和输入长度范围
 - Benchmark Duration
 
-由于输出长度为 1 token，不汇报 TPOT。
+仅 warmup 不汇报 TPOT；fixed/variable 正式测试应汇报 TPOT。

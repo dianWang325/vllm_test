@@ -8,7 +8,7 @@ from ais_bench.benchmark.openicl.icl_retriever import ZeroRetriever
 from ais_bench.benchmark.summarizers import DefaultPerfSummarizer
 
 
-DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/formal/prefill_variable-5b4fed2cabe4-0456091c355d.jsonl"
+DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/formal/variable_long-b2a5ede57922-6658b459dfe1.jsonl"
 
 models = [
     dict(
@@ -21,7 +21,7 @@ models = [
         retry=3,
         host_ip="127.0.0.1",
         host_port=18080,
-        max_out_len=1,
+        max_out_len=2560,
         batch_size=4,
         trust_remote_code=True,
         generation_kwargs=dict(
@@ -52,6 +52,7 @@ datasets = [
 ]
 
 summarizer = dict(
+    attr="performance",
     type=DefaultPerfSummarizer,
     calculator=dict(
         type=DefaultPerfMetricCalculator,

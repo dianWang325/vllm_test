@@ -52,6 +52,7 @@ datasets = [
 ]
 
 summarizer = dict(
+    attr="performance",
     type=DefaultPerfSummarizer,
     calculator=dict(
         type=DefaultPerfMetricCalculator,
