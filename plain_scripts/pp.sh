@@ -16,7 +16,6 @@ vllm serve /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp \
   --no-enable-prefix-caching \
   --no-async-scheduling \
   --enable-expert-parallel \
-  --additional-config '{"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":1,"need_timing":true}}}' \
   --served-model-name deepseek-v4-flash \
   --quantization ascend \
   --max-model-len 87040 \
