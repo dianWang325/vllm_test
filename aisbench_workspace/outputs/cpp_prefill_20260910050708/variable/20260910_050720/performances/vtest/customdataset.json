@@ -1,0 +1,41 @@
+{
+    "Benchmark Duration": {
+        "total": "45323.5885 ms"
+    },
+    "Total Requests": {
+        "total": 24
+    },
+    "Failed Requests": {
+        "total": 0
+    },
+    "Success Requests": {
+        "total": 24
+    },
+    "Concurrency": {
+        "total": 3.6579
+    },
+    "Max Concurrency": {
+        "total": 4
+    },
+    "Request Throughput": {
+        "total": "0.5295 req/s"
+    },
+    "Total Input Tokens": {
+        "total": 651877
+    },
+    "Prefill Token Throughput": {
+        "total": "3932.186 token/s"
+    },
+    "Total generated tokens": {
+        "total": 24
+    },
+    "Input Token Throughput": {
+        "total": "14382.7314 token/s"
+    },
+    "Output Token Throughput": {
+        "total": "0.5295 token/s"
+    },
+    "Total Token Throughput": {
+        "total": "14383.2609 token/s"
+    }
+}

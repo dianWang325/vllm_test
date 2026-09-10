@@ -1,0 +1,4 @@
+Constructing synthetic string datasets ...:   0%|          | 0/24 [00:00<?, ?it/s]Constructing synthetic string datasets ...: 100%|██████████| 24/24 [00:00<00:00, 2784.52it/s]
+2026-09-09 17:49:38,221 - INFO - 加载tokenizer: /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+Generating dataset:   0%|          | 0/5 [00:00<?, ?row/s]Generating dataset:  20%|██        | 1/5 [00:00<00:01,  3.90row/s]Generating dataset:  40%|████      | 2/5 [00:00<00:00,  3.99row/s]Generating dataset:  60%|██████    | 3/5 [00:00<00:00,  3.94row/s]Generating dataset:  80%|████████  | 4/5 [00:01<00:00,  3.96row/s]Generating dataset: 100%|██████████| 5/5 [00:01<00:00,  3.92row/s]Generating dataset: 100%|██████████| 5/5 [00:01<00:00,  3.93row/s]
+error: required metric is missing: TPOT.total.Average

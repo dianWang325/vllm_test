@@ -1,0 +1,75 @@
+DATASET_PATH='/home/w00985415/vllm_test/aisbench_workspace/datasets/warmup/model_max_len-ea1eb704fce6-a76bd1062832.jsonl'
+datasets=[
+    dict(abbr='vtest_data',
+        eval_cfg=dict(
+            evaluator=dict(
+                type='ais_bench.benchmark.openicl.icl_evaluator.AccEvaluator'),
+            pred_role='BOT'),
+        infer_cfg=dict(
+            inferencer=dict(
+                type='ais_bench.benchmark.openicl.icl_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template='{question}',
+                type='ais_bench.benchmark.openicl.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='ais_bench.benchmark.openicl.icl_retriever.ZeroRetriever')),
+        meta_path='/home/w00985415/vllm_test/aisbench_workspace/datasets/warmup/model_max_len-ea1eb704fce6-a76bd1062832.jsonl.meta.json',
+        path='/home/w00985415/vllm_test/aisbench_workspace/datasets/warmup/model_max_len-ea1eb704fce6-a76bd1062832.jsonl',
+        reader_cfg=dict(
+            input_columns=[
+                'question',
+                'max_out_len',
+                ],
+            output_column=None),
+        type='ais_bench.benchmark.datasets.CustomDataset'),
+    ]
+eval_cfg=dict(
+    evaluator=dict(
+        type='ais_bench.benchmark.openicl.icl_evaluator.AccEvaluator'),
+    pred_role='BOT')
+infer_cfg=dict(
+    inferencer=dict(
+        type='ais_bench.benchmark.openicl.icl_inferencer.GenInferencer'),
+    prompt_template=dict(
+        template='{question}',
+        type='ais_bench.benchmark.openicl.icl_prompt_template.PromptTemplate'),
+    retriever=dict(
+        type='ais_bench.benchmark.openicl.icl_retriever.ZeroRetriever'))
+models=[
+    dict(abbr='vtest',
+        attr='service',
+        batch_size=1,
+        generation_kwargs=dict(
+            ignore_eos=True,
+            repetition_penalty=1,
+            temperature=0),
+        host_ip='127.0.0.1',
+        host_port=18080,
+        max_out_len=1,
+        model='deepseek-v4-flash',
+        path='/home/w00985415/vllm_test/aisbench_workspace/tokenizers/deepseek-v4-flash',
+        request_rate=0,
+        retry=3,
+        trust_remote_code=True,
+        type='ais_bench.benchmark.models.VLLMCustomAPIStream'),
+    ]
+reader_cfg=dict(
+    input_columns=[
+        'question',
+        'max_out_len',
+        ],
+    output_column=None)
+summarizer=dict(
+    calculator=dict(
+        stats_list=[
+            'Average',
+            'Min',
+            'Max',
+            'Median',
+            'P90',
+            'P95',
+            'P99',
+            ],
+        type='ais_bench.benchmark.calculators.DefaultPerfMetricCalculator'),
+    type='ais_bench.benchmark.summarizers.DefaultPerfSummarizer')
+work_dir='/home/w00985415/vllm_test/aisbench_workspace/outputs/manual_prefill_20260909205104/warmup_success/20260910_045314'
