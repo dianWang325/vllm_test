@@ -30,9 +30,8 @@ vllm serve /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp \
   --served-model-name deepseek-v4-flash \
   --quantization ascend \
   --max-model-len 87040 \
-  --speculative-config '{"num_speculative_tokens":1,"method":"mtp","enforce_eager":true}' \
   --additional-config '{"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":0.8,"need_timing":true}}}' \
-  --speculative_config='{"method": "dspark","num_speculative_tokens": 5,"enforce_eager": True}' \
+  --speculative_config='{"method": "dspark","num_speculative_tokens": 5,"enforce_eager": true}' \
   --tokenizer-mode deepseek_v4 \
   --tool-call-parser deepseek_v4 \
   --reasoning-parser deepseek_v4 \
