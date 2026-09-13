@@ -8,7 +8,8 @@ from ais_bench.benchmark.openicl.icl_retriever import ZeroRetriever
 from ais_bench.benchmark.summarizers import DefaultPerfSummarizer
 
 
-DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/warmup/model_max_len-ea1eb704fce6-a76bd1062832.jsonl"
+# 87040-token context: 87039 input tokens + 1 output token.
+DATASET_PATH = "/home/w00985415/vllm_test/aisbench_workspace/datasets/warmup/prefill_warmup_87039-f8cec8754b5c.jsonl"
 
 models = [
     dict(

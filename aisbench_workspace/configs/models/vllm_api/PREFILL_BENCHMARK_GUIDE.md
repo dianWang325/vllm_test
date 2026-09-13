@@ -2,7 +2,7 @@
 
 本文说明如何使用以下配置向已经启动的 OpenAI 兼容模型服务发送 Prefill 性能请求：
 
-- `prefill_warmup.py`：5 条预热请求，并发 1，输出 1 token。
+- `prefill_warmup.py`：5 条预热请求，并发 1，输入固定为 87039 token（87040 − 1），输出 1 token。
 - `prefill_variable.py`：24 条正式请求，并发 4，输入长度为 40K～80K 的高斯分布（均值 64K、标准差 10K），输出 2560 token。
 - `prefill_fixed.py`：24 条正式请求，并发 4，输入长度固定为 64K，输出 2560 token。
 
