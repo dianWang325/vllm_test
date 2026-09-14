@@ -1,0 +1,37 @@
+
+Authorized users only. All activities may be monitored and reported.
+INFO:     Started server process [118149]
+INFO:     Waiting for application startup.
+2026-09-14 05:00:07,383 INFO [load_balance_proxy_server_example] Initialized 1 prefill clients and 2 decode clients in worker 118149.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18090 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50612 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45116 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36606 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36616 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36628 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36636 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37498 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55042 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53120 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53136 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35276 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35282 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37934 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42420 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39248 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50148 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50162 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33888 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60046 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55066 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55072 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45372 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54196 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49396 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49402 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52278 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [118149]

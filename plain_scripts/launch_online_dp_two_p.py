@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Launch the A3 DeepSeek-V4-Flash Prefill or Decode ranks on one host.
+"""Launch two-host Prefill or the unchanged single-host Decode layout.
 
-Examples (run on the corresponding host):
-  python launch_online_dp.py --role prefill --local-ip P_IP --nic-name NIC
-  python launch_online_dp.py --role decode --local-ip D_IP --nic-name NIC
+Run this same script on both P hosts, passing P0's IP as --master-addr:
+  python launch_online_dp_two_p.py --role prefill --node-rank 0 --local-ip P0_IP --master-addr P0_IP --nic-name NIC
+  python launch_online_dp_two_p.py --role prefill --node-rank 1 --local-ip P1_IP --master-addr P0_IP --nic-name NIC
+Run it once on the D host:
+  python launch_online_dp_two_p.py --role decode --local-ip D_IP --nic-name NIC
 
-The Prefill host uses DP1/TP8/PP2 and ports 18080; the Decode host uses
-DP2/TP8/PP1 and ports 18082-18083. Each role consumes devices 0-15.
+P uses internal DP2/TP8/PP2 across two 16-NPU hosts. P0 serves HTTP on
+127.0.0.1:18080 and P1 is headless. D remains external DP2/TP8/PP1 on
+one 16-NPU host, with HTTP ports 18082-18083.
 """
 
 from __future__ import annotations
@@ -20,9 +23,9 @@ import time
 from pathlib import Path
 
 
-SCRIPT = Path(__file__).with_name("run_dp_template.sh")
+SCRIPT = Path(__file__).with_name("run_dp_template_two_p.sh")
 LAYOUTS = {
-    "prefill": {"dp": 1, "tp": 8, "pp": 2, "port": 18080},
+    "prefill": {"dp": 2, "tp": 8, "pp": 2, "port": 18080},
     "decode": {"dp": 2, "tp": 8, "pp": 1, "port": 18082},
 }
 
@@ -32,9 +35,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--role", choices=LAYOUTS, required=True)
     parser.add_argument("--local-ip", required=True, help="This host's reachable communication IP")
     parser.add_argument("--nic-name", required=True, help="Interface carrying the local IP")
+    parser.add_argument("--node-rank", type=int, choices=(0, 1), help="P host index: 0 serves HTTP, 1 is headless")
+    parser.add_argument("--master-addr", help="P0 communication IP; required on both P hosts")
+    parser.add_argument("--master-port", type=int, default=29500, help="P MP rendezvous port")
     parser.add_argument(
         "--dp-address",
-        help="DP master IP; defaults to --local-ip (both ranks of D are on one host)",
+        help="DP coordinator IP; defaults to P0 on P or this host on D",
     )
     parser.add_argument("--dp-rpc-port", type=int, default=12321)
     parser.add_argument("--vllm-start-port", type=int, help="First HTTP port for this role")
@@ -42,16 +48,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true", help="Print rank commands without starting vLLM")
     args = parser.parse_args()
     layout = LAYOUTS[args.role]
-    args.dp_address = args.dp_address or args.local_ip
+    if args.role == "prefill":
+        if args.node_rank is None or not args.master_addr:
+            parser.error("P requires --node-rank 0|1 and --master-addr P0_IP")
+        if args.node_rank == 0 and args.local_ip != args.master_addr:
+            parser.error("P0 --local-ip must equal --master-addr")
+        args.dp_address = args.dp_address or args.master_addr
+        if args.dp_address != args.master_addr:
+            parser.error("P --dp-address must equal --master-addr")
+    else:
+        if args.node_rank is not None or args.master_addr is not None:
+            parser.error("D does not use --node-rank or --master-addr")
+        args.dp_address = args.dp_address or args.local_ip
     if args.vllm_start_port is None:
         args.vllm_start_port = layout["port"]
     if args.device_start < 0:
         parser.error("--device-start must be nonnegative")
-    for port in (args.dp_rpc_port, args.vllm_start_port, args.vllm_start_port + layout["dp"] - 1):
+    http_ports = range(args.vllm_start_port, args.vllm_start_port + (1 if args.role == "prefill" else layout["dp"]))
+    for port in (args.dp_rpc_port, args.master_port, *http_ports):
         if not 1 <= port <= 65535:
             parser.error("ports must be between 1 and 65535")
-    if args.dp_rpc_port in range(args.vllm_start_port, args.vllm_start_port + layout["dp"]):
-        parser.error("DP RPC port must differ from the HTTP ports")
+    if args.dp_rpc_port in http_ports or (args.role == "prefill" and args.master_port in (*http_ports, args.dp_rpc_port)):
+        parser.error("DP RPC, P master and HTTP ports must be distinct")
     return args
 
 
@@ -63,15 +81,20 @@ def main() -> int:
 
     layout = LAYOUTS[args.role]
     ranks: list[list[str]] = []
-    devices_per_rank = layout["tp"] * layout["pp"]
-    for rank in range(layout["dp"]):
-        start = args.device_start + rank * devices_per_rank
-        visible_devices = ",".join(map(str, range(start, start + devices_per_rank)))
+    # On P, each of the two PP stages owns TP8 on a different host. Each
+    # host therefore runs both DP ranks (2 * 8 = 16 local devices).
+    local_processes = 1 if args.role == "prefill" else layout["dp"]
+    devices_per_process = 16 if args.role == "prefill" else layout["tp"]
+    for rank in range(local_processes):
+        start = args.device_start + rank * devices_per_process
+        visible_devices = ",".join(map(str, range(start, start + devices_per_process)))
         ranks.append([
             "bash", str(SCRIPT), args.role, visible_devices,
             str(args.vllm_start_port + rank), str(layout["dp"]), str(rank),
             args.dp_address, str(args.dp_rpc_port), str(layout["tp"]),
             str(layout["pp"]), args.local_ip, args.nic_name,
+            str(args.node_rank if args.node_rank is not None else -1),
+            args.master_addr or "-", str(args.master_port),
         ])
 
     for command in ranks:

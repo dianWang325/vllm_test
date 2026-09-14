@@ -1,0 +1,11 @@
+{
+  "tag": "05_baseline_variable",
+  "mode": "baseline",
+  "dataset": "variable",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.9.127",
+  "p_comm_ip": "80.5.9.129",
+  "d_comm_ip": "80.5.9.127",
+  "status": "starting",
+  "started_at": 1789400910.515877
+}

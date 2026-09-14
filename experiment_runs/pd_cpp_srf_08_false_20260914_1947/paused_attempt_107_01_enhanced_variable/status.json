@@ -1,0 +1,11 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.17.107",
+  "status": "paused",
+  "started_at": 1789386849.516068,
+  "paused_at": "2026-09-14T12:05:12.120982+00:00",
+  "pause_reason": "User requested pause and exit 80.5.17.107 during service startup; no warmup or formal run completed."
+}

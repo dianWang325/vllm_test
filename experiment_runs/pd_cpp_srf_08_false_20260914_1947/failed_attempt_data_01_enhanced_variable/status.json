@@ -1,0 +1,13 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.17.120",
+  "p_comm_ip": "172.27.5.129",
+  "d_comm_ip": "172.27.4.120",
+  "status": "failed",
+  "started_at": 1789389959.8496795,
+  "failed_at": "2026-09-14T12:57:36.699422+00:00",
+  "failure": "Mooncake/HCCL transfer failed during warmup over data0.172; stopped before formal run"
+}

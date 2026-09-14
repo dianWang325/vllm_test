@@ -1,0 +1,70 @@
+
+Authorized users only. All activities may be monitored and reported.
+INFO:     Started server process [77585]
+INFO:     Waiting for application startup.
+2026-09-14 20:22:05,764 INFO [load_balance_proxy_server_example] Initialized 1 prefill clients and 2 decode clients in worker 77585.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18090 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49158 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56320 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33864 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33522 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50804 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37994 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50214 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57018 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49728 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49756 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49752 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49740 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54916 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38226 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54468 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 200 OK
+2026-09-14 20:35:23,019 ERROR [load_balance_proxy_server_example] Error during streaming from decoder 80.5.17.120:18082: list index out of range while handling request eafe53f1-1c45-4d7e-816c-b4d4fa1bc02f; releasing prefiller KV
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 200 OK
+2026-09-14 20:35:23,020 ERROR [load_balance_proxy_server_example] Error during streaming from decoder 80.5.17.120:18082: list index out of range while handling request 3e2d12a9-c14a-427a-9f6c-ab7060bbce69; releasing prefiller KV
+2026-09-14 20:35:29,690 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:29,693 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:35,611 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:35,613 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:40,088 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:40,091 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:45,678 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:45,681 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:49,023 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:49,025 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:54,317 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:54,320 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:35:58,100 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:35:58,102 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:03,684 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:03,686 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:07,468 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:07,470 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:10,929 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:10,932 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:17,501 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:17,503 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:20,195 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:20,197 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:27,762 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:27,765 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:54454 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+2026-09-14 20:36:30,308 WARNING [load_balance_proxy_server_example] Attempt 1 failed for streaming /completions: All connection attempts failed
+2026-09-14 20:36:30,310 WARNING [load_balance_proxy_server_example] Attempt 2 failed for streaming /completions: All connection attempts failed
+INFO:     127.0.0.1:37136 - "POST /v1/completions HTTP/1.1" 502 Bad Gateway
+INFO:     Shutting down
+INFO:     Waiting for connections to close. (CTRL+C to force quit)

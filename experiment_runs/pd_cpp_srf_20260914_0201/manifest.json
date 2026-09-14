@@ -1,0 +1,41 @@
+{
+  "run_id": "pd_cpp_srf_20260914_0201",
+  "p_host": "80.5.9.113",
+  "d_host": "80.5.9.127",
+  "remote_root": "/home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_20260914_0201",
+  "proxy_port": 18090,
+  "schedule": [
+    [
+      "baseline",
+      "fixed"
+    ],
+    [
+      "enhanced",
+      "variable"
+    ],
+    [
+      "baseline",
+      "variable"
+    ],
+    [
+      "enhanced",
+      "fixed"
+    ],
+    [
+      "baseline",
+      "variable"
+    ],
+    [
+      "enhanced",
+      "fixed"
+    ],
+    [
+      "enhanced",
+      "variable"
+    ],
+    [
+      "baseline",
+      "fixed"
+    ]
+  ]
+}

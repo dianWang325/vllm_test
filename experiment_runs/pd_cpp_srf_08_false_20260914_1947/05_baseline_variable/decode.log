@@ -1,0 +1,1108 @@
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_08_false_20260914_1947/scripts/run_dp_template.sh decode 0,1,2,3,4,5,6,7 18082 2 0 80.5.9.127 12321 8 1 80.5.9.127 enp194s0f0
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_08_false_20260914_1947/scripts/run_dp_template.sh decode 8,9,10,11,12,13,14,15 18083 2 1 80.5.9.127 12321 8 1 80.5.9.127 enp194s0f0
+[W914 23:43:11.136029930 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:43:11.136029970 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:43:16 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:16 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:16 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:16 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:16 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:16 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:16 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:16 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:16 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:43:16 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:43:23,097 - 1089673 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:43:23,103 - 1089672 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 23:43:23 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:43:23 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:43:23 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:43:23 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347] 
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:347] 
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347] 
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:347] 
+(APIServer pid=1089673) INFO 09-14 23:43:24 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18083, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 1, 'data_parallel_address': '80.5.9.127', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 1, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=1089673) WARNING 09-14 23:43:24 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=1089672) INFO 09-14 23:43:24 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18082, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 0, 'data_parallel_address': '80.5.9.127', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 1, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=1089672) WARNING 09-14 23:43:24 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=1089673) INFO 09-14 23:43:24 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=1089673) INFO 09-14 23:43:24 [model.py:2031] Using max model len 87040
+(APIServer pid=1089673) INFO 09-14 23:43:24 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(APIServer pid=1089672) INFO 09-14 23:43:24 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=1089672) INFO 09-14 23:43:24 [model.py:2031] Using max model len 87040
+(APIServer pid=1089672) INFO 09-14 23:43:24 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(APIServer pid=1089673) INFO 09-14 23:43:25 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=1089673) WARNING 09-14 23:43:25 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=1089673) WARNING 09-14 23:43:25 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=1089673) WARNING 09-14 23:43:25 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=1089673) INFO 09-14 23:43:25 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=1089673) INFO 09-14 23:43:25 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=1089673) INFO 09-14 23:43:25 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=1089672) INFO 09-14 23:43:25 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=1089672) WARNING 09-14 23:43:25 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=1089672) WARNING 09-14 23:43:25 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=1089672) WARNING 09-14 23:43:25 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=1089672) INFO 09-14 23:43:25 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=1089672) INFO 09-14 23:43:25 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=1089672) INFO 09-14 23:43:25 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=1089673) INFO 09-14 23:43:25 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=1089672) INFO 09-14 23:43:25 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=1089673) INFO 09-14 23:43:26 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=1089672) INFO 09-14 23:43:26 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+[W914 23:43:28.006229370 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:43:28.174079640 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:43:32 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:32 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:32 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:32 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:32 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:32 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:32 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:33 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:33 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:43:33 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(APIServer pid=1089672) INFO 09-14 23:43:37 [utils.py:1151] Started DP Coordinator process (PID: 1090587)
+[W914 23:43:39.913199810 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:43:43 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:43 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:43 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:43 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:43 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(EngineCore_DP0 pid=1090682) 2026-09-14 23:43:52,670 - 1090682 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+(EngineCore_DP1 pid=1090588) 2026-09-14 23:43:52,670 - 1090588 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:43:52 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:43:52 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:43:52 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:43:52 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:43:52 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev570+ga97dacb71) with config: model='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', speculative_config=None, tokenizer='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', skip_tokenizer_init=False, tokenizer_mode=deepseek_v4, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=87040, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=2, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=ascend, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=bfloat16, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v4', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4-flash, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [120], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 56, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:43:52 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev570+ga97dacb71) with config: model='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', speculative_config=None, tokenizer='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', skip_tokenizer_init=False, tokenizer_mode=deepseek_v4, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=87040, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=2, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=ascend, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=bfloat16, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v4', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4-flash, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [120], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 56, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:43:52 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=80.5.9.127 (local), world_size=8, local_world_size=8
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:43:52 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=80.5.9.127 (local), world_size=8, local_world_size=8
+[W914 23:43:54.174955220 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:43:54.174955260 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:43:59 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:59 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:43:59 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:59 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:43:59 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:59 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:43:59 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:59 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:43:59 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:43:59 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:44:06,795 - 1090775 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:44:06,814 - 1090774 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:06.471038600 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:44:06.549559000 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:06 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:06 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:44:06 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:07 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:44:08 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:08 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:09 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:09 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:09 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:09 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:44:09 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:09 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:09 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:09 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1090774) INFO 09-14 23:44:11 [parallel_state.py:1798] world_size=16 rank=0 local_rank=0 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1090775) INFO 09-14 23:44:11 [parallel_state.py:1798] world_size=16 rank=8 local_rank=0 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:44:11 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:11 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:11 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:11 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:11 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:11 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:11 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:11 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:11 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:44:11 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:44:18,930 - 1090878 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:44:18,953 - 1090879 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:19.681315380 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:44:19.705478110 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:19 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:19 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:44:19 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:19 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:44:20 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:20 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:21 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:21 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:21 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:21 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:44:21 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:21 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:21 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:21 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1090878) INFO 09-14 23:44:23 [parallel_state.py:1798] world_size=16 rank=9 local_rank=1 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1090879) INFO 09-14 23:44:23 [parallel_state.py:1798] world_size=16 rank=1 local_rank=1 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:44:23 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:23 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:23 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:23 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:24 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:24 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:24 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:24 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:24 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:44:24 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:44:31,245 - 1091035 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:44:31,268 - 1091034 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:31.054747340 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:44:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[W914 23:44:31.247819840 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+WARNING 09-14 23:44:33 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:33 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:33 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:33 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:33 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:33 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:44:33 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:33 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:33 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:33 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 23:44:35 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:35 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:35 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:35 [__init__.py:272] Platform plugin ascend is activated
+(Worker pid=1091035) INFO 09-14 23:44:35 [parallel_state.py:1798] world_size=16 rank=2 local_rank=2 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:44:35 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=1091034) INFO 09-14 23:44:36 [parallel_state.py:1798] world_size=16 rank=10 local_rank=2 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:44:36 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:36 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:36 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:36 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:36 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:44:43,002 - 1091192 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:43.770496480 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 23:44:43,254 - 1091193 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:43.030937940 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:44:45 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:45 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:45 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:45 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:45 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:45 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:44:45 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:45 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:45 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:45 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1091192) INFO 09-14 23:44:47 [parallel_state.py:1798] world_size=16 rank=11 local_rank=3 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1091193) INFO 09-14 23:44:48 [parallel_state.py:1798] world_size=16 rank=3 local_rank=3 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:44:48 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:48 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:48 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:48 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:48 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:44:48 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:44:48 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:44:48 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:44:48 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:44:48 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:44:55,720 - 1091350 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 23:44:55 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:55 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 23:44:55,941 - 1091351 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:44:56.668538980 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:44:56.668539220 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:44:56 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:44:56 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:44:57 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:58 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:44:58 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:58 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:58 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:58 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:44:58 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:44:58 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:44:58 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:44:58 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1091350) INFO 09-14 23:45:00 [parallel_state.py:1798] world_size=16 rank=12 local_rank=4 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1091351) INFO 09-14 23:45:00 [parallel_state.py:1798] world_size=16 rank=4 local_rank=4 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:45:01 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:01 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:01 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:01 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:01 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:01 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:01 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:01 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:01 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:45:01 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:45:08,358 - 1091513 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:45:08,396 - 1091514 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:45:08.124220500 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:45:08 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:08 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[W914 23:45:08.207784870 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:45:08 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:08 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:45:10 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:10 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:10 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:10 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:10 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:10 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:45:10 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:10 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:10 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:10 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1091514) INFO 09-14 23:45:13 [parallel_state.py:1798] world_size=16 rank=13 local_rank=5 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1091513) INFO 09-14 23:45:13 [parallel_state.py:1798] world_size=16 rank=5 local_rank=5 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:45:13 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:13 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:13 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:13 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:13 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:45:13 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:13 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:13 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:13 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:13 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:45:20,562 - 1091676 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:45:20,575 - 1091677 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 23:45:20.381557980 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:45:20.381574120 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:45:20 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:20 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:45:20 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:20 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:45:22 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:22 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:22 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:22 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:22 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:22 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:45:22 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:22 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:22 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:22 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1091676) INFO 09-14 23:45:25 [parallel_state.py:1798] world_size=16 rank=6 local_rank=6 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1091677) INFO 09-14 23:45:25 [parallel_state.py:1798] world_size=16 rank=14 local_rank=6 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+INFO 09-14 23:45:25 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:25 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:25 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:25 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:25 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:45:25 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:45:25 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:45:25 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:45:25 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:45:25 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 23:45:33,152 - 1091835 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 23:45:33,213 - 1091834 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 23:45:33 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:33 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 23:45:33 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 23:45:33 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 23:45:35 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:35 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 23:45:35 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:35 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:35 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:35 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 23:45:35 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 23:45:35 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 23:45:35 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 23:45:35 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=1091834) INFO 09-14 23:45:37 [parallel_state.py:1798] world_size=16 rank=15 local_rank=7 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+(Worker pid=1091835) INFO 09-14 23:45:37 [parallel_state.py:1798] world_size=16 rank=7 local_rank=7 distributed_init_method=tcp://80.5.9.127:39371 backend=hccl
+[Gloo] Rank 0 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 15 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 12 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 1 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 13 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 2 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 3 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 4 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 5 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 10 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 6 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 7 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 8 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 9 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 11 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 14 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 0 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 6 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 1 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 2 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 5 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 3 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 4 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 7 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 6 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 0 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 1 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 4 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 2 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 3 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 5 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 7 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+[Gloo] Rank 0 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 13 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 1 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 2 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 3 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 6 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 4 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 5 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1090774) INFO 09-14 23:45:38 [parallel_state.py:2142] rank 0 in world size 16 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+[Gloo] Rank 7 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 12 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 8 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 9 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 11 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 10 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 14 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 15 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1090775) INFO 09-14 23:45:38 [parallel_state.py:2142] rank 8 in world size 16 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 0, EP rank 8, EPLB rank N/A
+[Gloo] Rank 0 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1090774) WARNING 09-14 23:45:38 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1090774) WARNING 09-14 23:45:38 [utils.py:1126] The max_cudagraph_capture_size (56) is smaller than the potential max tokens required for decode (60). This may lead to suboptimal performance. Consider adjustingmax_cudagraph_capture_size or scheduler_config (max_num_batched_tokens or max_num_seqs)to ensure max_cudagraph_capture_size can accommodate the decode workload. For more details, see the issue #8240(https://github.com/vllm-project/vllm-ascend/issues/8240).
+(Worker pid=1090774) INFO 09-14 23:45:38 [utils.py:28] Wrapping torch.cuda with torch.npu.
+[rank0]:[W914 23:45:38.606390270 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[Gloo] Rank 3 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091193) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+[Gloo] Rank 5 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 7 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 12 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091513) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091835) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091350) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+[Gloo] Rank 1 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1090879) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+[Gloo] Rank 4 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091351) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+[rank3]:[W914 23:45:39.892350220 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank5]:[W914 23:45:39.893780600 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank1]:[W914 23:45:39.897790260 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank4]:[W914 23:45:39.908053070 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank7]:[W914 23:45:39.908371040 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank12]:[W914 23:45:39.912854230 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[Gloo] Rank 11 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091192) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+[Gloo] Rank 2 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 6 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 8 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 10 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091035) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091676) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091034) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1090775) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1090775) WARNING 09-14 23:45:39 [utils.py:1126] The max_cudagraph_capture_size (56) is smaller than the potential max tokens required for decode (60). This may lead to suboptimal performance. Consider adjustingmax_cudagraph_capture_size or scheduler_config (max_num_batched_tokens or max_num_seqs)to ensure max_cudagraph_capture_size can accommodate the decode workload. For more details, see the issue #8240(https://github.com/vllm-project/vllm-ascend/issues/8240).
+(Worker pid=1090775) INFO 09-14 23:45:39 [utils.py:28] Wrapping torch.cuda with torch.npu.
+[rank11]:[W914 23:45:39.126495420 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank10]:[W914 23:45:39.135118870 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank2]:[W914 23:45:39.135211820 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank6]:[W914 23:45:39.135601990 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank8]:[W914 23:45:39.144160230 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[Gloo] Rank 9 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 14 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 13 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+[Gloo] Rank 15 is connected to 15 peer ranks. Expected number of connected peer ranks is : 15
+(Worker pid=1091677) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091514) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1090878) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker pid=1091834) WARNING 09-14 23:45:39 [worker.py:506] npu model runner v2 is in developing, some features doesn't work for now.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:45:39 [model_runner.py:390] Loading model from scratch...
+[rank9]:[W914 23:45:39.236463660 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank13]:[W914 23:45:39.237354730 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank14]:[W914 23:45:39.238497210 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+[rank15]:[W914 23:45:39.246895120 NPUCachingAllocator.cpp:202] Warning: The current CANN and HDK(driver) versions require processing for 32 padding size, with memory allocation. (function operator())
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:45:40 [model_runner.py:390] Loading model from scratch...
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:45:45 [modelslim_config.py:281] Using the vLLM Ascend modelslim Quantization now!
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:45:45 [expert_map_manager.py:245] [EP Rank 0/16] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 16/256. Experts local to global index map: 0->0, 1->1, 2->2, 3->3, 4->4, 5->5, 6->6, 7->7, 8->8, 9->9, 10->10, 11->11, 12->12, 13->13, 14->14, 15->15.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:45:45 [modelslim_config.py:281] Using the vLLM Ascend modelslim Quantization now!
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:45:46 [expert_map_manager.py:245] [EP Rank 8/16] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 16/256. Experts local to global index map: 0->128, 1->129, 2->130, 3->131, 4->132, 5->133, 6->134, 7->135, 8->136, 9->137, 10->138, 11->139, 12->140, 13->141, 14->142, 15->143.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:46:05 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:46:05 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:46:05 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:46:05 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   0% Completed | 0/70 [00:00<?, ?it/s]
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:46:06 [compilation.py:1107] Using OOT custom backend for compilation.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   1% Completed | 1/70 [00:02<02:22,  2.07s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   3% Completed | 2/70 [00:13<08:24,  7.42s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   4% Completed | 3/70 [00:18<07:05,  6.35s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   6% Completed | 4/70 [00:23<06:31,  5.93s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   7% Completed | 5/70 [00:28<06:11,  5.72s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:   9% Completed | 6/70 [00:29<04:13,  3.97s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  10% Completed | 7/70 [00:32<03:45,  3.57s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  11% Completed | 8/70 [00:36<03:56,  3.81s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  13% Completed | 9/70 [00:41<04:05,  4.03s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  14% Completed | 10/70 [00:45<04:12,  4.21s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  16% Completed | 11/70 [00:50<04:14,  4.31s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  17% Completed | 12/70 [00:55<04:23,  4.55s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  19% Completed | 13/70 [01:00<04:32,  4.78s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  20% Completed | 14/70 [01:06<04:44,  5.07s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  21% Completed | 15/70 [01:11<04:41,  5.12s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  23% Completed | 16/70 [01:16<04:38,  5.16s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  24% Completed | 17/70 [01:21<04:31,  5.13s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  26% Completed | 18/70 [01:27<04:25,  5.11s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  27% Completed | 19/70 [01:32<04:23,  5.17s/it]
+[W914 23:47:41.375244400 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  29% Completed | 20/70 [01:37<04:12,  5.06s/it]
+INFO 09-14 23:47:46 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:47:46 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:47:46 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:47:46 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:47:46 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 23:47:46.614350090 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  30% Completed | 21/70 [01:41<04:04,  4.99s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  31% Completed | 22/70 [01:44<03:18,  4.14s/it]
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:47:51 [model_runner.py:422] Model loading took 19.76 GiB memory and 131.519400 seconds
+INFO 09-14 23:47:51 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:47:51 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:47:51 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:47:51 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:47:51 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  33% Completed | 23/70 [01:49<03:29,  4.46s/it]
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:47:57 [model_runner.py:422] Model loading took 19.76 GiB memory and 137.918691 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  34% Completed | 24/70 [01:54<03:33,  4.64s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  36% Completed | 25/70 [01:59<03:29,  4.66s/it]
+[W914 23:48:07.809577050 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  37% Completed | 26/70 [02:03<03:23,  4.63s/it]
+INFO 09-14 23:48:11 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:48:11 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:48:11 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:48:11 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:48:11 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  39% Completed | 27/70 [02:08<03:22,  4.72s/it]
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:48:17 [model_runner.py:422] Model loading took 19.76 GiB memory and 157.900473 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  40% Completed | 28/70 [02:11<02:52,  4.12s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  41% Completed | 29/70 [02:15<02:54,  4.26s/it]
+[W914 23:48:25.807918620 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  43% Completed | 30/70 [02:20<02:50,  4.26s/it]
+INFO 09-14 23:48:30 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:48:30 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:48:30 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:48:30 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:48:30 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  44% Completed | 31/70 [02:24<02:50,  4.38s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  46% Completed | 32/70 [02:29<02:44,  4.33s/it]
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:48:35 [model_runner.py:422] Model loading took 19.76 GiB memory and 175.616943 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  47% Completed | 33/70 [02:32<02:29,  4.05s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  49% Completed | 34/70 [02:36<02:26,  4.06s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  50% Completed | 35/70 [02:40<02:21,  4.03s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  51% Completed | 36/70 [02:44<02:18,  4.07s/it]
+[W914 23:48:53.244777690 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  53% Completed | 37/70 [02:48<02:13,  4.04s/it]
+INFO 09-14 23:48:58 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:48:58 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:48:58 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:48:58 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:48:58 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  54% Completed | 38/70 [02:52<02:09,  4.03s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  56% Completed | 39/70 [02:52<01:29,  2.88s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  57% Completed | 40/70 [02:56<01:37,  3.25s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  59% Completed | 41/70 [02:57<01:07,  2.33s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  60% Completed | 42/70 [02:57<00:47,  1.68s/it]
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:49:04 [model_runner.py:422] Model loading took 19.76 GiB memory and 204.458158 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  61% Completed | 43/70 [03:01<01:05,  2.44s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  63% Completed | 44/70 [03:01<00:45,  1.76s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  64% Completed | 45/70 [03:01<00:32,  1.29s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  66% Completed | 46/70 [03:05<00:50,  2.09s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  67% Completed | 47/70 [03:05<00:34,  1.52s/it]
+[W914 23:49:13.455964950 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  69% Completed | 48/70 [03:09<00:48,  2.21s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  70% Completed | 49/70 [03:10<00:35,  1.67s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  71% Completed | 50/70 [03:10<00:24,  1.22s/it]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:49:17 [default_loader.py:430] Loading weights took 190.99 seconds
+INFO 09-14 23:49:18 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:18 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:18 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:18 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:18 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  73% Completed | 51/70 [03:14<00:37,  1.99s/it]
+[W914 23:49:21.420194270 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:49:23 [model_runner.py:422] Model loading took 19.76 GiB memory and 224.234628 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  76% Completed | 53/70 [03:17<00:32,  1.92s/it]
+INFO 09-14 23:49:26 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:26 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:26 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:26 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:26 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  77% Completed | 54/70 [03:21<00:37,  2.33s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  79% Completed | 55/70 [03:21<00:26,  1.77s/it]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:49:29 [shared_experts.py:149] [fused_moe/layer] Shared expert split computation validation passed. Integrated and split-path results are consistent.
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  80% Completed | 56/70 [03:25<00:32,  2.30s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  81% Completed | 57/70 [03:25<00:22,  1.72s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  83% Completed | 58/70 [03:25<00:15,  1.28s/it]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:49:32 [model_runner.py:422] Model loading took 19.76 GiB memory and 232.490640 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  84% Completed | 59/70 [03:27<00:15,  1.42s/it]
+[W914 23:49:36.023795610 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  86% Completed | 60/70 [03:30<00:19,  1.96s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  87% Completed | 61/70 [03:30<00:12,  1.44s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  89% Completed | 62/70 [03:31<00:08,  1.07s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  90% Completed | 63/70 [03:31<00:05,  1.24it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  91% Completed | 64/70 [03:31<00:03,  1.62it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  93% Completed | 65/70 [03:31<00:02,  2.05it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  94% Completed | 66/70 [03:31<00:01,  2.54it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  96% Completed | 67/70 [03:32<00:00,  3.05it/s]
+[W914 23:49:38.065535720 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  97% Completed | 68/70 [03:32<00:00,  2.39it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards:  99% Completed | 69/70 [03:32<00:00,  2.87it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards: 100% Completed | 70/70 [03:33<00:00,  3.03it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Multi-thread loading shards: 100% Completed | 70/70 [03:33<00:00,  3.04s/it]
+(Worker_DP0_TP0_EP0 pid=1090774) 
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:49:39 [default_loader.py:430] Loading weights took 213.49 seconds
+INFO 09-14 23:49:40 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:40 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:40 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:40 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:40 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 23:49:41.098461540 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:49:43 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:43 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:43 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:43 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:43 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 23:49:43.213680240 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:49:46 [model_runner.py:422] Model loading took 19.76 GiB memory and 246.645962 seconds
+INFO 09-14 23:49:46 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:46 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:46 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:46 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:46 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:49:48 [model_runner.py:422] Model loading took 19.76 GiB memory and 248.341679 seconds
+[W914 23:49:48.265140130 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:49:48 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:48 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:48 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:48 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:48 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:49:51 [shared_experts.py:149] [fused_moe/layer] Shared expert split computation validation passed. Integrated and split-path results are consistent.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:49:51 [model_runner.py:422] Model loading took 19.76 GiB memory and 252.105865 seconds
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:49:53 [model_runner.py:422] Model loading took 19.76 GiB memory and 254.319150 seconds
+INFO 09-14 23:49:53 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:49:53 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:49:53 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:49:53 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:49:53 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:00 [model_runner.py:422] Model loading took 19.76 GiB memory and 260.370816 seconds
+[W914 23:50:00.492249420 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 23:50:01.315289950 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 23:50:05 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:50:05 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:50:05 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:50:05 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:50:05 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 23:50:06 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:50:06 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:50:06 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:50:06 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:50:06 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 23:50:08.098103460 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:10 [model_runner.py:422] Model loading took 19.76 GiB memory and 271.062395 seconds
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:12 [model_runner.py:422] Model loading took 19.76 GiB memory and 272.228796 seconds
+(EngineCore_DP1 pid=1090588) WARNING 09-14 23:50:12 [torch_utils.py:268] OMP_NUM_THREADS=10 is set; leaving Torch threads at 10 for serving. Multi-threaded torch CPU ops during serving can degrade performance through spin-wait contention and cgroup CPU-quota throttling.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:50:12 [utils.py:306] Using LBNHC KV cache layout.
+INFO 09-14 23:50:13 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:50:13 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:50:13 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:50:13 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:50:13 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 23:50:13.071532700 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:17 [model_runner.py:422] Model loading took 19.76 GiB memory and 278.113989 seconds
+INFO 09-14 23:50:18 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 23:50:18 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 23:50:18 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 23:50:18 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 23:50:18 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:23 [model_runner.py:422] Model loading took 19.76 GiB memory and 284.192452 seconds
+(EngineCore_DP0 pid=1090682) WARNING 09-14 23:50:23 [torch_utils.py:268] OMP_NUM_THREADS=10 is set; leaving Torch threads at 10 for serving. Multi-threaded torch CPU ops during serving can degrade performance through spin-wait contention and cgroup CPU-quota throttling.
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:50:23 [utils.py:306] Using LBNHC KV cache layout.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [backends.py:1094] Using cache directory: /root/.cache/vllm/torch_compile_cache/34410fff45/rank_0_0/backbone for vLLM's torch.compile
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [backends.py:1155] Dynamo bytecode transform time: 1.34 s
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [backends.py:1094] Using cache directory: /root/.cache/vllm/torch_compile_cache/34410fff45/rank_0_1/backbone for vLLM's torch.compile
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [backends.py:1155] Dynamo bytecode transform time: 1.35 s
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_0_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_4_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_0_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:27 [compiler_interface.py:254] AscendCompiler hash factors: {'torch_npu_version': '2.10.0.post4', 'enable_npugraph_ex': True, 'enable_static_kernel': False, 'enable_super_kernel': False}
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_4_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [backends.py:292] Directly load the compiled graph(s) for compile range (1, 120) from the cache, took 0.060 s
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_6_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_0_0/model
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:27 [monitor.py:53] torch.compile took 1.89 s in total
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:27 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_4_0/model
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [backends.py:292] Directly load the compiled graph(s) for compile range (1, 120) from the cache, took 0.058 s
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_0_1/model
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:27 [monitor.py:53] torch.compile took 1.90 s in total
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:27 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_4_1/model
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:27 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_6_1/model
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_3_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_3_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:27 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_6_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_3_1/model
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_3_0/model
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_2_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_6_0/model
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_2_1/model
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_1_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_5_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_2_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_5_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_1_1/model
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_5_0/model
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_2_0/model
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_1_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_7_1/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_5_1/model
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_1_0/model
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_7_1/model
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:28 [compiler_interface.py:359] Loaded npugraph_ex compilation cache from /root/.cache/vllm/torch_compile_cache/34410fff45/rank_7_0/backbone/artifact_compile_range_1_120_subgraph_0
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:28 [decorators.py:313] Directly load AOT compilation from path /root/.cache/vllm/torch_compile_cache/torch_aot_compile/6b5c18c75dfb1041b1f7f842269726160ba955091cfdf2527d0cb6fdfc3b88cf/rank_7_0/model
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:29 [monitor.py:81] Initial profiling/warmup run took 1.26 s
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:29 [monitor.py:81] Initial profiling/warmup run took 1.28 s
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:30 [worker.py:655] Available KV cache memory: 32.10 GiB
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:31 [worker.py:655] Available KV cache memory: 32.10 GiB
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:50:31 [kv_cache_utils.py:2315] GPU KV cache size: 4,519,900 tokens, Maximum concurrency for 87,040 tokens per request: 51.93x
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.831552 1091034 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+W0914 23:50:31.831552 1091677 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.831652 1091034 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.831655 1091677 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.831665 1091677 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.831665 1091034 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.831797 1091677 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15921
+I0914 23:50:31.831810 1091034 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15293
+I0914 23:50:31.831950 1091677 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15921
+I0914 23:50:31.831960 1091034 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15293
+I0914 23:50:31.831987 1091034 utils.cpp:82] Find available between 21000 and 21100
+I0914 23:50:31.831987 1091677 utils.cpp:82] Find available between 21400 and 21500
+I0914 23:50:31.832069 1091034 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.832070 1091677 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.833489 1091034 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.833652 1091677 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+I0914 23:50:31.836398 1091034 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21017, pid:1091034
+I0914 23:50:31.836397 1091677 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21421, pid:1091677
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.836616 1091192 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+I0914 23:50:31.836722 1091192 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.836740 1091192 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.836828 1091192 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16739
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.836831 1090878 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.836921 1091192 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16739
+I0914 23:50:31.836947 1091192 utils.cpp:82] Find available between 21100 and 21200
+I0914 23:50:31.836966 1090878 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.836987 1090878 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.837016 1091192 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.837131 1090878 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16872
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.837126 1091350 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.837253 1091350 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.837282 1090878 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16872
+I0914 23:50:31.837275 1091350 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.837324 1090878 utils.cpp:82] Find available between 20900 and 21000
+I0914 23:50:31.837355 1091350 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15520
+I0914 23:50:31.837412 1090878 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.837486 1091350 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15520
+I0914 23:50:31.837533 1091350 utils.cpp:82] Find available between 21200 and 21300
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+I0914 23:50:31.837682 1091350 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.838287 1091834 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.838402 1091834 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.838419 1091834 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+I0914 23:50:31.838513 1091834 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15794
+I0914 23:50:31.838626 1091834 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15794
+I0914 23:50:31.838665 1091834 utils.cpp:82] Find available between 21500 and 21600
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.838688 1091514 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.838750 1091192 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.838778 1091834 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.838836 1091514 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.838853 1091514 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.838920 1090878 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.838989 1091514 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15147
+I0914 23:50:31.839119 1091514 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15147
+I0914 23:50:31.839151 1091514 utils.cpp:82] Find available between 21300 and 21400
+I0914 23:50:31.839221 1091514 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.839385 1091350 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.840580 1091834 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.841297 1091514 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.842270 1090878 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20968, pid:1090878
+I0914 23:50:31.842358 1091192 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21148, pid:1091192
+I0914 23:50:31.842926 1091350 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21253, pid:1091350
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:31 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:31 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:31.844062 1090775 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:31.844182 1090775 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:31.844197 1090775 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:31.844301 1091834 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21583, pid:1091834
+I0914 23:50:31.844333 1090775 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16733
+I0914 23:50:31.844473 1090775 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16733
+I0914 23:50:31.844517 1090775 utils.cpp:82] Find available between 20800 and 20900
+I0914 23:50:31.844600 1090775 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:31.844769 1091514 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:21325, pid:1091514
+I0914 23:50:31.846668 1090775 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:31.850560 1090775 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20825, pid:1090775
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:50:32 [kv_cache_utils.py:2315] GPU KV cache size: 4,519,794 tokens, Maximum concurrency for 87,040 tokens per request: 51.93x
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.158533 1090774 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+W0914 23:50:32.158535 1091035 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+I0914 23:50:32.158644 1090774 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.158644 1091035 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.158656 1091035 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.158656 1090774 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.158761 1091035 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16653
+I0914 23:50:32.158849 1090774 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15756
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.158866 1091513 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.158890 1091035 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16653
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.158892 1091676 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.158923 1091035 utils.cpp:82] Find available between 20200 and 20300
+I0914 23:50:32.158991 1091513 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.159006 1091676 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.159004 1091513 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.159017 1091676 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.159024 1091035 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.159030 1090774 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15756
+I0914 23:50:32.159060 1090774 utils.cpp:82] Find available between 20000 and 20100
+I0914 23:50:32.159067 1091676 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16238
+I0914 23:50:32.159090 1091513 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16396
+I0914 23:50:32.159103 1090774 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.159183 1091676 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16238
+I0914 23:50:32.159211 1091513 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16396
+I0914 23:50:32.159215 1091676 utils.cpp:82] Find available between 20600 and 20700
+I0914 23:50:32.159240 1091513 utils.cpp:82] Find available between 20500 and 20600
+I0914 23:50:32.159298 1091513 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.159298 1091676 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.160526 1090774 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.160526 1091035 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.160696 1091676 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.160940 1091513 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.163729 1091035 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20254, pid:1091035
+I0914 23:50:32.163865 1090774 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20003, pid:1090774
+I0914 23:50:32.164016 1091513 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20518, pid:1091513
+I0914 23:50:32.164088 1091676 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20628, pid:1091676
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.166002 1091351 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.166123 1091351 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.166136 1091351 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.166322 1091351 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15829
+I0914 23:50:32.166424 1091351 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15829
+I0914 23:50:32.166456 1091351 utils.cpp:82] Find available between 20400 and 20500
+I0914 23:50:32.166533 1091351 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.169181 1090879 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.169310 1090879 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.169323 1090879 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.169466 1090879 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15779
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+I0914 23:50:32.169617 1090879 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15779
+I0914 23:50:32.169664 1090879 utils.cpp:82] Find available between 20100 and 20200
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.169710 1091193 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.169761 1090879 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.169888 1091193 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.169911 1091193 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.170050 1091193 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:15995
+I0914 23:50:32.170178 1091193 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:15995
+I0914 23:50:32.170222 1091193 utils.cpp:82] Find available between 20300 and 20400
+I0914 23:50:32.170332 1091193 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.171406 1090879 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.172188 1091351 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.172617 1091193 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.174571 1090879 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20193, pid:1090879
+I0914 23:50:32.175537 1091351 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20407, pid:1091351
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:32 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+I0914 23:50:32.176599 1091193 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20397, pid:1091193
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:32 [utils.py:43] Injected comm_resource_config.qos=1 from kv_connector_extra_config (or the P/D default) into ASCEND_GLOBAL_RESOURCE_CONFIG.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0914 23:50:32.177305 1091835 transfer_engine_py.cpp:96] Using default malloc/free for protocol: ascend
+I0914 23:50:32.177434 1091835 transfer_engine_impl.cpp:811] Metrics reporting is disabled (set MC_TE_METRIC=1 to enable)
+I0914 23:50:32.177446 1091835 transfer_engine_impl.cpp:115] Transfer Engine parseHostNameWithPort. server_name: 80.5.9.127 port: 12001
+I0914 23:50:32.177502 1091835 transfer_engine_impl.cpp:182] Transfer Engine RPC using P2P handshake, listening on 80.5.9.127:16754
+I0914 23:50:32.177629 1091835 ascend_direct_transport.cpp:83] install AscendDirectTransport for: 80.5.9.127:16754
+I0914 23:50:32.177665 1091835 utils.cpp:82] Find available between 20700 and 20800
+I0914 23:50:32.177733 1091835 transfer_executor_base.cpp:80] Set transfer timeout to:33064
+I0914 23:50:32.179395 1091835 transfer_executor_base.cpp:200] Set GlobalResourceConfig to:{"comm_resource_config.qos": 1}
+I0914 23:50:32.193511 1091835 transfer_executor_base.cpp:227] Success to initialize adxl engine:80.5.9.127:20700, pid:1091835
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:34 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:34.969102 1090878 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:34 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:34 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.084508 1091514 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.091158 1091350 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.096318 1090775 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.210788 1091834 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.212652 1091034 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.217491 1091192 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42426
+I0914 23:50:35.238160 1091677 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.019s.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.019s.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.019s.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.019s.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.020s.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.020s.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.021s.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.022s.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.024s.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.025s.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.026s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.026s.
+I0914 23:50:35.270197 1091193 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.027s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.028s.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.275803 1091035 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.037s.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.038s.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.293915 1091513 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.347694 1091351 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.451169 1090774 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.461215 1090879 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.473822 1091676 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [mooncake_hybrid_connector.py:1689] num_blocks: 42425
+I0914 23:50:35.477686 1091835 transfer_executor_base.cpp:452] TransferExecutor register mem addr:0x12c6c4e00000, length:34468790272, mem type:device, engine index:0
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [utils.py:162] Hidden layers were unevenly partitioned: [22,21]. This can be manually overridden using the VLLM_PP_LAYER_PARTITION environment variable
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:41] Starting Triton kernel warmup.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:33] rejection_sampler Triton warmup complete in 0.000s.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.022s.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.023s.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.023s.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.024s.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.025s.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.025s.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.025s.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.026s.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.026s.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.026s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.029s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.029s.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.032s.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:33] penalties Triton warmup complete in 0.032s.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.032s.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.032s.
+(Worker_DP0_TP0_EP0 pid=1090774) Capturing CUDA graphs (FULL):   0%|          | 0/10 [00:00<?, ?it/s]

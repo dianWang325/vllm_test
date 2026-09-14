@@ -1,0 +1,69 @@
+{
+  "run_id": "pd_cpp_srf_08_false_20260914_1947",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.9.127",
+  "p_nic": "enp194s0f0",
+  "d_nic": "enp194s0f0",
+  "remote_root": "/home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_08_false_20260914_1947",
+  "proxy_port": 18090,
+  "schedule_seed": 9169804644996457862,
+  "schedule": [
+    [
+      "enhanced",
+      "variable"
+    ],
+    [
+      "baseline",
+      "variable"
+    ],
+    [
+      "baseline",
+      "fixed"
+    ],
+    [
+      "enhanced",
+      "fixed"
+    ],
+    [
+      "baseline",
+      "variable"
+    ],
+    [
+      "baseline",
+      "fixed"
+    ],
+    [
+      "enhanced",
+      "variable"
+    ],
+    [
+      "enhanced",
+      "fixed"
+    ]
+  ],
+  "cpp": {
+    "enabled": true,
+    "smooth_factor": 0.8,
+    "need_timing": false
+  },
+  "srf": {
+    "enabled": true,
+    "threshold": 65546,
+    "long_max_wait_ms": 2000
+  },
+  "comparison_run_id": "pd_cpp_srf_20260914_0201",
+  "initial_d_host": "80.5.9.110",
+  "initial_d_host_note": "became occupied before run 1; zero rounds completed there",
+  "paused_d_host": "80.5.17.107",
+  "excluded_hosts_today": [
+    "80.5.17.106",
+    "80.5.17.107"
+  ],
+  "resumed_after_pause": true,
+  "p_comm_ip": "80.5.9.129",
+  "d_comm_ip": "80.5.9.127",
+  "communication_network_note": "P and D on same 80.5.9 subnet with matching enp194s0f0 interfaces",
+  "failed_cross_subnet_host": "80.5.17.120",
+  "standby_host": "80.5.9.129",
+  "host_selection_note": "80.5.17.122 had AI Core vector timeout during D initialization, no requests. Switched to idle 80.5.9.129/127 with identical vLLM dependencies."
+}

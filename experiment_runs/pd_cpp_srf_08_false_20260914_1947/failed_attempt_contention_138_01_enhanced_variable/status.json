@@ -1,0 +1,13 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.9.138",
+  "p_comm_ip": "80.5.9.129",
+  "d_comm_ip": "80.5.9.138",
+  "status": "failed",
+  "started_at": 1789390773.1822708,
+  "failed_at": "2026-09-14T13:10:49.730208+00:00",
+  "failure": "D worker startup blocked by another Qwen service starting on 80.5.9.138 and consuming NPU memory; no warmup/formal run"
+}

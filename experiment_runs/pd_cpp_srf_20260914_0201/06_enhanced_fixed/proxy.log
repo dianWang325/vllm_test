@@ -1,0 +1,46 @@
+
+Authorized users only. All activities may be monitored and reported.
+error: could not lock config file /root/.gitconfig: File exists
+error: could not lock config file /root/.gitconfig: File exists
+error: could not lock config file /root/.gitconfig: File exists
+INFO:     Started server process [132120]
+INFO:     Waiting for application startup.
+2026-09-14 05:29:04,060 INFO [load_balance_proxy_server_example] Initialized 1 prefill clients and 2 decode clients in worker 132120.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18090 (Press CTRL+C to quit)
+INFO:     127.0.0.1:32862 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42718 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56998 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57002 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46662 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33832 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39874 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37296 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53940 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53946 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53962 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53974 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34878 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56216 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38244 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38252 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38898 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38908 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49030 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49038 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56844 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56846 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34920 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34932 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58106 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58122 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51624 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51628 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53706 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53718 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38532 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38538 - "POST /v1/completions HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [132120]

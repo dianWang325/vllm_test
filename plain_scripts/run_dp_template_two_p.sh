@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Called by launch_online_dp.py for one local DP rank.
+# Called by launch_online_dp_two_p.py for one local vLLM process.
 set -euo pipefail
 
-if [[ $# -ne 11 ]]; then
-  echo "Usage: $0 ROLE DEVICES HTTP_PORT DP_SIZE DP_RANK DP_ADDRESS DP_RPC_PORT TP_SIZE PP_SIZE LOCAL_IP NIC_NAME" >&2
+if [[ $# -ne 14 ]]; then
+  echo "Usage: $0 ROLE DEVICES HTTP_PORT DP_SIZE DP_RANK DP_ADDRESS DP_RPC_PORT TP_SIZE PP_SIZE LOCAL_IP NIC_NAME NODE_RANK MASTER_ADDR MASTER_PORT" >&2
   exit 2
 fi
 
@@ -18,6 +18,9 @@ tp_size=$8
 pp_size=$9
 local_ip=${10}
 nic_name=${11}
+node_rank=${12}
+master_addr=${13}
+master_port=${14}
 
 export ASCEND_RT_VISIBLE_DEVICES="$devices"
 export VLLM_HOST_IP="$local_ip"
@@ -44,7 +47,7 @@ fi
 model=/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
 model_loader_config='{"enable_multithread_load":true,"num_threads":128}'
 # Both roles must advertise the same topology to the Mooncake connector.
-topology='{"prefill":{"dp_size":1,"tp_size":8,"pp_size":2},"decode":{"dp_size":2,"tp_size":8,"pp_size":1}}'
+topology='{"prefill":{"dp_size":2,"tp_size":8,"pp_size":2},"decode":{"dp_size":2,"tp_size":8,"pp_size":1}}'
 
 case "$role" in
   prefill)
@@ -52,12 +55,17 @@ case "$role" in
     export HCCL_BUFFSIZE=2560
     http_host=${PD_HTTP_HOST:-127.0.0.1}
     kv_transfer_config='{"kv_connector":"MooncakeHybridConnector","kv_role":"kv_producer","kv_port":"30000","engine_id":"0","kv_connector_extra_config":'"$topology"'}'
+    if [[ "$node_rank" == 1 ]]; then
+      headless_args=(--headless)
+    else
+      headless_args=()
+    fi
     case "${PD_P_SCHEDULER_MODE:-enhanced}" in
       baseline)
-        scheduler_args=()
+        scheduler_args=(--additional-config '{"enable_dsa_cp":true}')
         ;;
       enhanced)
-        scheduler_args=(--additional-config '{"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":0.8,"need_timing":false},"short_request_first_config":{"enabled":true,"threshold":65546,"long_max_wait_ms":2000}}}')
+        scheduler_args=(--additional-config '{"enable_dsa_cp":true,"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":0.8,"need_timing":false},"short_request_first_config":{"enabled":true,"threshold":65546,"long_max_wait_ms":2000}}}')
         ;;
       *)
         echo "PD_P_SCHEDULER_MODE must be baseline or enhanced" >&2
@@ -68,8 +76,19 @@ case "$role" in
       --host "$http_host" \
       --port "$http_port" \
       --trust-remote-code \
+      --data-parallel-size "$dp_size" \
+      --data-parallel-size-local 2 \
+      --data-parallel-start-rank 0 \
+      --data-parallel-address "$dp_address" \
+      --data-parallel-rpc-port "$dp_rpc_port" \
       --tensor-parallel-size "$tp_size" \
       --pipeline-parallel-size "$pp_size" \
+      --distributed-executor-backend mp \
+      --nnodes 2 \
+      --node-rank "$node_rank" \
+      --master-addr "$master_addr" \
+      --master-port "$master_port" \
+      "${headless_args[@]}" \
       --max-num-batched-tokens 24576 \
       --block-size 32 \
       --enable-chunked-prefill \

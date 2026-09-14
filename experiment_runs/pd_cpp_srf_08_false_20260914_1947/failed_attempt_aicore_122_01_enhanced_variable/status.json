@@ -1,0 +1,12 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p_host": "80.5.17.120",
+  "d_host": "80.5.17.122",
+  "p_comm_ip": "80.5.17.120",
+  "d_comm_ip": "80.5.17.122",
+  "status": "failed",
+  "started_at": 1789391522.3829527,
+  "error": "D 80.5.17.122 AI Core vector timeout during ALLTOALLV initialization; no warmup or formal requests"
+}

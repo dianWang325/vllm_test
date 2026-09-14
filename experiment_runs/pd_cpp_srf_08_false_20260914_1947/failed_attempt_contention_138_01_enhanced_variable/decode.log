@@ -1,0 +1,847 @@
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_08_false_20260914_1947/scripts/run_dp_template.sh decode 0,1,2,3,4,5,6,7 18082 2 0 80.5.9.138 12321 8 1 80.5.9.138 enp194s0f0
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_cpp_srf_08_false_20260914_1947/scripts/run_dp_template.sh decode 8,9,10,11,12,13,14,15 18083 2 1 80.5.9.138 12321 8 1 80.5.9.138 enp194s0f0
+[W914 20:57:07.150756280 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 20:57:07.151110830 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:57:10 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:57:10 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:57:10 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:57:10 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:57:10 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:57:10 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:57:10 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:57:10 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:57:10 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:57:10 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:57:16,655 - 54401 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-14 20:57:16,655 - 54402 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 20:57:18 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:57:18 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:57:18 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 20:57:18 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347] 
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:347] 
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347] 
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:347] 
+(APIServer pid=54401) INFO 09-14 20:57:18 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18082, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 0, 'data_parallel_address': '80.5.9.138', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 1, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=54401) WARNING 09-14 20:57:18 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=54402) INFO 09-14 20:57:18 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18083, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 1, 'data_parallel_address': '80.5.9.138', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 1, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=54402) WARNING 09-14 20:57:18 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=54401) INFO 09-14 20:57:31 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=54401) INFO 09-14 20:57:31 [model.py:2031] Using max model len 87040
+(APIServer pid=54401) INFO 09-14 20:57:31 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(APIServer pid=54402) INFO 09-14 20:57:31 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=54402) INFO 09-14 20:57:31 [model.py:2031] Using max model len 87040
+(APIServer pid=54402) INFO 09-14 20:57:31 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(APIServer pid=54402) INFO 09-14 20:57:31 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=54401) INFO 09-14 20:57:32 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=54401) WARNING 09-14 20:57:32 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=54402) WARNING 09-14 20:57:32 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=54401) WARNING 09-14 20:57:32 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=54401) WARNING 09-14 20:57:32 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=54402) WARNING 09-14 20:57:32 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=54402) WARNING 09-14 20:57:32 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=54401) INFO 09-14 20:57:32 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=54401) INFO 09-14 20:57:32 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=54401) INFO 09-14 20:57:32 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=54402) INFO 09-14 20:57:32 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=54402) INFO 09-14 20:57:32 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=54402) INFO 09-14 20:57:32 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=54402) INFO 09-14 20:57:32 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=54401) INFO 09-14 20:57:32 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=54402) INFO 09-14 20:57:33 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=54401) INFO 09-14 20:57:33 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+[W914 20:57:34.993200970 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 20:57:35.181709950 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:57:38 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:57:38 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:57:38 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:57:38 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:57:38 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:57:38 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:57:38 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:57:38 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:57:38 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:57:38 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(APIServer pid=54401) INFO 09-14 20:57:41 [utils.py:1151] Started DP Coordinator process (PID: 55944)
+[W914 20:57:43.291289600 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:57:46 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:57:46 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:57:46 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:57:46 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:57:46 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 20:58:12.768058450 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 20:58:13.268069630 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 20:58:32.784069180 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+(EngineCore_DP0 pid=56041) 2026-09-14 20:58:32,758 - 56041 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+(EngineCore_DP1 pid=55945) 2026-09-14 20:58:32,762 - 55945 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+(EngineCore_DP0 pid=56041) INFO 09-14 20:58:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+(EngineCore_DP1 pid=55945) INFO 09-14 20:58:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+(EngineCore_DP0 pid=56041) INFO 09-14 20:58:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(EngineCore_DP0 pid=56041) INFO 09-14 20:58:32 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev570+ga97dacb71) with config: model='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', speculative_config=None, tokenizer='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', skip_tokenizer_init=False, tokenizer_mode=deepseek_v4, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=87040, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=2, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=ascend, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=bfloat16, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v4', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4-flash, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [120], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 56, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore_DP0 pid=56041) INFO 09-14 20:58:32 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=80.5.9.138 (local), world_size=8, local_world_size=8
+(EngineCore_DP1 pid=55945) INFO 09-14 20:58:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(EngineCore_DP1 pid=55945) INFO 09-14 20:58:32 [core.py:123] Initializing a V1 LLM engine (v0.28.1rc1.dev570+ga97dacb71) with config: model='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', speculative_config=None, tokenizer='/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', skip_tokenizer_init=False, tokenizer_mode=deepseek_v4, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=87040, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=2, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=ascend, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=bfloat16, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v4', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4-flash, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [120], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 56, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore_DP1 pid=55945) INFO 09-14 20:58:32 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=80.5.9.138 (local), world_size=8, local_world_size=8
+[W914 20:58:34.466744710 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W914 20:58:34.498061700 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:58:37 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:37 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:37 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:37 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:37 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:37 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:37 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:37 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:37 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:58:37 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:58:43,627 - 56172 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:58:43.755865160 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-09-14 20:58:43,728 - 56173 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 20:58:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[W914 20:58:43.888248180 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:58:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-14 20:58:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:58:43 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:58:46 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:58:46 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:58:46 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+WARNING 09-14 20:58:46 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:58:46 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:58:46 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:58:46 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:58:46 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:58:46 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:58:46 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:58:46 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:46 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:46 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:46 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:46 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:58:47 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:47 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:47 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:47 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:47 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:58:52,858 - 56278 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:58:52.986771210 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:58:53 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:58:53 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:58:53,149 - 56279 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:58:53.285416130 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:58:53 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:58:53 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:58:54 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:58:54 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:58:54 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:58:54 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:58:54 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 20:58:54 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:58:55 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:58:55 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:58:55 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:58:55 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:58:56 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:56 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:56 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:56 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:56 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:58:56 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:58:56 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:58:56 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:58:56 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:58:56 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:59:02,118 - 56405 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:02.331955060 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:02 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:02 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:59:02,452 - 56416 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:02.614366580 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:02 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:02 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:59:03 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:03 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:03 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:03 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:03 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 20:59:04 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:04 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:04 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:04 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:04 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56172) ERROR 09-14 20:59:05 [multiproc_executor.py:944] ValueError: Free memory on device (49.73/61.27 GiB) on startup is less than desired GPU memory utilization (0.9, 55.14 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56278) ERROR 09-14 20:59:05 [multiproc_executor.py:944] ValueError: Free memory on device (47.72/61.28 GiB) on startup is less than desired GPU memory utilization (0.9, 55.15 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+INFO 09-14 20:59:05 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:05 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:05 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:05 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:05 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=56279) INFO 09-14 20:59:06 [parallel_state.py:1798] world_size=16 rank=9 local_rank=1 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+(Worker pid=56173) INFO 09-14 20:59:06 [parallel_state.py:1798] world_size=16 rank=8 local_rank=0 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+INFO 09-14 20:59:07 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:07 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:07 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:07 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:07 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:59:12,242 - 56536 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:12.362056260 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:12 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:12 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:59:13,246 - 56538 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:13.401350120 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:13 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:13 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:59:13 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:14 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:14 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:14 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:14 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 20:59:14 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:15 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:15 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:15 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:15 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:59:15 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:15 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:15 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:15 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:15 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:59:16 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:16 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:16 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:16 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:16 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:59:21,507 - 56731 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:21.645755010 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:21 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:21 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56405) ERROR 09-14 20:59:22 [multiproc_executor.py:944] ValueError: Free memory on device (31.64/61.27 GiB) on startup is less than desired GPU memory utilization (0.9, 55.14 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56536) ERROR 09-14 20:59:22 [multiproc_executor.py:944] ValueError: Free memory on device (32.02/61.28 GiB) on startup is less than desired GPU memory utilization (0.9, 55.15 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+2026-09-14 20:59:22,663 - 56743 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:22.893960990 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:22 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:22 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:59:23 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:23 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:23 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:23 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:23 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=56416) INFO 09-14 20:59:23 [parallel_state.py:1798] world_size=16 rank=10 local_rank=2 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+(Worker pid=56538) INFO 09-14 20:59:23 [parallel_state.py:1798] world_size=16 rank=11 local_rank=3 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+WARNING 09-14 20:59:24 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:24 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:24 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:24 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:24 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:59:24 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:24 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:24 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:25 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:25 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:59:25 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:25 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:25 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:25 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:26 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+[W914 20:59:26.352058740 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 20:59:26.736068000 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+2026-09-14 20:59:31,172 - 56862 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:31.281260000 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:59:32,076 - 56876 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:32.245133170 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:32 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:59:32 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:33 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:33 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:33 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:33 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 20:59:33 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:33 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:33 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:33 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:33 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+INFO 09-14 20:59:34 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:34 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:34 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:34 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:34 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:59:35 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:35 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:35 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:35 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:35 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-14 20:59:40,350 - 57058 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:40.484364550 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:40 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:40 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:59:41,394 - 57070 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W914 20:59:41.523298490 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-14 20:59:41 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:41 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56731) ERROR 09-14 20:59:41 [multiproc_executor.py:944] ValueError: Free memory on device (31.63/61.27 GiB) on startup is less than desired GPU memory utilization (0.9, 55.14 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944] WorkerProc failed to start.
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944] Traceback (most recent call last):
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 911, in worker_main
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     worker = WorkerProc(*args, **kwargs)
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     return func(*args, **kwargs)
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 672, in __init__
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.worker.init_device()
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/worker_base.py", line 355, in init_device
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.worker.init_device()  # type: ignore
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 500, in init_device
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     self.device = self._init_device()
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]                   ^^^^^^^^^^^^^^^^^^^
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 463, in _init_device
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944]     raise ValueError(
+(Worker pid=56862) ERROR 09-14 20:59:41 [multiproc_executor.py:944] ValueError: Free memory on device (32.03/61.28 GiB) on startup is less than desired GPU memory utilization (0.9, 55.15 GiB). Decrease GPU memory utilization or reduce GPU memory used by other processes.
+WARNING 09-14 20:59:41 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:42 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:42 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:42 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:42 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=56876) INFO 09-14 20:59:42 [parallel_state.py:1798] world_size=16 rank=13 local_rank=5 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+WARNING 09-14 20:59:43 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:43 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:43 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:43 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:43 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(Worker pid=56743) INFO 09-14 20:59:43 [parallel_state.py:1798] world_size=16 rank=12 local_rank=4 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+[W914 20:59:43.624159800 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 20:59:43.644054090 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+INFO 09-14 20:59:44 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:44 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:44 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:44 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:44 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-14 20:59:44 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-14 20:59:44 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-14 20:59:44 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-14 20:59:44 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-14 20:59:44 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(EngineCore_DP0 pid=56041) INFO 09-14 20:59:48 [multiproc_executor.py:472] [shutdown] Executor: waiting for worker exit count=2
+2026-09-14 20:59:50,222 - 57182 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 20:59:50 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:50 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+2026-09-14 20:59:50,771 - 57201 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-14 20:59:50 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-14 20:59:50 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-14 20:59:51 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:52 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:52 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:52 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:52 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+WARNING 09-14 20:59:52 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+WARNING 09-14 20:59:52 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+INFO 09-14 20:59:52 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-14 20:59:52 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-14 20:59:52 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(EngineCore_DP0 pid=56041) WARNING 09-14 20:59:53 [multiproc_executor.py:484] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=2
+(EngineCore_DP0 pid=56041) WARNING 09-14 20:59:57 [multiproc_executor.py:494] [shutdown] Executor: workers still running after SIGTERM; sending SIGKILL count=2
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366] EngineCore failed to start.
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366] Traceback (most recent call last):
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 1322, in run_engine_core
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     engine_core = DPEngineCoreProc(*args, **kwargs)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 2037, in __init__
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     super().__init__(
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     super().__init__(
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 134, in __init__
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     self.model_executor = executor_class(vllm_config)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 116, in __init__
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     super().__init__(vllm_config)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/abstract.py", line 110, in __init__
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     self._init_executor()
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 214, in _init_executor
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 808, in wait_for_ready
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366]     raise e from None
+(EngineCore_DP0 pid=56041) ERROR 09-14 20:59:57 [core.py:1366] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+(EngineCore_DP0 pid=56041) Process EngineCore_DP0:
+(EngineCore_DP0 pid=56041) Traceback (most recent call last):
+(EngineCore_DP0 pid=56041)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore_DP0 pid=56041)     self.run()
+(EngineCore_DP0 pid=56041)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/process.py", line 108, in run
+(EngineCore_DP0 pid=56041)     self._target(*self._args, **self._kwargs)
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_dyntra_lb_core.py", line 532, in _dyntra_lb_run_engine_core
+(EngineCore_DP0 pid=56041)     return _PreviousRunEngineCore(*args, dp_rank=dp_rank, local_dp_rank=local_dp_rank, **kwargs)
+(EngineCore_DP0 pid=56041)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_balance_schedule.py", line 937, in _balance_run_engine_core
+(EngineCore_DP0 pid=56041)     return _OriginalRunEngineCore(*args, dp_rank=dp_rank, local_dp_rank=local_dp_rank, **kwargs)
+(EngineCore_DP0 pid=56041)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 1370, in run_engine_core
+(EngineCore_DP0 pid=56041)     raise e
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 1322, in run_engine_core
+(EngineCore_DP0 pid=56041)     engine_core = DPEngineCoreProc(*args, **kwargs)
+(EngineCore_DP0 pid=56041)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 2037, in __init__
+(EngineCore_DP0 pid=56041)     super().__init__(
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore_DP0 pid=56041)     return func(*args, **kwargs)
+(EngineCore_DP0 pid=56041)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore_DP0 pid=56041)     super().__init__(
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core.py", line 134, in __init__
+(EngineCore_DP0 pid=56041)     self.model_executor = executor_class(vllm_config)
+(EngineCore_DP0 pid=56041)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 116, in __init__
+(EngineCore_DP0 pid=56041)     super().__init__(vllm_config)
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore_DP0 pid=56041)     return func(*args, **kwargs)
+(EngineCore_DP0 pid=56041)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/abstract.py", line 110, in __init__
+(EngineCore_DP0 pid=56041)     self._init_executor()
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 214, in _init_executor
+(EngineCore_DP0 pid=56041)     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore_DP0 pid=56041)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore_DP0 pid=56041)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 808, in wait_for_ready
+(EngineCore_DP0 pid=56041)     raise e from None
+(EngineCore_DP0 pid=56041) Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+(APIServer pid=54401) INFO 09-14 20:59:59 [utils.py:620] [shutdown] Process manager: send sigterm to process VLLM_DP_Coordinator
+(APIServer pid=54401) Traceback (most recent call last):
+(APIServer pid=54401)   File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+(APIServer pid=54401)     sys.exit(main())
+(APIServer pid=54401)              ^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=54401)     args.dispatch_function(args)
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 153, in cmd
+(APIServer pid=54401)     uvloop.run(run_server(args))
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=54401)     return runner.run(wrapper())
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=54401)     return self._loop.run_until_complete(task)
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=54401)     return await main
+(APIServer pid=54401)            ^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=54401)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=54401)     async with build_async_engine_client(
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=54401)     return await anext(self.gen)
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=54401)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=54401)     return await anext(self.gen)
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=54401)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=54401)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 226, in from_vllm_config
+(APIServer pid=54401)     return cls(
+(APIServer pid=54401)            ^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 160, in __init__
+(APIServer pid=54401)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=54401)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=54401)     return func(*args, **kwargs)
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 154, in make_async_mp_client
+(APIServer pid=54401)     return DPAsyncMPClient(
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1339, in __init__
+(APIServer pid=54401)     super().__init__(
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=54401)     return func(*args, **kwargs)
+(APIServer pid=54401)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1060, in __init__
+(APIServer pid=54401)     super().__init__(
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 656, in __init__
+(APIServer pid=54401)     with launch_core_engines(
+(APIServer pid=54401)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 144, in __exit__
+(APIServer pid=54401)     next(self.gen)
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 1240, in launch_core_engines
+(APIServer pid=54401)     wait_for_engine_startup(
+(APIServer pid=54401)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 1320, in wait_for_engine_startup
+(APIServer pid=54401)     raise RuntimeError(
+(APIServer pid=54401) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+(APIServer pid=54401) [ERROR] 2026-09-14-21:00:00 (PID:54401, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+(APIServer pid=54401) sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+(Worker pid=57201) INFO 09-14 21:00:01 [parallel_state.py:1798] world_size=16 rank=15 local_rank=7 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+(Worker pid=57070) INFO 09-14 21:00:01 [parallel_state.py:1798] world_size=16 rank=14 local_rank=6 distributed_init_method=tcp://80.5.9.138:58479 backend=hccl
+[W914 21:00:02.281120590 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=10085ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff73da5978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff7a0d9fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff7a0dabd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff7a0db098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff7a04b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff7a054a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff7f2ee51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff7e747064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff7e7a846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff819e84c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff819e8598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaad81108b0 in VLLM::Worker)
+
+[W914 21:00:02.281120520 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=27451ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff7c455978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff82789fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff8278abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff8278b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff826fb50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff82704a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff8799e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff86df7064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff86e5846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff8a0684c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff8a068598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaac0e708b0 in VLLM::Worker)
+
+[W914 21:00:02.281123490 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=26984ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffffa2ba5978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffffa8ed9fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffffa8edabd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffffa8edb098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffffa8e4b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffffa8e54a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffffae0ee51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffffad547064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffffad5a846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffffb07e84c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffffb07e8598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaad75608b0 in VLLM::Worker)
+
+[W914 21:00:02.281120530 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=17007ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff99665978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff9f999fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff9f99abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff9f99b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff9f90b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff9f914a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffffa4bae51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffffa4007064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffffa406846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffffa72884c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffffa7288598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaae04108b0 in VLLM::Worker)
+
+[W914 21:00:02.004055960 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 21:00:03.472042530 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 21:00:21.224070470 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W914 21:00:21.624050530 socket.cpp:207] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+(APIServer pid=54402) Traceback (most recent call last):
+(APIServer pid=54402)   File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+(APIServer pid=54402)     sys.exit(main())
+(APIServer pid=54402)              ^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=54402)     args.dispatch_function(args)
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 153, in cmd
+(APIServer pid=54402)     uvloop.run(run_server(args))
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=54402)     return runner.run(wrapper())
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=54402)     return self._loop.run_until_complete(task)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=54402)   File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=54402)   File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+(APIServer pid=54402)   File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+(APIServer pid=54402)   File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+(APIServer pid=54402)   File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+(APIServer pid=54402)   File "uvloop/cbhandles.pyx", line 61, in uvloop.loop.Handle._run
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=54402)     return await main
+(APIServer pid=54402)            ^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=54402)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=54402)     async with build_async_engine_client(
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=54402)     return await anext(self.gen)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=54402)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=54402)     return await anext(self.gen)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=54402)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=54402)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 226, in from_vllm_config
+[W914 21:06:00.125105310 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=1, timeout=1800000ms, delay=40807ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffffa2ba5978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffffa8ed9fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffffa8edabd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffffa8edb098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffffa8e4b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffffa8e54a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffffae0ee51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffffad547064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffffad5a846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffffb07e84c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffffb07e8598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaad75608b0 in VLLM::Worker)
+
+[W914 21:06:00.125105470 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=1, timeout=1800000ms, delay=80215ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff73da5978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff7a0d9fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff7a0dabd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff7a0db098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff7a04b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff7a054a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff7f2ee51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff7e747064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff7e7a846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff819e84c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff819e8598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaad81108b0 in VLLM::Worker)
+
+[W914 21:06:00.125105350 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=1, timeout=1800000ms, delay=32302ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff99665978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff9f999fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff9f99abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff9f99b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff9f90b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff9f914a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffffa4bae51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffffa4007064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffffa406846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffffa72884c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffffa7288598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaae04108b0 in VLLM::Worker)
+
+[W914 21:06:00.125105450 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=1, timeout=1800000ms, delay=65987ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff7c455978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff82789fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff8278abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff8278b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff826fb50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff82704a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff8799e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff86df7064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff86e5846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff8a0684c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff8a068598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaac0e708b0 in VLLM::Worker)
+
+(APIServer pid=54402)     return cls(
+(APIServer pid=54402)            ^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 160, in __init__
+(APIServer pid=54402)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=54402)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+[W914 21:06:00.125315760 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=83034ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff918e5978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff97c19fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff97c1abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff97c1b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff97b8b50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff97b94a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff9ce2e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff9c287064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff9c2e846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff9f5184c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff9f518598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaabeeb08b0 in VLLM::Worker)
+
+[W914 21:06:00.125271550 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=60824ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffffa4c25978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffffaaf59fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffffaaf5abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffffaaf5b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffffaaecb50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffffaaed4a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffffb016e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffffaf5c7064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffffaf62846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffffb28484c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffffb2848598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaacbb608b0 in VLLM::Worker)
+
+(APIServer pid=54402)     return func(*args, **kwargs)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 154, in make_async_mp_client
+(APIServer pid=54402)     return DPAsyncMPClient(
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1339, in __init__
+(APIServer pid=54402)     super().__init__(
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=54402)     return func(*args, **kwargs)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1060, in __init__
+[W914 21:06:00.125321920 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=54390ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff83c25978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff89f59fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff89f5abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff89f5b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff89ecb50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff89ed4a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff8f16e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff8e5c7064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff8e62846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff918584c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff91858598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaabc8408b0 in VLLM::Worker)
+
+(APIServer pid=54402)     super().__init__(
+[W914 21:06:00.125321900 TCPStore.cpp:340] [c10d] TCP client failed to connect/validate to host 80.5.9.138:58479 - retrying (try=0, timeout=1800000ms, delay=42183ms): Interrupted system call
+Exception raised from delay at /pytorch/torch/csrc/distributed/c10d/socket.cpp:113 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0xc8 (0xffff7db45978 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x6669fa4 (0xffff83e79fa4 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x666abd0 (0xffff83e7abd0 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: <unknown function> + 0x666b098 (0xffff83e7b098 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: <unknown function> + 0x65db50c (0xffff83deb50c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::TCPStore::TCPStore(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, c10d::TCPStoreOptions const&) + 0x30c (0xffff83df4a6c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0x116e51c (0xffff8908e51c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x5c7064 (0xffff884e7064 in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #14: <unknown function> + 0x62846c (0xffff8854846c in /usr/local/python3.11.10/lib/python3.11/site-packages/torch/lib/libtorch_python.so)
+frame #47: <unknown function> + 0x284c4 (0xffff8b7884c4 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #48: __libc_start_main + 0x98 (0xffff8b788598 in /lib/aarch64-linux-gnu/libc.so.6)
+frame #49: _start + 0x30 (0xaaaad17a08b0 in VLLM::Worker)
+
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 713, in __init__
+(APIServer pid=54402)     if not sync_input_socket.poll(
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/zmq/sugar/socket.py", line 1062, in poll
+(APIServer pid=54402)     evts = dict(p.poll(timeout))
+(APIServer pid=54402)                 ^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/zmq/sugar/poll.py", line 106, in poll
+(APIServer pid=54402)     return zmq_poll(self.sockets, timeout=timeout)
+(APIServer pid=54402)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=54402)   File "zmq/backend/cython/_zmq.py", line 1680, in zmq.backend.cython._zmq.zmq_poll
+(APIServer pid=54402)   File "zmq/backend/cython/_zmq.py", line 179, in zmq.backend.cython._zmq._check_rc
+(APIServer pid=54402)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 171, in _interrupt_init
+(APIServer pid=54402)     raise KeyboardInterrupt("terminated")
+(APIServer pid=54402) KeyboardInterrupt: terminated
+(APIServer pid=54402) [ERROR] 2026-09-14-21:06:00 (PID:54402, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+(APIServer pid=54402) sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

@@ -1,0 +1,11 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p_host": "80.5.9.129",
+  "d_host": "80.5.17.120",
+  "status": "failed",
+  "started_at": 1789388039.7304633,
+  "failed_at": "2026-09-14T12:44:46.234581+00:00",
+  "failure": "formal requests failed after Mooncake KV transfer errors on D; management-network communication IPs were used; stopped before completing run 1"
+}
