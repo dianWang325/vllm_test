@@ -65,7 +65,7 @@ case "$role" in
         scheduler_args=(--additional-config '{"enable_dsa_cp":true}')
         ;;
       enhanced)
-        scheduler_args=(--additional-config '{"enable_dsa_cp":true,"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":0.8,"need_timing":false},"short_request_first_config":{"enabled":true,"threshold":65546,"long_max_wait_ms":2000}}}')
+        scheduler_args=(--additional-config '{"enable_dsa_cp":true,"scheduler_config":{"profiling_chunk_config":{"enabled":true,"smooth_factor":1,"need_timing":true},"short_request_first_config":{"enabled":true,"threshold":65546,"long_max_wait_ms":2000}}}')
         ;;
       *)
         echo "PD_P_SCHEDULER_MODE must be baseline or enhanced" >&2
