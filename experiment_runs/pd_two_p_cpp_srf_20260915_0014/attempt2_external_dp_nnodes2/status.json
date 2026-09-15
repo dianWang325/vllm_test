@@ -1,0 +1,13 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p0_host": "80.5.9.127",
+  "p1_host": "80.5.9.128",
+  "d_host": "80.5.9.129",
+  "commit": "35db35aa1a8e436d588528b3e20173b8602ab179",
+  "status": "failed",
+  "started_at": 1789403259.091388,
+  "error": "prefill_p1 exited; see D:\\Project\\vllm_test\\experiment_runs\\pd_two_p_cpp_srf_20260915_0014\\01_enhanced_variable\\prefill_p1.log",
+  "stop_errors": []
+}

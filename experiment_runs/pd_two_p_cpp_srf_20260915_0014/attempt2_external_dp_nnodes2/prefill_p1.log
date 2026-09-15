@@ -1,0 +1,104 @@
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_two_p_cpp_srf_20260915_0014/scripts/run_dp_template_two_p.sh prefill 0,1,2,3,4,5,6,7 18080 2 0 80.5.9.127 12321 8 2 80.5.9.128 enp194s0f0 1 80.5.9.127 29500
+Launching: bash /home/w00985415/vllm_test/experiment_runs/pd_two_p_cpp_srf_20260915_0014/scripts/run_dp_template_two_p.sh prefill 8,9,10,11,12,13,14,15 18081 2 1 80.5.9.127 12321 8 2 80.5.9.128 enp194s0f0 1 80.5.9.127 29500
+[W915 00:21:38.055493750 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W915 00:21:38.129929770 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:21:43 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:21:43 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:21:43 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:21:43 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:21:43 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:21:43 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:21:43 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:21:43 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:21:43 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-15 00:21:43 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:21:50,599 - 65871 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-15 00:21:50,949 - 65872 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:21:51 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:21:51 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:21:51 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+INFO 09-15 00:21:51 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:21:51 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+INFO 09-15 00:21:51 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+INFO 09-15 00:21:51 [model.py:2031] Using max model len 87040
+INFO 09-15 00:21:51 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=24576.
+WARNING 09-15 00:21:52 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+INFO 09-15 00:21:52 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+INFO 09-15 00:21:52 [model.py:2031] Using max model len 87040
+INFO 09-15 00:21:52 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=24576.
+WARNING 09-15 00:21:52 [vllm.py:1382] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 09-15 00:21:52 [vllm.py:1417] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 09-15 00:21:52 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 09-15 00:21:52 [vllm.py:1596] Cudagraph is disabled under eager mode
+WARNING 09-15 00:21:52 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+INFO 09-15 00:21:52 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:21:52 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:21:52 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:21:52 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:21:52 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+WARNING 09-15 00:21:52 [vllm.py:1382] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 09-15 00:21:52 [vllm.py:1417] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 09-15 00:21:52 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 09-15 00:21:52 [vllm.py:1596] Cudagraph is disabled under eager mode
+WARNING 09-15 00:21:52 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+INFO 09-15 00:21:52 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:21:52 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:21:52 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:21:52 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:21:52 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:21:53 [platform.py:1086] Compilation disabled, using eager mode by default
+INFO 09-15 00:21:53 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+INFO 09-15 00:21:53 [platform.py:1086] Compilation disabled, using eager mode by default
+INFO 09-15 00:21:53 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+INFO 09-15 00:21:54 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+INFO 09-15 00:21:54 [serve.py:232] Launching 1 data parallel engine(s) in headless mode, with head node address tcp://80.5.9.127:12321.
+Traceback (most recent call last):
+  File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+    args.dispatch_function(args)
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 147, in cmd
+    run_headless(args)
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 240, in run_headless
+    engine_manager = CoreEngineProcManager(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 218, in __init__
+    set_assigned_physical_gpu_ids_for_dp_rank(
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 331, in set_assigned_physical_gpu_ids_for_dp_rank
+    physical_gpu_ids = get_physical_gpu_ids_for_local_dp_rank(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_dp_device_ids.py", line 57, in _patched_get_physical_gpu_ids_for_local_dp_rank
+    return [
+           ^
+  File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_dp_device_ids.py", line 58, in <listcomp>
+    current_platform.device_control_id_to_physical_device_id(visible[device_id])
+                                                             ~~~~~~~^^^^^^^^^^^
+IndexError: list index out of range
+[ERROR] 2026-09-15-00:21:54 (PID:65871, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+INFO 09-15 00:21:54 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+INFO 09-15 00:21:54 [serve.py:232] Launching 1 data parallel engine(s) in headless mode, with head node address tcp://80.5.9.127:12321.
+Traceback (most recent call last):
+  File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+    args.dispatch_function(args)
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 147, in cmd
+    run_headless(args)
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 240, in run_headless
+    engine_manager = CoreEngineProcManager(
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 218, in __init__
+    set_assigned_physical_gpu_ids_for_dp_rank(
+  File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/utils.py", line 331, in set_assigned_physical_gpu_ids_for_dp_rank
+    physical_gpu_ids = get_physical_gpu_ids_for_local_dp_rank(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_dp_device_ids.py", line 57, in _patched_get_physical_gpu_ids_for_local_dp_rank
+    return [
+           ^
+  File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/patch/platform/patch_dp_device_ids.py", line 58, in <listcomp>
+    current_platform.device_control_id_to_physical_device_id(visible[device_id])
+                                                             ~~~~~~~^^^^^^^^^^^
+IndexError: list index out of range
+[ERROR] 2026-09-15-00:21:54 (PID:65872, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception

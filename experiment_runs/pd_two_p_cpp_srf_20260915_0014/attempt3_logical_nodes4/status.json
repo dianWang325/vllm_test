@@ -1,0 +1,11 @@
+{
+  "tag": "01_enhanced_variable",
+  "mode": "enhanced",
+  "dataset": "variable",
+  "p0_host": "80.5.9.127",
+  "p1_host": "80.5.9.128",
+  "d_host": "80.5.9.129",
+  "commit": "35db35aa1a8e436d588528b3e20173b8602ab179",
+  "status": "starting",
+  "started_at": 1789403405.0017467
+}

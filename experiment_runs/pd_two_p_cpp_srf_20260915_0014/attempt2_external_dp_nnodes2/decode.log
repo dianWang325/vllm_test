@@ -1,0 +1,208 @@
+
+Authorized users only. All activities may be monitored and reported.
+Launching: bash /home/w00985415/vllm_test/plain_scripts/run_dp_template_two_p.sh decode 0,1,2,3,4,5,6,7 18082 2 0 80.5.9.129 12321 8 1 80.5.9.129 enp194s0f0 -1 - 29500
+Launching: bash /home/w00985415/vllm_test/plain_scripts/run_dp_template_two_p.sh decode 8,9,10,11,12,13,14,15 18083 2 1 80.5.9.129 12321 8 1 80.5.9.129 enp194s0f0 -1 - 29500
+[W915 00:27:14.001791100 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W915 00:27:14.097550410 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:27:18 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:27:18 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:27:18 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:27:18 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:27:18 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-15 00:27:18 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:27:18 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:27:18 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:27:18 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:27:18 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:27:25,960 - 281479 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+2026-09-15 00:27:26,335 - 281478 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:27:26 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:27:26 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347] 
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:347] 
+(APIServer pid=281479) INFO 09-15 00:27:27 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18083, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 1, 'data_parallel_address': '80.5.9.129', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 2, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=281479) WARNING 09-15 00:27:27 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=281479) INFO 09-15 00:27:27 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=281479) INFO 09-15 00:27:27 [model.py:2031] Using max model len 87040
+(APIServer pid=281479) INFO 09-15 00:27:27 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+INFO 09-15 00:27:27 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:27:27 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347] 
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.28.1rc1.dev570+ga97dacb71
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /mnt/weight/DeepSeek-V4-Flash-w8a8-mtp
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:347] 
+(APIServer pid=281478) INFO 09-15 00:27:27 [api_utils.py:286] non-default args: {'model_tag': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v4', 'host': '0.0.0.0', 'port': 18082, 'enable_request_id_headers': True, 'model': '/mnt/weight/DeepSeek-V4-Flash-w8a8-mtp', 'tokenizer_mode': 'deepseek_v4', 'trust_remote_code': True, 'max_model_len': 87040, 'quantization': 'ascend', 'served_model_name': ['deepseek-v4-flash'], 'model_loader_extra_config': {'enable_multithread_load': True, 'num_threads': 128}, 'reasoning_parser': 'deepseek_v4', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'data_parallel_rank': 0, 'data_parallel_address': '80.5.9.129', 'data_parallel_rpc_port': 12321, 'enable_expert_parallel': True, 'block_size': 32, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'max_num_batched_tokens': 120, 'max_num_seqs': 60, 'disable_hybrid_kv_cache_manager': False, 'async_scheduling': False, 'kv_transfer_config': KVTransferConfig(kv_connector='MooncakeHybridConnector', engine_id='1', kv_buffer_device='npu', kv_buffer_size=1000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=30100, kv_connector_extra_config={'prefill': {'dp_size': 2, 'tp_size': 8, 'pp_size': 2}, 'decode': {'dp_size': 2, 'tp_size': 8, 'pp_size': 1}}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail'), 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'ascend_compilation_config': {'enable_npugraph_ex': True, 'enable_static_kernel': False}, 'enable_cpu_binding': True, 'multistream_overlap_shared_expert': True, 'recompute_scheduler_enable': True}}
+(APIServer pid=281478) WARNING 09-15 00:27:27 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+(APIServer pid=281478) INFO 09-15 00:27:27 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+(APIServer pid=281478) INFO 09-15 00:27:27 [model.py:2031] Using max model len 87040
+(APIServer pid=281478) INFO 09-15 00:27:27 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(APIServer pid=281479) INFO 09-15 00:27:27 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=281479) WARNING 09-15 00:27:28 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=281479) WARNING 09-15 00:27:28 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=281479) WARNING 09-15 00:27:28 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=281479) INFO 09-15 00:27:28 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=281479) INFO 09-15 00:27:28 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=281479) INFO 09-15 00:27:28 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=281478) INFO 09-15 00:27:28 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=281478) WARNING 09-15 00:27:28 [vllm.py:2188] Truncating max_cudagraph_capture_size to 56
+(APIServer pid=281478) WARNING 09-15 00:27:28 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+(APIServer pid=281478) WARNING 09-15 00:27:28 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(APIServer pid=281478) INFO 09-15 00:27:28 [ascend_config.py:223] Dynamic EPLB is False
+(APIServer pid=281478) INFO 09-15 00:27:28 [ascend_config.py:224] The number of redundant experts is 0
+(APIServer pid=281478) INFO 09-15 00:27:28 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(APIServer pid=281479) INFO 09-15 00:27:28 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=281478) INFO 09-15 00:27:29 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(APIServer pid=281479) INFO 09-15 00:27:29 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=281478) INFO 09-15 00:27:29 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+[W915 00:27:31.757479620 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+[W915 00:27:31.030545140 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:27:34 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:27:34 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:27:34 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:27:34 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:27:34 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+INFO 09-15 00:27:34 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:27:34 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:27:34 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:27:34 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:27:34 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(APIServer pid=281478) INFO 09-15 00:27:41 [utils.py:1151] Started DP Coordinator process (PID: 282909)
+[W915 00:27:42.293633140 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+(APIServer pid=281478) INFO 09-15 00:27:44 [utils.py:620] [shutdown] Process manager: send sigterm to process VLLM_DP_Coordinator
+(APIServer pid=281478) Traceback (most recent call last):
+(APIServer pid=281478)   File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+(APIServer pid=281478)     sys.exit(main())
+(APIServer pid=281478)              ^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=281478)     args.dispatch_function(args)
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 153, in cmd
+(APIServer pid=281478)     uvloop.run(run_server(args))
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=281478)     return runner.run(wrapper())
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=281478)     return self._loop.run_until_complete(task)
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=281478)     return await main
+(APIServer pid=281478)            ^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=281478)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=281478)     async with build_async_engine_client(
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=281478)     return await anext(self.gen)
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=281478)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=281478)     return await anext(self.gen)
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=281478)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=281478)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 226, in from_vllm_config
+(APIServer pid=281478)     return cls(
+(APIServer pid=281478)            ^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 160, in __init__
+(APIServer pid=281478)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=281478)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=281478)     return func(*args, **kwargs)
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 154, in make_async_mp_client
+(APIServer pid=281478)     return DPAsyncMPClient(
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1339, in __init__
+(APIServer pid=281478)     super().__init__(
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=281478)     return func(*args, **kwargs)
+(APIServer pid=281478)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1060, in __init__
+(APIServer pid=281478)     super().__init__(
+(APIServer pid=281478)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 656, in __init__
+(APIServer pid=281478)     with launch_core_engines(
+(APIServer pid=281478)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 139, in __enter__
+(APIServer pid=281478)     raise RuntimeError("generator didn't yield") from None
+(APIServer pid=281478) RuntimeError: generator didn't yield
+(APIServer pid=281478) [ERROR] 2026-09-15-00:27:44 (PID:281478, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+(APIServer pid=281479) Traceback (most recent call last):
+(APIServer pid=281479)   File "/usr/local/python3.11.10/bin/vllm", line 8, in <module>
+(APIServer pid=281479)     sys.exit(main())
+(APIServer pid=281479)              ^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=281479)     args.dispatch_function(args)
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/cli/serve.py", line 153, in cmd
+(APIServer pid=281479)     uvloop.run(run_server(args))
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=281479)     return runner.run(wrapper())
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=281479)     return self._loop.run_until_complete(task)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=281479)   File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=281479)   File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+(APIServer pid=281479)   File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+(APIServer pid=281479)   File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+(APIServer pid=281479)   File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+(APIServer pid=281479)   File "uvloop/cbhandles.pyx", line 61, in uvloop.loop.Handle._run
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=281479)     return await main
+(APIServer pid=281479)            ^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=281479)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=281479)     async with build_async_engine_client(
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=281479)     return await anext(self.gen)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=281479)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=281479)     return await anext(self.gen)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=281479)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=281479)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 226, in from_vllm_config
+(APIServer pid=281479)     return cls(
+(APIServer pid=281479)            ^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 160, in __init__
+(APIServer pid=281479)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=281479)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=281479)     return func(*args, **kwargs)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 154, in make_async_mp_client
+(APIServer pid=281479)     return DPAsyncMPClient(
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1339, in __init__
+(APIServer pid=281479)     super().__init__(
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=281479)     return func(*args, **kwargs)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1060, in __init__
+(APIServer pid=281479)     super().__init__(
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 713, in __init__
+(APIServer pid=281479)     if not sync_input_socket.poll(
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/zmq/sugar/socket.py", line 1062, in poll
+(APIServer pid=281479)     evts = dict(p.poll(timeout))
+(APIServer pid=281479)                 ^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/zmq/sugar/poll.py", line 106, in poll
+(APIServer pid=281479)     return zmq_poll(self.sockets, timeout=timeout)
+(APIServer pid=281479)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=281479)   File "zmq/backend/cython/_zmq.py", line 1680, in zmq.backend.cython._zmq.zmq_poll
+(APIServer pid=281479)   File "zmq/backend/cython/_zmq.py", line 179, in zmq.backend.cython._zmq._check_rc
+(APIServer pid=281479)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 171, in _interrupt_init
+(APIServer pid=281479)     raise KeyboardInterrupt("terminated")
+(APIServer pid=281479) KeyboardInterrupt: terminated
+(APIServer pid=281479) [ERROR] 2026-09-15-00:27:47 (PID:281479, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception

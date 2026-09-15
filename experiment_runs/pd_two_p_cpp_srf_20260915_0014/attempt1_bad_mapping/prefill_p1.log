@@ -1,0 +1,162 @@
+Launching: bash /home/w00985415/vllm_test/plain_scripts/run_dp_template_two_p.sh prefill 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 18080 2 0 80.5.9.127 12321 8 2 80.5.9.128 enp194s0f0 1 80.5.9.127 29500
+[W915 00:10:43.937107800 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:10:48 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:10:48 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:10:48 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:10:48 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:10:48 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:10:57,010 - 64690 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:10:58 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:10:58 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:10:58 [envs.py:2284] Unknown vLLM environment variable detected: VLLM_RPC_TIMEOUT
+INFO 09-15 00:11:14 [model.py:691] Resolved architecture: DeepseekV4ForCausalLM
+INFO 09-15 00:11:14 [model.py:2031] Using max model len 87040
+INFO 09-15 00:11:14 [arg_utils.py:2252] Inferred data_parallel_rank 0 from node_rank 1
+INFO 09-15 00:11:14 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=24576.
+WARNING 09-15 00:11:15 [vllm.py:1382] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 09-15 00:11:15 [vllm.py:1417] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 09-15 00:11:15 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 09-15 00:11:15 [vllm.py:1596] Cudagraph is disabled under eager mode
+WARNING 09-15 00:11:15 [platform.py:647] GPU-specific parameter is not supported on Ascend. parameter=disable_cascade_attn, value=True, action: resetting to False.
+INFO 09-15 00:11:15 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:11:15 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:11:15 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:11:15 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:11:15 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:11:16 [platform.py:1086] Compilation disabled, using eager mode by default
+INFO 09-15 00:11:16 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+INFO 09-15 00:11:17 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+INFO 09-15 00:11:17 [serve.py:217] Launching vLLM (v0.28.1rc1.dev570+ga97dacb71) headless multiproc executor, with head node address 80.5.9.127:29500 for torch.distributed process group.
+[W915 00:11:18.591297300 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:11:23 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:11:23 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:11:23 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:11:23 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:11:23 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:11:31,157 - 65177 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:11:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[W915 00:11:31.009343370 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:11:31 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:11:33 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:11:33 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:11:33 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:11:33 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:11:33 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:11:33 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:11:36 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:11:36 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:11:36 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:11:36 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:11:36 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=65177) INFO 09-15 00:11:37 [parallel_state.py:1798] world_size=32 rank=8 local_rank=0 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+2026-09-15 00:11:44,185 - 65224 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W915 00:11:44.966516640 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:11:44 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:11:44 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:11:45 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:11:46 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:11:46 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:11:46 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:11:46 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:11:46 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:11:49 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:11:49 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:11:49 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:11:49 [__init__.py:272] Platform plugin ascend is activated
+(Worker pid=65224) INFO 09-15 00:11:49 [parallel_state.py:1798] world_size=32 rank=9 local_rank=1 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+INFO 09-15 00:11:49 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:11:57,034 - 65303 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W915 00:11:57.854280710 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:11:57 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:11:57 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:11:58 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:11:58 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:11:58 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:11:58 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:11:58 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:11:58 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:12:01 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:12:01 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:12:01 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:12:01 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:12:01 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=65303) INFO 09-15 00:12:02 [parallel_state.py:1798] world_size=32 rank=10 local_rank=2 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+[W915 00:12:09.073107170 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+2026-09-15 00:12:09,430 - 65382 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:12:09 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:12:09 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:12:11 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:12:11 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:12:11 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:12:11 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:12:11 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:12:11 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:12:14 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:12:14 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:12:14 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:12:14 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:12:14 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=65382) INFO 09-15 00:12:14 [parallel_state.py:1798] world_size=32 rank=11 local_rank=3 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+2026-09-15 00:12:21,837 - 65461 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W915 00:12:21.644142160 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:12:22 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:12:22 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:12:23 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:12:23 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:12:23 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:12:23 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:12:23 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:12:23 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+(Worker pid=65461) INFO 09-15 00:12:26 [parallel_state.py:1798] world_size=32 rank=12 local_rank=4 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+INFO 09-15 00:12:26 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:12:26 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:12:26 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:12:26 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:12:26 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:12:34,733 - 65549 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W915 00:12:34.517315570 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:12:34 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:12:34 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:12:36 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:12:36 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:12:36 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:12:36 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:12:36 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:12:36 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+INFO 09-15 00:12:39 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:12:39 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:12:39 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:12:39 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:12:39 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+(Worker pid=65549) INFO 09-15 00:12:39 [parallel_state.py:1798] world_size=32 rank=13 local_rank=5 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+2026-09-15 00:12:47,506 - 65634 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+[W915 00:12:47.306227960 FunctionLoader.cpp:48] Warning: LD_PRELOAD detected, FunctionLoader prefers RTLD_DEFAULT for symbol resolution. (function operator())
+INFO 09-15 00:12:47 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:12:47 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:12:49 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:12:49 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:12:49 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:12:49 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:12:49 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:12:49 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+(Worker pid=65634) INFO 09-15 00:12:52 [parallel_state.py:1798] world_size=32 rank=14 local_rank=6 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+INFO 09-15 00:12:52 [__init__.py:52] Available plugins for group vllm.platform_plugins:
+INFO 09-15 00:12:52 [__init__.py:54] - ascend -> vllm_ascend:register
+INFO 09-15 00:12:52 [__init__.py:57] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 09-15 00:12:52 [__init__.py:272] Platform plugin ascend is activated
+INFO 09-15 00:12:52 [platform.py:69] Breakable CUDAGraph on Ascend is opt-in; using VLLM_USE_BREAKABLE_CUDAGRAPH=0.
+2026-09-15 00:13:00,226 - 65716 - ServiceProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.28.1rc1.dev570+ga97dacb71.empty: default 1
+INFO 09-15 00:13:00 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+INFO 09-15 00:13:00 [__init__.py:112] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+WARNING 09-15 00:13:01 [patch_triton.py:332] NPU Triton causal_conv1d_update is unavailable (cannot import name 'causal_conv1d_update_npu' from 'vllm_ascend.ops.triton.mamba.causal_conv1d' (/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/ops/triton/mamba/causal_conv1d.py)); falling back to the PyTorch implementation, which syncs per request and therefore stalls ACL graph capture at decode-FULL.
+INFO 09-15 00:13:02 [ascend_config.py:223] Dynamic EPLB is False
+INFO 09-15 00:13:02 [ascend_config.py:224] The number of redundant experts is 0
+INFO 09-15 00:13:02 [ascend_config.py:603] DSA-CP is enabled. Auto-enabling FlashComm .
+INFO 09-15 00:13:02 [ascend_config.py:615] FlashComm1 is enabled.
+WARNING 09-15 00:13:02 [ascend_config.py:637] enable_dsa_cp will be fully deprecated once PCP is ready. Consider trying prefill context parallelism with --tensor-parallel-size 1 --prefill-context-parallel-size 8 to preserve the current world size. Remove enable_dsa_cp from additional_config when enabling PCP. Check PCP support for your model and deployment configuration.
+(Worker pid=65716) INFO 09-15 00:13:05 [parallel_state.py:1798] world_size=32 rank=15 local_rank=7 distributed_init_method=tcp://80.5.9.127:29500 backend=hccl
+INFO 09-15 00:17:52 [multiproc_executor.py:472] [shutdown] Executor: waiting for worker exit count=8
+WARNING 09-15 00:17:57 [multiproc_executor.py:484] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=8
+WARNING 09-15 00:18:01 [multiproc_executor.py:494] [shutdown] Executor: workers still running after SIGTERM; sending SIGKILL count=8
+/usr/local/python3.11.10/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

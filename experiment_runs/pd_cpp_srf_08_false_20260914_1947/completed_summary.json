@@ -1,0 +1,120 @@
+{
+  "run_id": "pd_cpp_srf_08_false_20260914_1947",
+  "scope": "Four completed runs, one per condition; round five and all failed attempts excluded",
+  "runs": [
+    {
+      "index": 1,
+      "mode": "enhanced",
+      "dataset": "variable",
+      "tag": "01_enhanced_variable",
+      "p_host": "80.5.9.129",
+      "d_host": "80.5.9.127",
+      "ttft_ms": 8640.2,
+      "tpot_ms": 46.5,
+      "total_tokens_per_s": 2136.4882,
+      "input_tokens_per_s": 2057.1958,
+      "output_tokens_per_s": 79.2924,
+      "success_requests": 24,
+      "failed_requests": 0,
+      "generated_tokens": 61440,
+      "explicit_warmup_success": 5
+    },
+    {
+      "index": 2,
+      "mode": "baseline",
+      "dataset": "variable",
+      "tag": "02_baseline_variable",
+      "p_host": "80.5.9.129",
+      "d_host": "80.5.9.127",
+      "ttft_ms": 8723.1,
+      "tpot_ms": 46.0,
+      "total_tokens_per_s": 2155.6035,
+      "input_tokens_per_s": 2075.6016,
+      "output_tokens_per_s": 80.0019,
+      "success_requests": 24,
+      "failed_requests": 0,
+      "generated_tokens": 61440,
+      "explicit_warmup_success": 0
+    },
+    {
+      "index": 3,
+      "mode": "baseline",
+      "dataset": "fixed",
+      "tag": "03_baseline_fixed",
+      "p_host": "80.5.9.129",
+      "d_host": "80.5.9.127",
+      "ttft_ms": 8515.4,
+      "tpot_ms": 44.3,
+      "total_tokens_per_s": 2209.827,
+      "input_tokens_per_s": 2126.7508,
+      "output_tokens_per_s": 83.0762,
+      "success_requests": 24,
+      "failed_requests": 0,
+      "generated_tokens": 61440,
+      "explicit_warmup_success": 0
+    },
+    {
+      "index": 4,
+      "mode": "enhanced",
+      "dataset": "fixed",
+      "tag": "04_enhanced_fixed",
+      "p_host": "80.5.9.129",
+      "d_host": "80.5.9.127",
+      "ttft_ms": 8170.4,
+      "tpot_ms": 44.1,
+      "total_tokens_per_s": 2229.152,
+      "input_tokens_per_s": 2145.3493,
+      "output_tokens_per_s": 83.8027,
+      "success_requests": 24,
+      "failed_requests": 0,
+      "generated_tokens": 61440,
+      "explicit_warmup_success": 5
+    }
+  ],
+  "comparisons": {
+    "fixed": {
+      "ttft_ms": {
+        "absolute": -345.0,
+        "percent": -4.051483195152317
+      },
+      "tpot_ms": {
+        "absolute": -0.19999999999999574,
+        "percent": -0.4514672686230181
+      },
+      "total_tokens_per_s": {
+        "absolute": 19.324999999999818,
+        "percent": 0.8745028456978776
+      },
+      "input_tokens_per_s": {
+        "absolute": 18.598500000000058,
+        "percent": 0.8745030212284455
+      },
+      "output_tokens_per_s": {
+        "absolute": 0.7265000000000015,
+        "percent": 0.8744983521152827
+      }
+    },
+    "variable": {
+      "ttft_ms": {
+        "absolute": -82.89999999999964,
+        "percent": -0.9503502195320479
+      },
+      "tpot_ms": {
+        "absolute": 0.5,
+        "percent": 1.0869565217391353
+      },
+      "total_tokens_per_s": {
+        "absolute": -19.11530000000039,
+        "percent": -0.886772544208636
+      },
+      "input_tokens_per_s": {
+        "absolute": -18.4058,
+        "percent": -0.8867694069998766
+      },
+      "output_tokens_per_s": {
+        "absolute": -0.7095000000000056,
+        "percent": -0.886853937219001
+      }
+    }
+  }
+}

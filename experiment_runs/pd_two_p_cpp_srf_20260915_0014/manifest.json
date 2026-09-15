@@ -1,0 +1,22 @@
+{
+  "run_id": "pd_two_p_cpp_srf_20260915_0014",
+  "commit": "35db35aa1a8e436d588528b3e20173b8602ab179",
+  "p_device_mapping_patch_sha256": "0042376bd4eac58284f2159626959179b6fd6b9040872065030b63b7e672602a",
+  "p_device_mapping_original_sha256": "ae50fd98d763eb738cbf831b52f4b8a51db7cdc17ecd6a9e2e73fa7a4e4e0be5",
+  "p0_host": "80.5.9.127",
+  "p1_host": "80.5.9.128",
+  "d_host": "80.5.9.129",
+  "nic": "enp194s0f0",
+  "remote_root": "/home/w00985415/vllm_test/experiment_runs/pd_two_p_cpp_srf_20260915_0014",
+  "proxy_port": 18090,
+  "schedule": [
+    ["enhanced", "variable"],
+    ["baseline", "fixed"],
+    ["enhanced", "fixed"],
+    ["baseline", "variable"],
+    ["enhanced", "fixed"],
+    ["baseline", "variable"],
+    ["enhanced", "variable"],
+    ["baseline", "fixed"]
+  ]
+}

@@ -6,6 +6,7 @@
   "d_host": "80.5.9.127",
   "p_comm_ip": "80.5.9.129",
   "d_comm_ip": "80.5.9.127",
-  "status": "starting",
-  "started_at": 1789400910.515877
+  "status": "interrupted_by_user",
+  "started_at": 1789400910.515877,
+  "note": "Stopped on user request during formal run; partial requests excluded from summary"
 }

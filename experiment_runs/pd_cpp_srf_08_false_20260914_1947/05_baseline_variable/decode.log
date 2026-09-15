@@ -1105,4 +1105,845 @@ I0914 23:50:35.477686 1091835 transfer_executor_base.cpp:452] TransferExecutor r
 (Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:33] rms Triton warmup complete in 0.000s.
 (Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.032s.
 (Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:35 [kernel_warmup.py:49] Triton kernel warmup finished in 0.032s.
-(Worker_DP0_TP0_EP0 pid=1090774) Capturing CUDA graphs (FULL):   0%|          | 0/10 [00:00<?, ?it/s]
+(Worker_DP0_TP0_EP0 pid=1090774) Capturing CUDA graphs (FULL):   0%|          | 0/10 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  10%|█         | 1/10 [00:03<00:27,  3.03s/it]Capturing CUDA graphs (FULL):  20%|██        | 2/10 [00:04<00:19,  2.38s/it]Capturing CUDA graphs (FULL):  30%|███       | 3/10 [00:06<00:15,  2.18s/it]Capturing CUDA graphs (FULL):  40%|████      | 4/10 [00:08<00:12,  2.10s/it]Capturing CUDA graphs (FULL):  50%|█████     | 5/10 [00:10<00:10,  2.03s/it]Capturing CUDA graphs (FULL):  60%|██████    | 6/10 [00:12<00:08,  2.02s/it]Capturing CUDA graphs (FULL):  70%|███████   | 7/10 [00:14<00:06,  2.02s/it]Capturing CUDA graphs (FULL):  80%|████████  | 8/10 [00:16<00:04,  2.00s/it]Capturing CUDA graphs (FULL):  90%|█████████ | 9/10 [00:18<00:01,  1.99s/it]Capturing CUDA graphs (FULL): 100%|██████████| 10/10 [00:20<00:00,  2.01s/it]Capturing CUDA graphs (FULL): 100%|██████████| 10/10 [00:20<00:00,  2.08s/it]
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.42 GiB
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.13/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33870655795` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40290532864` (37.52 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.87/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33850252800` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40000769536` (37.25 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.42 GiB
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.13/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33876738355` (31.55 GiB) to fit into requested memory, or `--kv-cache-memory=40296844800` (37.53 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.87/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33847565824` (31.52 GiB) to fit into requested memory, or `--kv-cache-memory=40001535488` (37.25 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.88/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33855372800` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40018427392` (37.27 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.42 GiB
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.13/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33868788019` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40287673856` (37.52 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.88/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33846820352` (31.52 GiB) to fit into requested memory, or `--kv-cache-memory=40008904192` (37.26 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.87/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33851760128` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40001469952` (37.25 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.13/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33860579635` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40281734656` (37.52 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 23 secs, took 0.42 GiB
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.87/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33857138176` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40004955648` (37.26 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.88/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33850863104` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40008211968` (37.26 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.42 GiB
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.11/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33867706675` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40272465408` (37.51 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.42 GiB
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.12/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.42 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33866342707` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40278867456` (37.51 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 23 secs, took 0.43 GiB
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (60.87/61.27 GiB) on startup. Desired GPU memory utilization is (0.9, 55.14 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33850949120` (31.53 GiB) to fit into requested memory, or `--kv-cache-memory=40005385728` (37.26 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.1 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:57 [model_runner.py:1001] Graph capturing finished in 22 secs, took 0.43 GiB
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:50:57 [worker.py:938] Free memory on device (61.12/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33862525235` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40270302720` (37.5 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:58 [model_runner.py:1001] Graph capturing finished in 23 secs, took 0.43 GiB
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:50:58 [worker.py:938] Free memory on device (61.12/61.28 GiB) on startup. Desired GPU memory utilization is (0.9, 55.15 GiB). Actual usage: 19.76 GiB for weights, 0.21 GiB for peak activation, 3.07 GiB for non-torch memory, 0.43 GiB for NPU graph memory. Replace gpu_memory_utilization with `--kv-cache-memory=33866445107` (31.54 GiB) to fit into requested memory, or `--kv-cache-memory=40279981568` (37.51 GiB) to fully utilize NPU free memory. Current KV cache memory: 32.11 GiB. After warmup: torch reserved memory 52.32 GiB, torch allocated memory 51.94 GiB.
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:51:01 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=1 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:51:01 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:51:01 [cpu_binding.py:637] NPU9: main=[218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237]  acl=[238]  release=[[239]]
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:51:01 [cpu_binding.py:663] [migrate] NPU:9 -> NUMA [4]
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:51:01 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=2 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:51:01 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:51:01 [cpu_binding.py:637] NPU10: main=[242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261]  acl=[262]  release=[[263]]
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:51:01 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=3 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:51:01 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:51:01 [cpu_binding.py:637] NPU11: main=[266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285]  acl=[286]  release=[[287]]
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:51:01 [cpu_binding.py:663] [migrate] NPU:10 -> NUMA [5]
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:51:02 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=4 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:51:02 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:51:02 [cpu_binding.py:637] NPU4: main=[98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117]  acl=[118]  release=[[119]]
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:51:02 [cpu_binding.py:663] [migrate] NPU:11 -> NUMA [5]
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:51:02 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=2 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:51:02 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:51:02 [cpu_binding.py:637] NPU2: main=[50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69]  acl=[70]  release=[[71]]
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:51:02 [cpu_binding.py:663] [migrate] NPU:4 -> NUMA [2]
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:51:02 [cpu_binding.py:663] [migrate] NPU:2 -> NUMA [1]
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:51:03 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=5 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:51:03 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:51:03 [cpu_binding.py:637] NPU13: main=[314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333]  acl=[334]  release=[[335]]
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:51:03 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=0 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:51:03 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:51:03 [cpu_binding.py:637] NPU0: main=[2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21]  acl=[22]  release=[[23]]
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:51:03 [cpu_binding.py:663] [migrate] NPU:13 -> NUMA [6]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:51:04 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=0 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:51:04 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:51:04 [cpu_binding.py:637] NPU8: main=[194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213]  acl=[214]  release=[[215]]
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:51:04 [cpu_binding.py:663] [migrate] NPU:0 -> NUMA [0]
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:51:04 [cpu_binding.py:663] [migrate] NPU:8 -> NUMA [4]
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:51:04 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=5 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:51:04 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:51:04 [cpu_binding.py:637] NPU5: main=[122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141]  acl=[142]  release=[[143]]
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:51:04 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=6 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:51:04 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:51:04 [cpu_binding.py:637] NPU6: main=[146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165]  acl=[166]  release=[[167]]
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:51:04 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=4 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:51:04 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:51:04 [cpu_binding.py:637] NPU12: main=[290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309]  acl=[310]  release=[[311]]
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:51:04 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=3 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:51:04 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:51:04 [cpu_binding.py:637] NPU3: main=[74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93]  acl=[94]  release=[[95]]
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:5 -> NUMA [2]
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:6 -> NUMA [3]
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:12 -> NUMA [6]
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:51:05 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=7 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:51:05 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:51:05 [cpu_binding.py:637] NPU7: main=[170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189]  acl=[190]  release=[[191]]
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:51:05 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=7 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:51:05 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:51:05 [cpu_binding.py:637] NPU15: main=[362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381]  acl=[382]  release=[[383]]
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:3 -> NUMA [1]
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:51:05 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=6 visible_npus=[8, 9, 10, 11, 12, 13, 14, 15]
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:51:05 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:51:05 [cpu_binding.py:637] NPU14: main=[338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357]  acl=[358]  release=[[359]]
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:51:05 [cpu_binding.py:539] [cpu_bind_mode] mode=global_slice rank=1 visible_npus=[0, 1, 2, 3, 4, 5, 6, 7]
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:51:05 [cpu_binding.py:623] The CPU allocation plan is as follows:
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:51:05 [cpu_binding.py:637] NPU1: main=[26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45]  acl=[46]  release=[[47]]
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:7 -> NUMA [3]
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:15 -> NUMA [7]
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:14 -> NUMA [7]
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:51:05 [cpu_binding.py:663] [migrate] NPU:1 -> NUMA [0]
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:51:25 [cpu_binding.py:773] NPU6(PCI 0000:91:00.0): sq_send_trigger_irq IRQ_ID=2702 -> CPU144, cq_update_irq IRQ_ID=2703 -> CPU145
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:51:29 [cpu_binding.py:773] NPU14(PCI 0000:81:00.0): sq_send_trigger_irq IRQ_ID=4750 -> CPU336, cq_update_irq IRQ_ID=4751 -> CPU337
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:51:31 [cpu_binding.py:773] NPU13(PCI 0000:87:00.0): sq_send_trigger_irq IRQ_ID=4494 -> CPU312, cq_update_irq IRQ_ID=4495 -> CPU313
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:51:31 [cpu_binding.py:773] NPU15(PCI 0000:83:00.0): sq_send_trigger_irq IRQ_ID=5006 -> CPU360, cq_update_irq IRQ_ID=5007 -> CPU361
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:51:31 [cpu_binding.py:773] NPU11(PCI 0000:8b:00.0): sq_send_trigger_irq IRQ_ID=3982 -> CPU264, cq_update_irq IRQ_ID=3983 -> CPU265
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:51:32 [cpu_binding.py:773] NPU2(PCI 0000:99:00.0): sq_send_trigger_irq IRQ_ID=1678 -> CPU48, cq_update_irq IRQ_ID=1679 -> CPU49
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:51:32 [cpu_binding.py:773] NPU0(PCI 0000:9d:00.0): sq_send_trigger_irq IRQ_ID=1166 -> CPU0, cq_update_irq IRQ_ID=1167 -> CPU1
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:51:32 [cpu_binding.py:773] NPU1(PCI 0000:9f:00.0): sq_send_trigger_irq IRQ_ID=1422 -> CPU24, cq_update_irq IRQ_ID=1423 -> CPU25
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:51:32 [cpu_binding.py:773] NPU3(PCI 0000:9b:00.0): sq_send_trigger_irq IRQ_ID=1934 -> CPU72, cq_update_irq IRQ_ID=1935 -> CPU73
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:51:34 [cpu_binding.py:773] NPU4(PCI 0000:95:00.0): sq_send_trigger_irq IRQ_ID=2190 -> CPU96, cq_update_irq IRQ_ID=2191 -> CPU97
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:51:36 [shm_broadcast.py:801] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:51:36 [cpu_binding.py:773] NPU5(PCI 0000:97:00.0): sq_send_trigger_irq IRQ_ID=2446 -> CPU120, cq_update_irq IRQ_ID=2447 -> CPU121
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:51:37 [cpu_binding.py:773] NPU7(PCI 0000:93:00.0): sq_send_trigger_irq IRQ_ID=2958 -> CPU168, cq_update_irq IRQ_ID=2959 -> CPU169
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:37 [core.py:372] init engine (profile, create kv cache, warmup model) took 74.18 s (compilation: 2.09 s)
+(EngineCore_DP0 pid=1090682) WARNING 09-14 23:51:38 [scheduler.py:224] Using custom scheduler class vllm_ascend.core.recompute_scheduler.RecomputeScheduler. This scheduler interface is not public and compatibility may not be maintained. If you have subclassed Scheduler instead of AsyncScheduler, you will see degraded performance due to async scheduling being disabled.
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [kv_cache_utils.py:732] kv cache group sizes [128, 4096, 32, 32, 2, 8]
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [kv_cache_utils.py:733] kv lcm block sizes 4096
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(EngineCore_DP0 pid=1090682) WARNING 09-14 23:51:38 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [ascend_config.py:223] Dynamic EPLB is False
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [ascend_config.py:224] The number of redundant experts is 0
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:38 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:39 [mooncake_hybrid_connector.py:1237] Initializing Mooncake Scheduler 1-341288bacf84457ea2b2dc2e75abe8f4_dp0
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:49 [core.py:1138] Waiting for READY message from DP Coordinator...
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:51:59 [core.py:1138] Waiting for READY message from DP Coordinator...
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:09 [core.py:1138] Waiting for READY message from DP Coordinator...
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:19 [core.py:1138] Waiting for READY message from DP Coordinator...
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:52:24 [cpu_binding.py:773] NPU10(PCI 0000:89:00.0): sq_send_trigger_irq IRQ_ID=3726 -> CPU240, cq_update_irq IRQ_ID=3727 -> CPU241
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:52:25 [cpu_binding.py:773] NPU9(PCI 0000:8f:00.0): sq_send_trigger_irq IRQ_ID=3470 -> CPU216, cq_update_irq IRQ_ID=3471 -> CPU217
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:29 [core.py:1138] Waiting for READY message from DP Coordinator...
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:52:32 [cpu_binding.py:773] NPU8(PCI 0000:8d:00.0): sq_send_trigger_irq IRQ_ID=3214 -> CPU192, cq_update_irq IRQ_ID=3215 -> CPU193
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:39 [core.py:1138] Waiting for READY message from DP Coordinator...
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:52:41 [cpu_binding.py:773] NPU12(PCI 0000:85:00.0): sq_send_trigger_irq IRQ_ID=4238 -> CPU288, cq_update_irq IRQ_ID=4239 -> CPU289
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:41 [core.py:372] init engine (profile, create kv cache, warmup model) took 149.39 s (compilation: 1.97 s)
+(EngineCore_DP1 pid=1090588) WARNING 09-14 23:52:42 [scheduler.py:224] Using custom scheduler class vllm_ascend.core.recompute_scheduler.RecomputeScheduler. This scheduler interface is not public and compatibility may not be maintained. If you have subclassed Scheduler instead of AsyncScheduler, you will see degraded performance due to async scheduling being disabled.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [kv_cache_utils.py:732] kv cache group sizes [128, 4096, 32, 32, 2, 8]
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [kv_cache_utils.py:733] kv lcm block sizes 4096
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [factory.py:62] Creating v1 connector with name: MooncakeConnector and engine_id: 1-666b751c858045018ca71752ec6c8952_dp1
+(EngineCore_DP1 pid=1090588) WARNING 09-14 23:52:42 [ascend_config.py:1351] additional_config.recompute_scheduler_enable is deprecated; use additional_config.scheduler_config.recompute_scheduler_enable instead.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [ascend_config.py:223] Dynamic EPLB is False
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [ascend_config.py:224] The number of redundant experts is 0
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:42 [ascend_config.py:611] FlashComm1 is disabled. Using flashinfer_all2allv as the all2all backend.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:43 [mooncake_hybrid_connector.py:1237] Initializing Mooncake Scheduler 1-666b751c858045018ca71752ec6c8952_dp1
+INFO 09-14 23:52:43 [coordinator.py:250] All engine subscriptions received by DP coordinator
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:43 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:43 [kernel.py:372] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:43 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:43 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=120.
+(EngineCore_DP0 pid=1090682) WARNING 09-14 23:52:43 [utils.py:1262] For deepseek_v4 model, block size should be 32, 64 or 128. Setting block size to 32 for better performance.
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:43 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(EngineCore_DP1 pid=1090588) WARNING 09-14 23:52:43 [utils.py:1262] For deepseek_v4 model, block size should be 32, 64 or 128. Setting block size to 32 for better performance.
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:43 [platform.py:1338] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:52:43 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:52:43 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=1089673) INFO 09-14 23:52:43 [entry.py:135] Supported tasks: ['generate']
+(APIServer pid=1089672) INFO 09-14 23:52:43 [entry.py:135] Supported tasks: ['generate']
+(APIServer pid=1089672) INFO 09-14 23:52:43 [factories.py:83] Scale-out endpoints are disabled. Set VLLM_ENABLE_SCALE_OUT_ENDPOINTS=1 to enable them.
+(APIServer pid=1089673) INFO 09-14 23:52:43 [factories.py:83] Scale-out endpoints are disabled. Set VLLM_ENABLE_SCALE_OUT_ENDPOINTS=1 to enable them.
+(APIServer pid=1089672) INFO 09-14 23:52:43 [parser_manager.py:36] "auto" tool choice has been enabled.
+(APIServer pid=1089673) INFO 09-14 23:52:43 [parser_manager.py:36] "auto" tool choice has been enabled.
+(APIServer pid=1089672) WARNING 09-14 23:52:43 [model.py:1769] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 1.0, 'top_p': 1.0}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=1089673) WARNING 09-14 23:52:43 [model.py:1769] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 1.0, 'top_p': 1.0}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+(APIServer pid=1089672) INFO 09-14 23:52:43 [entry.py:139] Starting vLLM server on http://0.0.0.0:18082
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:61] Available routes are:
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /docs, Methods: GET, HEAD
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /load, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /version, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /health, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /metrics, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /tokenize, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /detokenize, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/models, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /ping, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /ping, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /invocations, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/chat/completions/batch, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/completions, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/messages, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /generative_scoring, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=1089672) INFO 09-14 23:52:43 [launcher.py:70] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [entry.py:139] Starting vLLM server on http://0.0.0.0:18083
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:61] Available routes are:
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /docs, Methods: GET, HEAD
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /load, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /version, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /health, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /metrics, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /tokenize, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /detokenize, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/models, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /ping, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /ping, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /invocations, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/chat/completions/batch, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/completions, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/messages, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /generative_scoring, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=1089673) INFO 09-14 23:52:43 [launcher.py:70] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=1089672) INFO:     Started server process [1089672]
+(APIServer pid=1089672) INFO:     Waiting for application startup.
+(APIServer pid=1089673) INFO:     Started server process [1089673]
+(APIServer pid=1089673) INFO:     Waiting for application startup.
+(APIServer pid=1089672) INFO:     Application startup complete.
+(APIServer pid=1089673) INFO:     Application startup complete.
+(APIServer pid=1089672) INFO:     127.0.0.1:43804 - "GET /health HTTP/1.1" 200 OK
+(APIServer pid=1089673) INFO:     127.0.0.1:42734 - "GET /health HTTP/1.1" 200 OK
+(APIServer pid=1089672) INFO:     80.5.9.129:43276 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:53:34 [aclgraph_utils.py:149] run_fullgraph with num_tokens=1
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:53:34 [aclgraph_utils.py:149] run_fullgraph with num_tokens=1
+I0914 23:53:34.744139 1102621 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20253
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 188.52 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+I0914 23:53:34.800437 1102776 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20308
+I0914 23:53:34.804692 1102642 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20651
+I0914 23:53:34.810986 1102818 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20736
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 245.05 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 250.45 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 257.79 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+I0914 23:53:34.835189 1102625 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21025
+I0914 23:53:34.835264 1102724 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20175
+I0914 23:53:34.835414 1102628 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20090
+I0914 23:53:34.835582 1102637 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20546
+I0914 23:53:34.839016 1102757 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20438
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 281.33 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 282.20 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 282.13 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 284.18 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 282.58 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+I0914 23:53:34.899044 1102777 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21106
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 346.39 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+I0914 23:53:34.930182 1102819 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21554
+I0914 23:53:34.941139 1102647 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21456
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 378.88 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+I0914 23:53:34.962839 1102729 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21000
+I0914 23:53:34.962858 1102633 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20819
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 390.46 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+I0914 23:53:34.976432 1102760 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21280
+I0914 23:53:34.977561 1102643 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21378
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 412.10 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:53:34 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 411.86 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:53:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 424.99 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:53:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7 took 426.29 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(APIServer pid=1089672) INFO 09-14 23:53:43 [loggers.py:310] Engine 000: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 20.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:53:53 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:03 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:13 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 23.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:23 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 23.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:33 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 23.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:43 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:54:53 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.4%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:55:03 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 23.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.4%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:55:13 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 23.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.4%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:55:23 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.9 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO:     80.5.9.129:48308 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 74.23 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 75.04 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 75.82 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 77.34 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 80.88 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 81.11 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 81.44 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 84.03 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 81.96 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 87.92 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 89.29 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 84.40 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 84.57 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 90.00 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 84.58 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:55:28 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512 took 90.26 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(APIServer pid=1089672) INFO 09-14 23:55:33 [loggers.py:310] Engine 000: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 11.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO:     80.5.9.129:48170 - "POST /v1/completions HTTP/1.1" 200 OK
+I0914 23:55:35.255882 1102371 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20175
+I0914 23:55:35.255959 1102274 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20651
+I0914 23:55:35.255982 1102275 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20253
+I0914 23:55:35.256029 1102374 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20308
+I0914 23:55:35.258970 1102441 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20736
+I0914 23:55:35.270961 1102399 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20438
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 144.44 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 145.46 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+I0914 23:55:35.272930 1102454 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20546
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 146.67 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 147.96 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 160.04 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 159.49 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 163.34 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+I0914 23:55:35.332068 1102495 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20090
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 147.29 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+I0914 23:55:35.381709 1102444 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21554
+I0914 23:55:35.382053 1102276 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21456
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 277.74 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 277.83 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+I0914 23:55:35.427923 1102375 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21000
+I0914 23:55:35.427973 1102277 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21025
+I0914 23:55:35.428042 1102378 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21106
+I0914 23:55:35.447933 1102456 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21378
+I0914 23:55:35.447933 1102402 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:21280
+I0914 23:55:35.448000 1102496 transfer_executor_base.cpp:269] Connected to segment: 80.5.9.129:20819
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 324.06 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 323.50 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 323.55 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 343.00 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 342.48 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:55:35 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1 took 269.72 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(APIServer pid=1089672) INFO:     80.5.9.129:52364 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 30.52 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 30.62 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 30.63 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 31.10 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 31.30 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 30.91 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 31.32 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 31.64 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 34.22 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 34.88 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 35.06 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 34.86 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 35.31 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 35.10 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 34.83 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:55:41 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c took 38.98 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:55:42 [aclgraph_utils.py:149] run_fullgraph with num_tokens=2
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:55:42 [aclgraph_utils.py:149] run_fullgraph with num_tokens=2
+(APIServer pid=1089672) INFO 09-14 23:55:43 [loggers.py:310] Engine 000: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 24.9 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:55:43 [loggers.py:310] Engine 001: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 17.5 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.4%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO:     80.5.9.129:51750 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 30.57 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 31.24 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 31.00 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 30.91 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 31.31 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 32.03 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 38.53 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 39.61 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 40.75 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 40.86 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 41.80 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 45.48 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 42.93 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 47.79 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 45.77 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:55:47 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795 took 49.47 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(APIServer pid=1089672) INFO 09-14 23:55:53 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 43.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:55:53 [loggers.py:310] Engine 001: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 34.1 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:03 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 45.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:03 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 45.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:13 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.4 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:13 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.4 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:23 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:23 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:33 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 45.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:33 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 45.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:43 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.8 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:43 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:56:53 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:56:53 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:57:03 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.4 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:03 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.4 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:57:13 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 43.8 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:13 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 43.8 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO 09-14 23:57:23 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.9%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:23 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.7%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO:     80.5.9.129:48170 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 83.92 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 84.65 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 88.09 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 89.22 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 93.36 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 95.22 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 95.93 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 96.36 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 91.11 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 96.80 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 96.94 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 97.24 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 97.32 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 91.37 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 101.51 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:57:31 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c took 102.38 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(APIServer pid=1089672) INFO 09-14 23:57:33 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 22.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:33 [loggers.py:310] Engine 001: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 41.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089672) INFO:     80.5.9.129:52364 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 80.50 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 81.00 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 81.90 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 84.62 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 86.81 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 87.89 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 87.67 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 89.18 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 89.72 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 84.67 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 89.94 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 85.07 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 85.53 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 87.31 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 92.63 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:57:38 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c took 92.39 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(APIServer pid=1089672) INFO:     80.5.9.129:36702 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.13 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.26 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.27 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.43 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.55 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 38.48 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 39.19 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 40.05 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP0_TP5_EP5 pid=1091513) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 42.14 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP0_TP4_EP4 pid=1091351) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 42.30 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(Worker_DP0_TP6_EP6 pid=1091676) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 42.04 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP0_TP1_EP1 pid=1090879) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 42.45 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP0_TP2_EP2 pid=1091035) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 42.56 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP0_TP7_EP7 pid=1091835) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 43.40 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP0_TP3_EP3 pid=1091193) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 45.09 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:57:43 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26 took 46.99 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(APIServer pid=1089672) INFO 09-14 23:57:43 [loggers.py:310] Engine 000: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 20.7 tokens/s, Running: 1 reqs, Waiting: 1 reqs, Deferred: 1 reqs, GPU KV cache usage: 2.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:43 [loggers.py:310] Engine 001: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 43.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO:     80.5.9.129:53586 - "POST /v1/completions HTTP/1.1" 200 OK
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 77.72 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16726
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 78.35 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:16901
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 84.24 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16118
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 84.50 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:15771
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 86.13 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:15980
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 86.04 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15485
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 86.71 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15544
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 89.97 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16384
+(Worker_DP1_TP3_EP11 pid=1091192) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 93.63 ms. local_ip 80.5.9.127 local_device_id 3 remote_session_id 80.5.9.129:16166
+(Worker_DP1_TP6_EP14 pid=1091677) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 87.79 ms. local_ip 80.5.9.127 local_device_id 6 remote_session_id 80.5.9.129:15876
+(Worker_DP1_TP5_EP13 pid=1091514) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 88.48 ms. local_ip 80.5.9.127 local_device_id 5 remote_session_id 80.5.9.129:16811
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 92.01 ms. local_ip 80.5.9.127 local_device_id 0 remote_session_id 80.5.9.129:16233
+(Worker_DP1_TP1_EP9 pid=1090878) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 97.76 ms. local_ip 80.5.9.127 local_device_id 1 remote_session_id 80.5.9.129:16879
+(Worker_DP1_TP2_EP10 pid=1091034) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 93.40 ms. local_ip 80.5.9.127 local_device_id 2 remote_session_id 80.5.9.129:15311
+(Worker_DP1_TP7_EP15 pid=1091834) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 96.72 ms. local_ip 80.5.9.127 local_device_id 7 remote_session_id 80.5.9.129:15938
+(Worker_DP1_TP4_EP12 pid=1091350) INFO 09-14 23:57:52 [mooncake_hybrid_connector.py:750] KV cache transfer for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543 took 102.21 ms. local_ip 80.5.9.127 local_device_id 4 remote_session_id 80.5.9.129:16521
+(APIServer pid=1089672) INFO 09-14 23:57:53 [loggers.py:310] Engine 000: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 42.2 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.5%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(APIServer pid=1089673) INFO 09-14 23:57:53 [loggers.py:310] Engine 001: Avg prompt throughput: 0.1 tokens/s, Avg generation throughput: 24.8 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 100.0%
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1342] [shutdown] EngineCore: trigger received signal=SIGTERM
+(APIServer pid=1089672) INFO 09-14 23:58:02 [launcher.py:129] [shutdown] API server: shutdown triggered
+(APIServer pid=1089672) INFO 09-14 23:58:02 [launcher.py:145] [shutdown] API server: stopping engine client mode=abort timeout=0s
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [core.py:1342] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1493] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1502] [shutdown] EngineCore: aborting in-flight requests count=2
+(APIServer pid=1089673) INFO 09-14 23:58:02 [launcher.py:129] [shutdown] API server: shutdown triggered
+(APIServer pid=1089673) INFO 09-14 23:58:02 [launcher.py:145] [shutdown] API server: stopping engine client mode=abort timeout=0s
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [core.py:1493] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [core.py:1502] [shutdown] EngineCore: aborting in-flight requests count=2
+(APIServer pid=1089672) INFO 09-14 23:58:02 [core_client.py:744] [shutdown] MPClient: start timeout=0s
+(APIServer pid=1089672) INFO 09-14 23:58:02 [core_client.py:746] [shutdown] MPClient: stopping engine manager
+(APIServer pid=1089672) INFO 09-14 23:58:02 [utils.py:620] [shutdown] Process manager: send sigterm to process EngineCore_DP0
+(APIServer pid=1089672) WARNING 09-14 23:58:02 [utils.py:640] [shutdown] Process manager: force killing remaining processes count=1
+(APIServer pid=1089672) WARNING 09-14 23:58:02 [utils.py:645] [shutdown] Process manager: force killing remaining process EngineCore_DP0 pid 1090682
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1342] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1524] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [core.py:1524] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [core.py:1355] [shutdown] EngineCore: exiting busy loop
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [core.py:1355] [shutdown] EngineCore: exiting busy loop
+(EngineCore_DP0 pid=1090682) INFO 09-14 23:58:02 [multiproc_executor.py:472] [shutdown] Executor: waiting for worker exit count=8
+(EngineCore_DP1 pid=1090588) INFO 09-14 23:58:02 [multiproc_executor.py:472] [shutdown] Executor: waiting for worker exit count=8
+(Worker_DP0_TP0_EP0 pid=1090774) INFO 09-14 23:58:02 [multiproc_executor.py:836] Parent process exited, terminating worker queues
+(Worker_DP1_TP0_EP8 pid=1090775) INFO 09-14 23:58:02 [multiproc_executor.py:836] Parent process exited, terminating worker queues
+(APIServer pid=1089672) INFO 09-14 23:58:02 [core_client.py:748] [shutdown] MPClient: engine manager stopped
+(APIServer pid=1089673) INFO 09-14 23:58:02 [core_client.py:744] [shutdown] MPClient: start timeout=0s
+(APIServer pid=1089672) INFO 09-14 23:58:02 [core_client.py:749] [shutdown] MPClient: cleaning up background resources
+(APIServer pid=1089673) INFO 09-14 23:58:02 [core_client.py:746] [shutdown] MPClient: stopping engine manager
+(APIServer pid=1089672) INFO 09-14 23:58:02 [utils.py:620] [shutdown] Process manager: send sigterm to process VLLM_DP_Coordinator
+(APIServer pid=1089673) INFO 09-14 23:58:02 [utils.py:620] [shutdown] Process manager: send sigterm to process EngineCore_DP1
+(APIServer pid=1089673) WARNING 09-14 23:58:02 [utils.py:640] [shutdown] Process manager: force killing remaining processes count=1
+(APIServer pid=1089673) WARNING 09-14 23:58:02 [utils.py:645] [shutdown] Process manager: force killing remaining process EngineCore_DP1 pid 1090588
+(APIServer pid=1089673) INFO 09-14 23:58:02 [core_client.py:748] [shutdown] MPClient: engine manager stopped
+(APIServer pid=1089673) INFO 09-14 23:58:02 [core_client.py:749] [shutdown] MPClient: cleaning up background resources
+(APIServer pid=1089673) INFO 09-14 23:58:02 [core_client.py:751] [shutdown] MPClient: complete
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829] AsyncLLM output_handler failed.
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829] Traceback (most recent call last):
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 775, in output_handler
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829]     outputs = await engine_core.get_output_async()
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1175, in get_output_async
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829]     raise self._format_exception(outputs) from None
+(APIServer pid=1089673) ERROR 09-14 23:58:02 [async_llm.py:829] vllm.v1.engine.exceptions.EngineDeadError: EngineCore encountered an issue. See stack trace (above) for the root cause.
+(APIServer pid=1089673) INFO 09-14 23:58:02 [launcher.py:154] [shutdown] API server: engine client stopped
+(APIServer pid=1089673) INFO 09-14 23:58:02 [launcher.py:157] [shutdown] API server: signalling HTTP server shutdown
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] WorkerProc hit an exception.
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] Traceback (most recent call last):
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 1047, in _execute_worker_rpc
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     output = func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 1221, in execute_dummy_batch
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     self.model_runner._dummy_run(num_tokens, uniform_decode=True)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 647, in _dummy_run
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     hidden_states, sample_hidden_states = super()._dummy_run(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]                                           ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     result = fn(self, *args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 786, in _dummy_run
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     self.execute_model(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 280, in execute_model
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     output = super().execute_model(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 1617, in execute_model
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     batch_desc, dp_sync = dispatch_cg_and_sync_dp(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 279, in dispatch_cg_and_sync_dp
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return sync_cudagraph_and_dp_padding(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 74, in sync_cudagraph_and_dp_padding
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     dist.all_reduce(tensor, group=group)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 3014, in all_reduce
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     work.wait()
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] RuntimeError: [/pytorch/third_party/gloo/gloo/transport/tcp/pair.cc:538] Read error [80.5.9.127]:33169: Connection reset by peer
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] Traceback (most recent call last):
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 1047, in _execute_worker_rpc
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     output = func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 1221, in execute_dummy_batch
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     self.model_runner._dummy_run(num_tokens, uniform_decode=True)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 647, in _dummy_run
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     hidden_states, sample_hidden_states = super()._dummy_run(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]                                           ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     result = fn(self, *args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 786, in _dummy_run
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     self.execute_model(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 280, in execute_model
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     output = super().execute_model(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 1617, in execute_model
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     batch_desc, dp_sync = dispatch_cg_and_sync_dp(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 279, in dispatch_cg_and_sync_dp
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return sync_cudagraph_and_dp_padding(
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 74, in sync_cudagraph_and_dp_padding
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     dist.all_reduce(tensor, group=group)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 3014, in all_reduce
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055]     work.wait()
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] RuntimeError: [/pytorch/third_party/gloo/gloo/transport/tcp/pair.cc:538] Read error [80.5.9.127]:33169: Connection reset by peer
+(Worker_DP1_TP2_EP10 pid=1091034) ERROR 09-14 23:58:02 [multiproc_executor.py:1055] 
+(APIServer pid=1089673) INFO 09-14 23:58:02 [launcher.py:179] [shutdown] API server: shutting down FastAPI HTTP server
+(APIServer pid=1089673) INFO:     Shutting down
+(Worker_DP1_TP1_EP9 pid=1090878) Exception in thread Thread-1:
+(Worker_DP1_TP1_EP9 pid=1090878) Traceback (most recent call last):
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP1_EP9 pid=1090878)     self.run()
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP1_EP9 pid=1090878)     item = self.task_q.get()
+(Worker_DP1_TP1_EP9 pid=1090878)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878)   File "<string>", line 2, in get
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP1_EP9 pid=1090878)     kind, result = conn.recv()
+(Worker_DP1_TP1_EP9 pid=1090878)                    ^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP1_EP9 pid=1090878)     buf = self._recv_bytes()
+(Worker_DP1_TP1_EP9 pid=1090878)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP1_EP9 pid=1090878)     buf = self._recv(4)
+(Worker_DP1_TP1_EP9 pid=1090878)           ^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP1_EP9 pid=1090878)     raise EOFError
+(Worker_DP1_TP1_EP9 pid=1090878) EOFError
+(Worker_DP1_TP4_EP12 pid=1091350) Exception in thread Thread-1:
+(Worker_DP1_TP4_EP12 pid=1091350) Traceback (most recent call last):
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP4_EP12 pid=1091350)     self.run()
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP4_EP12 pid=1091350)     item = self.task_q.get()
+(Worker_DP1_TP4_EP12 pid=1091350)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP4_EP12 pid=1091350)   File "<string>", line 2, in get
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP4_EP12 pid=1091350)     kind, result = conn.recv()
+(Worker_DP1_TP4_EP12 pid=1091350)                    ^^^^^^^^^^^
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP4_EP12 pid=1091350)     buf = self._recv_bytes()
+(Worker_DP1_TP4_EP12 pid=1091350)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP4_EP12 pid=1091350)     buf = self._recv(4)
+(Worker_DP1_TP4_EP12 pid=1091350)           ^^^^^^^^^^^^^
+(Worker_DP1_TP4_EP12 pid=1091350)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP7_EP15 pid=1091834) Exception in thread Thread-1:
+(Worker_DP1_TP7_EP15 pid=1091834) Traceback (most recent call last):
+(Worker_DP1_TP4_EP12 pid=1091350)     raise EOFError
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP4_EP12 pid=1091350) EOFError
+(Worker_DP1_TP7_EP15 pid=1091834)     self.run()
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP7_EP15 pid=1091834)     item = self.task_q.get()
+(Worker_DP1_TP7_EP15 pid=1091834)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP7_EP15 pid=1091834)   File "<string>", line 2, in get
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP7_EP15 pid=1091834)     kind, result = conn.recv()
+(Worker_DP1_TP7_EP15 pid=1091834)                    ^^^^^^^^^^^
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP7_EP15 pid=1091834)     buf = self._recv_bytes()
+(Worker_DP1_TP7_EP15 pid=1091834)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP7_EP15 pid=1091834)     buf = self._recv(4)
+(Worker_DP1_TP7_EP15 pid=1091834)           ^^^^^^^^^^^^^
+(Worker_DP1_TP7_EP15 pid=1091834)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP7_EP15 pid=1091834)     raise EOFError
+(Worker_DP1_TP7_EP15 pid=1091834) EOFError
+(APIServer pid=1089673) INFO:     Waiting for application shutdown.
+(APIServer pid=1089673) INFO:     Application shutdown complete.
+(Worker_DP1_TP5_EP13 pid=1091514) Exception in thread Thread-1:
+(Worker_DP1_TP5_EP13 pid=1091514) Traceback (most recent call last):
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP5_EP13 pid=1091514)     self.run()
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP5_EP13 pid=1091514)     item = self.task_q.get()
+(Worker_DP1_TP5_EP13 pid=1091514)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP5_EP13 pid=1091514)   File "<string>", line 2, in get
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP5_EP13 pid=1091514)     kind, result = conn.recv()
+(Worker_DP1_TP5_EP13 pid=1091514)                    ^^^^^^^^^^^
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP5_EP13 pid=1091514)     buf = self._recv_bytes()
+(Worker_DP1_TP5_EP13 pid=1091514)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP5_EP13 pid=1091514)     buf = self._recv(4)
+(Worker_DP1_TP5_EP13 pid=1091514)           ^^^^^^^^^^^^^
+(Worker_DP1_TP5_EP13 pid=1091514)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP5_EP13 pid=1091514)     raise EOFError
+(Worker_DP1_TP5_EP13 pid=1091514) EOFError
+(Worker_DP1_TP2_EP10 pid=1091034) Exception in thread Thread-1:
+(Worker_DP1_TP2_EP10 pid=1091034) Traceback (most recent call last):
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP2_EP10 pid=1091034)     self.run()
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP2_EP10 pid=1091034)     item = self.task_q.get()
+(Worker_DP1_TP2_EP10 pid=1091034)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034)   File "<string>", line 2, in get
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP2_EP10 pid=1091034)     kind, result = conn.recv()
+(Worker_DP1_TP2_EP10 pid=1091034)                    ^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP2_EP10 pid=1091034)     buf = self._recv_bytes()
+(Worker_DP1_TP2_EP10 pid=1091034)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP2_EP10 pid=1091034)     buf = self._recv(4)
+(Worker_DP1_TP2_EP10 pid=1091034)           ^^^^^^^^^^^^^
+(Worker_DP1_TP2_EP10 pid=1091034)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP2_EP10 pid=1091034)     raise EOFError
+(Worker_DP1_TP2_EP10 pid=1091034) EOFError
+(Worker_DP1_TP0_EP8 pid=1090775) Exception in thread Thread-2:
+(Worker_DP1_TP0_EP8 pid=1090775) Traceback (most recent call last):
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP0_EP8 pid=1090775)     self.run()
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP0_EP8 pid=1090775)     item = self.task_q.get()
+(Worker_DP1_TP0_EP8 pid=1090775)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP0_EP8 pid=1090775)   File "<string>", line 2, in get
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP0_EP8 pid=1090775)     kind, result = conn.recv()
+(Worker_DP1_TP0_EP8 pid=1090775)                    ^^^^^^^^^^^
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP0_EP8 pid=1090775)     buf = self._recv_bytes()
+(Worker_DP1_TP0_EP8 pid=1090775)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP0_EP8 pid=1090775)     buf = self._recv(4)
+(Worker_DP1_TP0_EP8 pid=1090775)           ^^^^^^^^^^^^^
+(Worker_DP1_TP0_EP8 pid=1090775)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP0_EP8 pid=1090775)     raise EOFError
+(Worker_DP1_TP0_EP8 pid=1090775) EOFError
+(APIServer pid=1089672) INFO 09-14 23:58:03 [core_client.py:751] [shutdown] MPClient: complete
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829] AsyncLLM output_handler failed.
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829] Traceback (most recent call last):
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/async_llm.py", line 775, in output_handler
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829]     outputs = await engine_core.get_output_async()
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/engine/core_client.py", line 1175, in get_output_async
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829]     raise self._format_exception(outputs) from None
+(APIServer pid=1089672) ERROR 09-14 23:58:03 [async_llm.py:829] vllm.v1.engine.exceptions.EngineDeadError: EngineCore encountered an issue. See stack trace (above) for the root cause.
+(APIServer pid=1089672) INFO 09-14 23:58:03 [launcher.py:154] [shutdown] API server: engine client stopped
+(APIServer pid=1089672) INFO 09-14 23:58:03 [launcher.py:157] [shutdown] API server: signalling HTTP server shutdown
+(Worker_DP1_TP6_EP14 pid=1091677) Exception in thread Thread-1:
+(Worker_DP1_TP6_EP14 pid=1091677) Traceback (most recent call last):
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP6_EP14 pid=1091677)     self.run()
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP6_EP14 pid=1091677)     item = self.task_q.get()
+(Worker_DP1_TP6_EP14 pid=1091677)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP6_EP14 pid=1091677)   File "<string>", line 2, in get
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP6_EP14 pid=1091677)     kind, result = conn.recv()
+(Worker_DP1_TP6_EP14 pid=1091677)                    ^^^^^^^^^^^
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP6_EP14 pid=1091677)     buf = self._recv_bytes()
+(Worker_DP1_TP6_EP14 pid=1091677)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP6_EP14 pid=1091677)     buf = self._recv(4)
+(Worker_DP1_TP6_EP14 pid=1091677)           ^^^^^^^^^^^^^
+(Worker_DP1_TP6_EP14 pid=1091677)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP6_EP14 pid=1091677)     raise EOFError
+(Worker_DP1_TP6_EP14 pid=1091677) EOFError
+(Worker_DP1_TP3_EP11 pid=1091192) Exception in thread Thread-1:
+(Worker_DP1_TP3_EP11 pid=1091192) Traceback (most recent call last):
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/python3.11.10/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+(Worker_DP1_TP3_EP11 pid=1091192)     self.run()
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages/tbe/common/repository_manager/utils/multiprocess_util.py", line 68, in run
+(Worker_DP1_TP3_EP11 pid=1091192)     item = self.task_q.get()
+(Worker_DP1_TP3_EP11 pid=1091192)            ^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP11 pid=1091192)   File "<string>", line 2, in get
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/managers.py", line 822, in _callmethod
+(Worker_DP1_TP3_EP11 pid=1091192)     kind, result = conn.recv()
+(Worker_DP1_TP3_EP11 pid=1091192)                    ^^^^^^^^^^^
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 250, in recv
+(Worker_DP1_TP3_EP11 pid=1091192)     buf = self._recv_bytes()
+(Worker_DP1_TP3_EP11 pid=1091192)           ^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 430, in _recv_bytes
+(Worker_DP1_TP3_EP11 pid=1091192)     buf = self._recv(4)
+(Worker_DP1_TP3_EP11 pid=1091192)           ^^^^^^^^^^^^^
+(Worker_DP1_TP3_EP11 pid=1091192)   File "/usr/local/python3.11.10/lib/python3.11/multiprocessing/connection.py", line 399, in _recv
+(Worker_DP1_TP3_EP11 pid=1091192)     raise EOFError
+(Worker_DP1_TP3_EP11 pid=1091192) EOFError
+(APIServer pid=1089672) INFO 09-14 23:58:03 [launcher.py:179] [shutdown] API server: shutting down FastAPI HTTP server
+(APIServer pid=1089672) INFO:     Shutting down
+(APIServer pid=1089672) INFO:     Waiting for application shutdown.
+(APIServer pid=1089672) INFO:     Application shutdown complete.
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] WorkerProc hit an exception.
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] Traceback (most recent call last):
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 1047, in _execute_worker_rpc
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     output = func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 1221, in execute_dummy_batch
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     self.model_runner._dummy_run(num_tokens, uniform_decode=True)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 647, in _dummy_run
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     hidden_states, sample_hidden_states = super()._dummy_run(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]                                           ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     result = fn(self, *args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 786, in _dummy_run
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     self.execute_model(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 280, in execute_model
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     output = super().execute_model(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 1617, in execute_model
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     batch_desc, dp_sync = dispatch_cg_and_sync_dp(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 279, in dispatch_cg_and_sync_dp
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return sync_cudagraph_and_dp_padding(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 74, in sync_cudagraph_and_dp_padding
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     dist.all_reduce(tensor, group=group)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 3014, in all_reduce
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     work.wait()
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] RuntimeError: [/pytorch/third_party/gloo/gloo/transport/tcp/pair.cc:538] Read error [80.5.9.127]:20900: Connection reset by peer
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] Traceback (most recent call last):
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/executor/multiproc_executor.py", line 1047, in _execute_worker_rpc
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     output = func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/worker.py", line 1221, in execute_dummy_batch
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     self.model_runner._dummy_run(num_tokens, uniform_decode=True)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 647, in _dummy_run
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     hidden_states, sample_hidden_states = super()._dummy_run(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]                                           ^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     result = fn(self, *args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 786, in _dummy_run
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     self.execute_model(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm-ascend/vllm_ascend/worker/v2/model_runner.py", line 280, in execute_model
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     output = super().execute_model(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]              ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/model_runner.py", line 1617, in execute_model
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     batch_desc, dp_sync = dispatch_cg_and_sync_dp(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]                           ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 279, in dispatch_cg_and_sync_dp
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return sync_cudagraph_and_dp_padding(
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/home/w00985415/proj_0825/deps/vllm/vllm/v1/worker/gpu/dp_utils.py", line 74, in sync_cudagraph_and_dp_padding
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     dist.all_reduce(tensor, group=group)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     return func(*args, **kwargs)
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]   File "/usr/local/python3.11.10/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 3014, in all_reduce
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055]     work.wait()
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] RuntimeError: [/pytorch/third_party/gloo/gloo/transport/tcp/pair.cc:538] Read error [80.5.9.127]:20900: Connection reset by peer
+(Worker_DP1_TP1_EP9 pid=1090878) ERROR 09-14 23:58:04 [multiproc_executor.py:1055] 
+/usr/local/python3.11.10/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 248 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/local/python3.11.10/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 10 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

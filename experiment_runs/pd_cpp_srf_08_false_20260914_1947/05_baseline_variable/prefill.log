@@ -1111,3 +1111,276 @@ I0914 23:53:06.938678 204090 transfer_executor_base.cpp:452] TransferExecutor re
 (APIServer pid=203338) INFO:     Started server process [203338]
 (APIServer pid=203338) INFO:     Waiting for application startup.
 (APIServer pid=203338) INFO:     Application startup complete.
+(APIServer pid=203338) INFO:     127.0.0.1:40354 - "GET /health HTTP/1.1" 200 OK
+(Worker_PP0_TP0_EP0 pid=204090) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP0_EP0 pid=204090)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP7_EP7 pid=204629) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP6_EP6 pid=204547) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP7_EP7 pid=204629)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP6_EP6 pid=204547)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP2_EP2 pid=204219) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP2_EP2 pid=204219)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP1_EP1 pid=204137) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP4_EP4 pid=204383) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP5_EP5 pid=204465) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP5_EP5 pid=204465)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP1_EP1 pid=204137)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP4_EP4 pid=204383)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(Worker_PP0_TP3_EP3 pid=204301) /home/w00985415/proj_0825/deps/vllm/vllm/distributed/parallel_state.py:956: UserWarning: The given buffer is not writable, and PyTorch does not support non-writable tensors. This means you can write to the underlying (supposedly non-writable) buffer using the tensor. You may want to copy the buffer to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:1581.)
+(Worker_PP0_TP3_EP3 pid=204301)   object_tensor = torch.frombuffer(pickle.dumps(obj), dtype=torch.uint8)
+(EngineCore pid=204035) INFO 09-14 23:58:29 [mooncake_hybrid_connector.py:1490] Delaying free of 560 blocks for request cmpl-6a555994-2b4c-4c64-b7e1-a36001fa44f8-0-a025c1b7
+(APIServer pid=203338) INFO:     127.0.0.1:54298 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-14 23:58:32 [loggers.py:310] Engine 000: Avg prompt throughput: 6547.1 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(APIServer pid=203338) INFO 09-14 23:58:42 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:00:24 [mooncake_hybrid_connector.py:1490] Delaying free of 560 blocks for request cmpl-26be8c45-7a1f-4a3e-80ee-91e27fb4febd-0-bd89c512
+(APIServer pid=203338) INFO:     127.0.0.1:35858 - "POST /v1/completions HTTP/1.1" 200 OK
+(EngineCore pid=204035) INFO 09-15 00:00:30 [mooncake_hybrid_connector.py:1490] Delaying free of 573 blocks for request cmpl-15551421-6fcc-486f-8107-3c2bfca7d951-0-8eb366a1
+(APIServer pid=203338) INFO:     127.0.0.1:35870 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:00:32 [loggers.py:310] Engine 000: Avg prompt throughput: 13247.9 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 1 reqs, Waiting: 1 reqs, GPU KV cache usage: 30.4%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:00:37 [mooncake_hybrid_connector.py:1490] Delaying free of 613 blocks for request cmpl-e8dcc42f-03e2-41a3-a40e-53e0c2aecfe1-0-8e9ad03c
+(APIServer pid=203338) INFO:     127.0.0.1:35886 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:00:42 [loggers.py:310] Engine 000: Avg prompt throughput: 7203.0 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 48.8%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:00:43 [mooncake_hybrid_connector.py:1490] Delaying free of 557 blocks for request cmpl-b61e69f6-7a40-41b2-b293-a279b6a8ea33-0-a0c89795
+(APIServer pid=203338) INFO:     127.0.0.1:35902 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:00:52 [loggers.py:310] Engine 000: Avg prompt throughput: 6506.8 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(APIServer pid=203338) INFO 09-15 00:01:02 [loggers.py:310] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:02:26 [mooncake_hybrid_connector.py:1490] Delaying free of 622 blocks for request cmpl-8ea49918-1047-4785-ab7c-d020f5d66b50-0-b0ee960c
+(APIServer pid=203338) INFO:     127.0.0.1:45284 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:02:32 [loggers.py:310] Engine 000: Avg prompt throughput: 7309.8 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 54.6%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:02:33 [mooncake_hybrid_connector.py:1490] Delaying free of 597 blocks for request cmpl-6c5796ed-4526-43d4-862e-3f365bdddad8-0-977f402c
+(APIServer pid=203338) INFO:     127.0.0.1:58870 - "POST /v1/completions HTTP/1.1" 200 OK
+(EngineCore pid=204035) INFO 09-15 00:02:38 [mooncake_hybrid_connector.py:1490] Delaying free of 466 blocks for request cmpl-41aa9ea5-5b71-40d7-8fd8-f163888a0450-0-8376aa26
+(APIServer pid=203338) INFO:     127.0.0.1:58870 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:02:42 [loggers.py:310] Engine 000: Avg prompt throughput: 12357.7 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:02:47 [mooncake_hybrid_connector.py:1490] Delaying free of 634 blocks for request cmpl-1a5997e3-773a-4665-a702-31ffd4e51138-0-93f76543
+(APIServer pid=203338) INFO:     127.0.0.1:58870 - "POST /v1/completions HTTP/1.1" 200 OK
+(APIServer pid=203338) INFO 09-15 00:02:52 [loggers.py:310] Engine 000: Avg prompt throughput: 7456.5 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, External prefix cache hit rate: 0.0%
+(EngineCore pid=204035) INFO 09-15 00:02:58 [core.py:1342] [shutdown] EngineCore: trigger received signal=SIGTERM
+(APIServer pid=203338) INFO 09-15 00:02:58 [launcher.py:129] [shutdown] API server: shutdown triggered
+(APIServer pid=203338) INFO 09-15 00:02:58 [launcher.py:145] [shutdown] API server: stopping engine client mode=abort timeout=0s
+(EngineCore pid=204035) INFO 09-15 00:02:58 [core.py:1493] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=204035) INFO 09-15 00:02:58 [core.py:1524] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=204035) INFO 09-15 00:02:58 [core.py:1355] [shutdown] EngineCore: exiting busy loop
+(EngineCore pid=204035) INFO 09-15 00:02:58 [multiproc_executor.py:472] [shutdown] Executor: waiting for worker exit count=16
+(Worker_PP0_TP0_EP0 pid=204090) INFO 09-15 00:02:58 [multiproc_executor.py:836] Parent process exited, terminating worker queues
+(APIServer pid=203338) INFO 09-15 00:02:58 [core_client.py:744] [shutdown] MPClient: start timeout=0s
+(APIServer pid=203338) INFO 09-15 00:02:58 [core_client.py:746] [shutdown] MPClient: stopping engine manager
+(APIServer pid=203338) INFO 09-15 00:02:58 [utils.py:620] [shutdown] Process manager: send sigterm to process EngineCore
+(APIServer pid=203338) WARNING 09-15 00:02:58 [utils.py:640] [shutdown] Process manager: force killing remaining processes count=1
+(APIServer pid=203338) WARNING 09-15 00:02:58 [utils.py:645] [shutdown] Process manager: force killing remaining process EngineCore pid 204035
+(APIServer pid=203338) INFO:     127.0.0.1:57972 - "POST /v1/completions HTTP/1.1" 500 Internal Server Error
+(APIServer pid=203338) INFO 09-15 00:02:58 [core_client.py:748] [shutdown] MPClient: engine manager stopped
+(APIServer pid=203338) INFO 09-15 00:02:58 [core_client.py:749] [shutdown] MPClient: cleaning up background resources
+(APIServer pid=203338) INFO 09-15 00:02:58 [core_client.py:751] [shutdown] MPClient: complete
+(APIServer pid=203338) ERROR:    Exception in ASGI application
+(APIServer pid=203338) Traceback (most recent call last):
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+(APIServer pid=203338)     result = await app(  # type: ignore[func-returns-value]
+(APIServer pid=203338)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+(APIServer pid=203338)     return await self.app(scope, receive, send)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+(APIServer pid=203338)     await super().__call__(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/applications.py", line 96, in __call__
+(APIServer pid=203338)     await self.middleware_stack(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, _send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/cors.py", line 88, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 180, in __call__
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 178, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send_wrapper)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+(APIServer pid=203338)     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+(APIServer pid=203338)     await app(scope, receive, sender)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 670, in __call__
+(APIServer pid=203338)     await self.middleware_stack(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 690, in app
+(APIServer pid=203338)     await route.handle(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 280, in handle
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+(APIServer pid=203338)     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+(APIServer pid=203338)     await app(scope, receive, sender)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+(APIServer pid=203338)     response = await f(request)
+(APIServer pid=203338)                ^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+(APIServer pid=203338)     raw_response = await run_endpoint_function(
+(APIServer pid=203338)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+(APIServer pid=203338)     return await dependant.call(**values)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/serve/utils/api_utils.py", line 90, in wrapper
+(APIServer pid=203338)     return handler_task.result()
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/serve/utils/api_utils.py", line 111, in wrapper
+(APIServer pid=203338)     return await func(*args, **kwargs)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/api_router.py", line 55, in create_completion
+(APIServer pid=203338)     generator = await handler.create_completion(request, raw_request)
+(APIServer pid=203338)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 123, in create_completion
+(APIServer pid=203338)     return await self._with_kv_transfer_rejection_cleanup(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/generate/base/serving.py", line 300, in _with_kv_transfer_rejection_cleanup
+(APIServer pid=203338)     return await awaitable
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 137, in _create_completion
+(APIServer pid=203338)     result = await self.render_completion_request(request)
+(APIServer pid=203338)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 107, in render_completion_request
+(APIServer pid=203338)     return await self.online_renderer.render_completion(request)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 561, in render_completion
+(APIServer pid=203338)     engine_inputs = await self.preprocess_completion(
+(APIServer pid=203338)                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 614, in preprocess_completion
+(APIServer pid=203338)     return await self.preprocess_cmpl(request, prompts, skip_mm_cache=skip_mm_cache)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 637, in preprocess_cmpl
+(APIServer pid=203338)     return await renderer.render_cmpl_async(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 1142, in render_cmpl_async
+(APIServer pid=203338)     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=203338)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 764, in tokenize_prompts_async
+(APIServer pid=203338)     return await asyncio.gather(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 757, in tokenize_prompt_async
+(APIServer pid=203338)     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 681, in _tokenize_singleton_prompt_async
+(APIServer pid=203338)     prompt = await self._tokenize_prompt_async(prompt, params)
+(APIServer pid=203338)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/utils/async_utils.py", line 43, in _async_wrapper
+(APIServer pid=203338)     return loop.run_in_executor(executor=executor, func=p_func)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "uvloop/loop.pyx", line 2747, in uvloop.loop.Loop.run_in_executor
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/concurrent/futures/thread.py", line 167, in submit
+(APIServer pid=203338)     raise RuntimeError('cannot schedule new futures after shutdown')
+(APIServer pid=203338) RuntimeError: cannot schedule new futures after shutdown
+(APIServer pid=203338) INFO 09-15 00:02:58 [launcher.py:154] [shutdown] API server: engine client stopped
+(APIServer pid=203338) INFO 09-15 00:02:58 [launcher.py:157] [shutdown] API server: signalling HTTP server shutdown
+(APIServer pid=203338) INFO:     127.0.0.1:57978 - "POST /v1/completions HTTP/1.1" 500 Internal Server Error
+(APIServer pid=203338) ERROR:    Exception in ASGI application
+(APIServer pid=203338) Traceback (most recent call last):
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+(APIServer pid=203338)     result = await app(  # type: ignore[func-returns-value]
+(APIServer pid=203338)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+(APIServer pid=203338)     return await self.app(scope, receive, send)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+(APIServer pid=203338)     await super().__call__(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/applications.py", line 96, in __call__
+(APIServer pid=203338)     await self.middleware_stack(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, _send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/cors.py", line 88, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 180, in __call__
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 178, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send_wrapper)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+(APIServer pid=203338)     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+(APIServer pid=203338)     await app(scope, receive, sender)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 670, in __call__
+(APIServer pid=203338)     await self.middleware_stack(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 690, in app
+(APIServer pid=203338)     await route.handle(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/routing.py", line 280, in handle
+(APIServer pid=203338)     await self.app(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+(APIServer pid=203338)     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+(APIServer pid=203338)     raise exc
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+(APIServer pid=203338)     await app(scope, receive, sender)
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+(APIServer pid=203338)     response = await f(request)
+(APIServer pid=203338)                ^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+(APIServer pid=203338)     raw_response = await run_endpoint_function(
+(APIServer pid=203338)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+(APIServer pid=203338)     return await dependant.call(**values)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/serve/utils/api_utils.py", line 90, in wrapper
+(APIServer pid=203338)     return handler_task.result()
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/serve/utils/api_utils.py", line 111, in wrapper
+(APIServer pid=203338)     return await func(*args, **kwargs)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/api_router.py", line 55, in create_completion
+(APIServer pid=203338)     generator = await handler.create_completion(request, raw_request)
+(APIServer pid=203338)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 123, in create_completion
+(APIServer pid=203338)     return await self._with_kv_transfer_rejection_cleanup(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/generate/base/serving.py", line 300, in _with_kv_transfer_rejection_cleanup
+(APIServer pid=203338)     return await awaitable
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 137, in _create_completion
+(APIServer pid=203338)     result = await self.render_completion_request(request)
+(APIServer pid=203338)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/entrypoints/openai/completion/serving.py", line 107, in render_completion_request
+(APIServer pid=203338)     return await self.online_renderer.render_completion(request)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 561, in render_completion
+(APIServer pid=203338)     engine_inputs = await self.preprocess_completion(
+(APIServer pid=203338)                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 614, in preprocess_completion
+(APIServer pid=203338)     return await self.preprocess_cmpl(request, prompts, skip_mm_cache=skip_mm_cache)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/online_renderer.py", line 637, in preprocess_cmpl
+(APIServer pid=203338)     return await renderer.render_cmpl_async(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 1142, in render_cmpl_async
+(APIServer pid=203338)     tok_prompts = await self.tokenize_prompts_async(dict_prompts, tok_params)
+(APIServer pid=203338)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 764, in tokenize_prompts_async
+(APIServer pid=203338)     return await asyncio.gather(
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 757, in tokenize_prompt_async
+(APIServer pid=203338)     return await self._tokenize_singleton_prompt_async(prompt, params)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/renderers/base.py", line 681, in _tokenize_singleton_prompt_async
+(APIServer pid=203338)     prompt = await self._tokenize_prompt_async(prompt, params)
+(APIServer pid=203338)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "/home/w00985415/proj_0825/deps/vllm/vllm/utils/async_utils.py", line 43, in _async_wrapper
+(APIServer pid=203338)     return loop.run_in_executor(executor=executor, func=p_func)
+(APIServer pid=203338)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=203338)   File "uvloop/loop.pyx", line 2747, in uvloop.loop.Loop.run_in_executor
+(APIServer pid=203338)   File "/usr/local/python3.11.10/lib/python3.11/concurrent/futures/thread.py", line 167, in submit
+(APIServer pid=203338)     raise RuntimeError('cannot schedule new futures after shutdown')
+(APIServer pid=203338) RuntimeError: cannot schedule new futures after shutdown
+(APIServer pid=203338) INFO 09-15 00:02:58 [launcher.py:179] [shutdown] API server: shutting down FastAPI HTTP server
+(APIServer pid=203338) INFO:     Shutting down
+(APIServer pid=203338) INFO:     127.0.0.1:57982 - "POST /v1/completions HTTP/1.1" 500 Internal Server Error
+(APIServer pid=203338) INFO:     Waiting for application shutdown.
+(APIServer pid=203338) INFO:     Application shutdown complete.
+/usr/local/python3.11.10/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 496 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/usr/local/python3.11.10/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 19 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
