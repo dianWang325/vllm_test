@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3
+export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 export VLLM_HOST_IP=80.5.9.113
 export HCCL_IF_IP=80.5.9.113
 export GLOO_SOCKET_IFNAME=enp194s0f0
@@ -17,12 +17,12 @@ export HCCL_OP_EXPANSION_MODE=AIV
 export VLLM_USE_V2_MODEL_RUNNER=1
 export VLLM_LOGGING_LEVEL=INFO
 
-vllm serve /mnt/weight/Qwen3-30B-A3B-W8A8 \
+vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --host 127.0.0.1 \
   --port 18080 \
-  --served-model-name qwen3-30b-a3b-w8a8 \
+  --served-model-name glm-5.2 \
   --trust-remote-code \
-  --tensor-parallel-size 4 \
+  --tensor-parallel-size 16 \
   --pipeline-parallel-size 2 \
   --distributed-executor-backend mp \
   --nnodes 2 \
