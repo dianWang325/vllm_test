@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 # GLM-5.2 TP16/PP2/EP with CPP off and MS Service Profiler on both nodes.
-# PP0: 80.5.17.110; PP1: 80.5.17.111; max_num_batched_tokens=24576.
+# Defaults: PP0 80.5.17.110, PP1 80.5.17.111. Override both hosts and RUN_ID together when moving nodes.
 set -euo pipefail
 
+head_ip=${PP0_HOST:-80.5.17.110}
+worker_ip=${PP1_HOST:-80.5.17.111}
+run_id=${RUN_ID:-110_111}
 role="${1:?expected head or worker}"
 case "$role" in
   head)
-    local_ip=80.5.17.110
+    local_ip="$head_ip"
     node_rank=0
     prof_role=pp0
     extra_args=()
     ;;
   worker)
-    local_ip=80.5.17.111
+    local_ip="$worker_ip"
     node_rank=1
     prof_role=pp1
     extra_args=(--headless)
@@ -20,7 +23,7 @@ case "$role" in
   *) echo "invalid role: $role" >&2; exit 2 ;;
 esac
 
-log_dir=/home/w00985415/pp2_glm_ep_110_111_85k_cpp_off_24576_prof_20260916
+log_dir="/home/w00985415/pp2_glm_ep_${run_id}_85k_cpp_off_24576_prof_20260916"
 mkdir -p "$log_dir/${role}_cann"
 
 prof_root=/home/w00985415/vllm_test_glm/plain_scripts/profiling
@@ -61,7 +64,7 @@ export VLLM_LOGGING_LEVEL=DEBUG
 export VLLM_PP_LAYER_PARTITION=38,40
 export PYTHONUNBUFFERED=1
 
-printf 'role=%s host=%s peer=%s cpp_enabled=false max_num_batched_tokens=24576 profiler_config=%s profiler_symbols=%s started=%s\n' "$role" "$local_ip" "$(if [ "$role" = head ]; then echo 80.5.17.111; else echo 80.5.17.110; fi)" "$SERVICE_PROF_CONFIG_PATH" "$PROFILING_SYMBOLS_PATH" "$(date -Is)" > "$log_dir/${role}.meta"
+printf 'role=%s host=%s peer=%s cpp_enabled=false max_num_batched_tokens=24576 profiler_config=%s profiler_symbols=%s started=%s\n' "$role" "$local_ip" "$(if [ "$role" = head ]; then echo "$worker_ip"; else echo "$head_ip"; fi)" "$SERVICE_PROF_CONFIG_PATH" "$PROFILING_SYMBOLS_PATH" "$(date -Is)" > "$log_dir/${role}.meta"
 exec vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --host 127.0.0.1 \
   --port 18080 \
@@ -72,7 +75,7 @@ exec vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --distributed-executor-backend mp \
   --nnodes 2 \
   --node-rank "$node_rank" \
-  --master-addr 80.5.17.110 \
+  --master-addr "$head_ip" \
   --master-port 29500 \
   "${extra_args[@]}" \
   --max-num-seqs 100 \
