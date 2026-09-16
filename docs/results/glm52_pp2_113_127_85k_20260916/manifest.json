@@ -1,0 +1,196 @@
+{
+  "api_url": "http://127.0.0.1:18080/v1/completions",
+  "model": "glm-5.2",
+  "tokenizer": "/mnt/weight/GLM-5.2-W4A8C8-0713-MTP",
+  "input_token_target": 87039,
+  "warmup": {
+    "count": 5,
+    "output_tokens": 1,
+    "concurrency": 1,
+    "prompts": [
+      {
+        "index": 0,
+        "original_tokens": 87039,
+        "prepared_tokens": 87039,
+        "truncated": false
+      },
+      {
+        "index": 1,
+        "original_tokens": 88348,
+        "prepared_tokens": 87039,
+        "truncated": true
+      },
+      {
+        "index": 2,
+        "original_tokens": 89599,
+        "prepared_tokens": 87039,
+        "truncated": true
+      },
+      {
+        "index": 3,
+        "original_tokens": 87039,
+        "prepared_tokens": 87039,
+        "truncated": false
+      },
+      {
+        "index": 4,
+        "original_tokens": 85937,
+        "prepared_tokens": 85937,
+        "truncated": false
+      }
+    ]
+  },
+  "fixed": {
+    "count": 24,
+    "output_tokens": 1,
+    "concurrency": 4,
+    "prompts": [
+      {
+        "index": 0,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 1,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 2,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 3,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 4,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 5,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 6,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 7,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 8,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 9,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 10,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 11,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 12,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 13,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 14,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 15,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 16,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 17,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 18,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 19,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 20,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 21,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 22,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      },
+      {
+        "index": 23,
+        "original_tokens": 65536,
+        "prepared_tokens": 65536,
+        "truncated": false
+      }
+    ]
+  },
+  "warmup_data": "/home/w00985415/vllm_test_glm/aisbench_workspace/datasets/glm52_pp2_20260916/prefill_warmup.jsonl",
+  "fixed_data": "/home/w00985415/vllm_test_glm/aisbench_workspace/datasets/glm52_pp2_20260916/prefill_fixed.jsonl"
+}

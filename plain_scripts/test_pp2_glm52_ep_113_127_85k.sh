@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# TRIAL 2026-09-16: 80.5.9.113 PP0 + 80.5.9.127 PP1.
-# TP16/PP2/EP, max_model_len=87040; verify before marking successful.
+# VERIFIED 2026-09-16: 80.5.9.113 PP0 + 80.5.9.127 PP1.
+# TP16/PP2/EP, max_model_len=87040; 5/5 warmup and 24/24 fixed requests passed.
 set -euo pipefail
 
 role="${1:?expected head or worker}"

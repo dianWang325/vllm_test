@@ -1,0 +1,32 @@
+{
+  "requests": 5,
+  "success": 5,
+  "failed": 0,
+  "elapsed_s": 106.096016,
+  "request_throughput_rps": 0.047127,
+  "input_tokens": 434093,
+  "output_tokens": 5,
+  "input_throughput_tps": 4091.510838,
+  "output_throughput_tps": 0.047127,
+  "latency_s": {
+    "mean": 21.217359,
+    "p50": 20.147245,
+    "p90": 23.552033,
+    "p95": 24.665057,
+    "max": 25.778081
+  },
+  "ttft_s": {
+    "mean": 21.217191,
+    "p50": 20.147077,
+    "p90": 23.551874,
+    "p95": 24.664895,
+    "max": 25.777916
+  },
+  "tpot_s": {
+    "mean": null,
+    "p50": null,
+    "p90": null,
+    "p95": null,
+    "max": null
+  }
+}
