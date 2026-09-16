@@ -36,9 +36,9 @@ vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --max-model-len 40960 \
   --max-num-batched-tokens 16384 \
   --block-size 128 \
+  --enforce-eager \
   --enable-expert-parallel \
   --quantization ascend \
   --no-enable-prefix-caching \
-  --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
   --additional-config '{"weight_nz_mode":2}' \
   --gpu-memory-utilization 0.85
