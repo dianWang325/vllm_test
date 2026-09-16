@@ -43,7 +43,6 @@ vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --max-num-batched-tokens 16384 \
   --block-size 128 \
   --enforce-eager \
-  --enable-expert-parallel \
   --quantization ascend \
   --no-enable-prefix-caching \
   --additional-config '{"weight_nz_mode":2}' \
