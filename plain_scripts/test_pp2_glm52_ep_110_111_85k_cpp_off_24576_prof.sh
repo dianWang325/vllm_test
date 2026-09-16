@@ -6,6 +6,8 @@ set -euo pipefail
 head_ip=${PP0_HOST:-80.5.17.110}
 worker_ip=${PP1_HOST:-80.5.17.111}
 run_id=${RUN_ID:-110_111}
+net_iface=${NET_IFACE:-enp48s3u1u1}
+test -d "/sys/class/net/$net_iface"
 role="${1:?expected head or worker}"
 case "$role" in
   head)
@@ -42,9 +44,9 @@ unset VLLM_TORCH_PROFILER_DIR
 export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 export VLLM_HOST_IP="$local_ip"
 export HCCL_IF_IP="$local_ip"
-export GLOO_SOCKET_IFNAME=enp48s3u1u1
-export TP_SOCKET_IFNAME=enp48s3u1u1
-export HCCL_SOCKET_IFNAME=enp48s3u1u1
+export GLOO_SOCKET_IFNAME="$net_iface"
+export TP_SOCKET_IFNAME="$net_iface"
+export HCCL_SOCKET_IFNAME="$net_iface"
 export HCCL_BUFFSIZE=1024
 export HCCL_CONNECT_TIMEOUT=120
 export HCCL_EXEC_TIMEOUT=204
@@ -64,7 +66,7 @@ export VLLM_LOGGING_LEVEL=DEBUG
 export VLLM_PP_LAYER_PARTITION=38,40
 export PYTHONUNBUFFERED=1
 
-printf 'role=%s host=%s peer=%s cpp_enabled=false max_num_batched_tokens=24576 profiler_config=%s profiler_symbols=%s started=%s\n' "$role" "$local_ip" "$(if [ "$role" = head ]; then echo "$worker_ip"; else echo "$head_ip"; fi)" "$SERVICE_PROF_CONFIG_PATH" "$PROFILING_SYMBOLS_PATH" "$(date -Is)" > "$log_dir/${role}.meta"
+printf 'role=%s host=%s peer=%s net_iface=%s cpp_enabled=false max_num_batched_tokens=24576 profiler_config=%s profiler_symbols=%s started=%s\n' "$role" "$local_ip" "$(if [ "$role" = head ]; then echo "$worker_ip"; else echo "$head_ip"; fi)" "$net_iface" "$SERVICE_PROF_CONFIG_PATH" "$PROFILING_SYMBOLS_PATH" "$(date -Is)" > "$log_dir/${role}.meta"
 exec vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --host 127.0.0.1 \
   --port 18080 \
