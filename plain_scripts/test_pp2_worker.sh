@@ -14,6 +14,8 @@ export HCCL_EXEC_TIMEOUT=204
 # per-process host/NPU ports instead of reusing the default NPU port 16666.
 export HCCL_HOST_SOCKET_PORT_RANGE=auto
 export HCCL_NPU_SOCKET_PORT_RANGE=auto
+export TE_PARALLEL_COMPILER=1
+export OMP_NUM_THREADS=10
 export VLLM_RPC_TIMEOUT=3600000
 export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3000
 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
