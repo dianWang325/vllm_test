@@ -10,6 +10,10 @@ export HCCL_SOCKET_IFNAME=enp48s3u1u1
 export HCCL_BUFFSIZE=1024
 export HCCL_CONNECT_TIMEOUT=120
 export HCCL_EXEC_TIMEOUT=204
+# Two logical devices share each physical NPU, so let HCCL allocate
+# per-process host/NPU ports instead of reusing the default NPU port 16666.
+export HCCL_HOST_SOCKET_PORT_RANGE=auto
+export HCCL_NPU_SOCKET_PORT_RANGE=auto
 export VLLM_RPC_TIMEOUT=3600000
 export VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=3000
 export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
