@@ -16,6 +16,8 @@ export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 export HCCL_OP_EXPANSION_MODE=AIV
 export VLLM_USE_V2_MODEL_RUNNER=1
 export VLLM_LOGGING_LEVEL=INFO
+# Keep the PP boundary on a full Indexer layer for GLM-5.2.
+export VLLM_PP_LAYER_PARTITION=38,40
 
 vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --host 127.0.0.1 \
