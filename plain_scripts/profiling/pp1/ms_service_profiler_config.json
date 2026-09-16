@@ -1,0 +1,7 @@
+{
+  "enable": 0,
+  "prof_dir": "/home/w00985415/profiler_runs/glm52_pp1",
+  "acl_task_time": 1,
+  "acl_prof_task_time_level": "L0",
+  "timelimit": 180
+}
