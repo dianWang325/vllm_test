@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# GLM-5.2 PP2 cross-node trial: 80.5.9.126 PP0 + 80.5.9.127 PP1.
-# 85K context (87040 tokens), TP16, EP enabled; adapted from verified 135/127 run.
+# VERIFIED 2026-09-16: 80.5.9.126 PP0 + 80.5.9.127 PP1 reached the API
+# with max_model_len=87040 and returned a chat completion (TP16/PP2/EP).
 set -euo pipefail
 
 role="${1:?expected head or worker}"
