@@ -1,0 +1,51 @@
+{
+  "api_url": "http://127.0.0.1:18080/v1/completions",
+  "model": "glm-5.2",
+  "tokenizer": "/mnt/weight/GLM-5.2-W4A8C8-0713-MTP",
+  "input_token_target": 87039,
+  "warmup": {
+    "count": 5,
+    "output_tokens": 1,
+    "concurrency": 1,
+    "prompts": [
+      {
+        "index": 0,
+        "original_tokens": 87039,
+        "prepared_tokens": 87039,
+        "truncated": false
+      },
+      {
+        "index": 1,
+        "original_tokens": 88348,
+        "prepared_tokens": 87039,
+        "truncated": true
+      },
+      {
+        "index": 2,
+        "original_tokens": 89599,
+        "prepared_tokens": 87039,
+        "truncated": true
+      },
+      {
+        "index": 3,
+        "original_tokens": 87039,
+        "prepared_tokens": 87039,
+        "truncated": false
+      },
+      {
+        "index": 4,
+        "original_tokens": 85937,
+        "prepared_tokens": 85937,
+        "truncated": false
+      }
+    ]
+  },
+  "fixed": {
+    "count": 24,
+    "output_tokens": 2560,
+    "concurrency": 4,
+    "prompts": []
+  },
+  "warmup_data": "/home/w00985415/pp2_glm_ep_135_127_20260916/bench_inputs/prefill_warmup.jsonl",
+  "fixed_data": "/home/w00985415/pp2_glm_ep_135_127_20260916/bench_inputs/prefill_fixed.jsonl"
+}
