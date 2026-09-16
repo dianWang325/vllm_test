@@ -2,8 +2,8 @@
 set -euo pipefail
 
 export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export VLLM_HOST_IP=80.5.17.120
-export HCCL_IF_IP=80.5.17.120
+export VLLM_HOST_IP=80.5.17.122
+export HCCL_IF_IP=80.5.17.122
 export GLOO_SOCKET_IFNAME=enp48s3u1u1
 export TP_SOCKET_IFNAME=enp48s3u1u1
 export HCCL_SOCKET_IFNAME=enp48s3u1u1
@@ -33,7 +33,7 @@ vllm serve /mnt/weight/GLM-5.2-W4A8C8-0713-MTP \
   --distributed-executor-backend mp \
   --nnodes 2 \
   --node-rank 1 \
-  --master-addr 80.5.17.119 \
+  --master-addr 80.5.17.111 \
   --master-port 29500 \
   --headless \
   --max-num-seqs 100 \
